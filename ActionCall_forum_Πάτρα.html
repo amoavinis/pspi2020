@@ -8,69 +8,89 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="fontawesome/fontawesome.all.css">
+    <link rel="stylesheet" href="fontawesome/forum.css">
+
+
     <!--Bootstrap JS-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <title>Food For All Sign Up</title>
+    <title>ActionCall Forum: Πάτρα</title>
     
 
   </head>
 
     <body>
-        <!--Navigation bar start-->
         <nav class="navbar bg-light navbar-default navbar-expand-lg" >
-            <a class="navbar-brand" href="food_for_all_homepage.html"> <img src="logo_picture.png" alt="Food for all logo image" style="width: 120px; height: auto;" > </a>
+            <a class="navbar-brand" href="ActionCall_homepage.html"> <img src="logo_picture.png" alt="Food for all logo image" style="width: 120px; height: auto;" > </a>
             <ul class="navbar-nav mr-auto">
-                <li class="active nav-item"> <a class="nav-link" href="food_for_all_homepage.html"> Home</a> </li>
+                <li class="active nav-item"> <a class="nav-link" href="ActionCall_homepage.html"> Home</a> </li>
                 <li class="dropdown nav-item">
                     <a class="dropdown-toggle nav-link" data-toggle="dropdown" href> About Us </a>
                     <span class="caret"></span> 
                     <ul class="dropdown-menu">
-                        <li><a class="nav-link" href="food_for_all_about_us_people.html"> People </a></li>
-                        <li><a class="nav-link" href="food_for_all_about_us_purpose.html"> Purpose </a></li>
+                        <li><a class="nav-link" href="ActionCall_about_us_people.html"> People </a></li>
+                        <li><a class="nav-link" href="ActionCall_about_us_purpose.html"> Purpose </a></li>
                     </ul>
                 </li>
-                <li class="active nav-item"> <a class="nav-link" href="food_for_all_forum.html"> Forum</a> </li>
-                <li class="active nav-item"> <a class="nav-link" href="food_for_all_contact.html"> Contact</a> </li>
+                <li class="active nav-item"> <a class="nav-link" href="ActionCall_forum.html"> Forum</a> </li>
+                <li class="active nav-item"> <a class="nav-link" href="ActionCall_contact.html"> Contact</a> </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="nav-link" href="food_for_all_sign_up.html"> <i class="fas fa-users"></i></span> Sign-Up </a> </li>
-                <li><a class="nav-link" href="food_for_all_login.html"> <i class="fas fa-sign-in-alt"></i> Login </a></li>
+                <li><a class="nav-link" href="ActionCall_sign_up.html"> <i class="fas fa-users"></i></span> Sign-Up </a> </li>
+                <li><a class="nav-link" href="ActionCall_login.html"> <i class="fas fa-sign-in-alt"></i> Login </a></li>
             </ul>
         </nav>
-        <!--Navigation bar end-->
+        <div class="container">
+            <!--Search Bar info-->
+            <h1>αποτελέσματα: Πάτρα</h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <form class="search-form">
+                            <div class="input-group">
+                                <input id="input-1" class="form-control" type="text" aria-describedby="search-btn">
+                                <label for="input-1" class="sr-only">Search</label>
+                                <div class="input-group-append">
+                                    <button id="search-btn" class="btn btn-primary">Search</button>
+                                </div>
+                            </div>
+                        </form> 
+                        <!--Forum Table info-->
+                        <div class="table-container">
+                            <table class="topics-table">
+                                <thead>    
+                                    <tr>
+                                        <th scope="col" width=15%>Για Ημερομηνία</th>
+                                        <th scope="col" width =15%>Πόλη</th>
+                                        <th scope="col" width=50%>Θέμα</th>
+                                        <th scope="col" width=20%>Από</th>
+                                    </tr>
+                                    <tr>
+                                        <td>23-5-2020</td>
+                                        <td href><a class="city" href = "ActionCall_forum_Πάτρα.html">Πάτρα</a></td>
+                                        <td>Εθελοντισμός για σίτηση αστέγων στο κέντρο</td>
+                                        <td>Μιχάλης</td>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
-        <div class="container">
-            <p class="lead">Welcome to the "Food For All" movement's official website! </p>
-        </div>
-        <div class="container">
-            <form class="needs-validation">
-                <div class="form-group">
-                    <label for="new_account_email">E-mail Address</label>
-                    <input type="email" placeholder="name@example.com" class="form-control" id="new_account_email" required>
-                </div>
-                <div class = "form-group">
-                    <label for="account_username">Username</label>
-                    <input type="text" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="account_password">Password</label>
-                    <input type="password" class="form-control" id="account_password" required>
-                </div>
-                <div class="form-group">
-                    <label for="password_confirmation">Confirm Password</label>
-                    <input type="password" class="form-control" id="password_confirmation" required>
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-primary center-block">Sign Up</button>
-                </div>
-            </form>
-        </div>
-
+        <!--<nav class="navbar fixed-bottom bg-light navbar-default navbar-expand-lg">
+            <div class="d-flex align-items-center mx-auto">
+                <span class="navbar-text align-middle" style="font-family: Times New Roman">Sponsors</span>
+                <img src="second_picture.jpg" style="width: auto;height: 140px;">
+                <img src="third_picture.jpg" style="width: auto;height: 140px;">
+                <img src="sissitia-ekklisias.jpg" style="width: auto;height: 140px;">
+            </div>
+        </nav>-->
         <br><br><br><br>	
         <!-- Footer -->
-        <div >
+        <div>
             <section id="footer" style="background-color: darkslategray; margin-top: 10px;">
                 <div class="container">
                     <div class="row">
