@@ -1,0 +1,56 @@
+:root {
+	--teal-color: #24A9A7;
+	--purple-color: #9E41CC;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+.table-container{
+    margin-top: 1rem;
+    width: 100%;
+    border: 2px solid var(--teal-color);
+    border-radius: 10px;
+}
+
+.topics-table {
+    width: 100%;
+}
+
+tr{
+    border-bottom: 1px solid var(--teal-color);
+}
+
+th, td{
+    padding: 10px;
+    text-align: left;
+}
+
+a.city, a.city:hover{
+    color: black;
+}
+
+
+
+ul.header-titles, li.topics-body, li.topics-body ul {
+    overflow: hidden;
+}
+
+li.topics-header, ul[class^='topic-item-'] {
+    padding: 8px;
+}
+
+ul[class^='topic-item-'] {
+    border-top: 1px solid var(--teal-color);
+}
+
+.header-titles li, ul[class^='topic-item-'] li {
+    width: 25%;
+    float: left;
+}
+
+.badge {
+    font-weight: normal;
+}
