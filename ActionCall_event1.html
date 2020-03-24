@@ -28,6 +28,11 @@
         color:darkgray;
         font-family:serif;
     }
+    #like{
+        height:200px;
+        width:200px;
+
+    }
 
     </style>
 
@@ -57,7 +62,16 @@
         <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=22.93956899646219%2C40.63176667532697%2C22.94225120547708%2C40.63318137194274&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=19/40.63247/22.94091">Προβολή Μεγαλύτερου Χάρτη</a></small>
         </div>
         <!--Like button-->
-        <p>Like button goes here</p>
+        <script>
+        var clicks=0;
+        function UpdateClickCount(){
+            clicks++;
+            document.getElementById("interested").innerHTML = clicks;
+            
+        }
+        </script>
+        <button type="button" onClick="UpdateClickCount();" id="like">Interested!</button>
+        <p> <span id="interested"></span> people interested!</p>
 
 
 
