@@ -29,8 +29,13 @@
         font-family:serif;
     }
     #like{
-        height:200px;
-        width:200px;
+        height:503px;
+        width:150px;
+
+    }
+    .container{
+        visibility:hidden;
+        
 
     }
 
@@ -67,12 +72,15 @@
         function UpdateClickCount(){
             clicks++;
             document.getElementById("interested").innerHTML = clicks;
-            
+            element = document.querySelector('.container'); 
+            element.style.visibility = 'visible'; 
+
         }
         </script>
         <button type="button" onClick="UpdateClickCount();" id="like">Interested!</button>
-        <p> <span id="interested"></span> people interested!</p>
-
+        <div class="container">
+        <p2> <span id="interested"></span> people interested!</p2>
+        </div>
 
 
         
