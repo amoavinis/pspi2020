@@ -1,0 +1,15 @@
+#postTitle{
+    font-size: 15px;
+    color:darkgray;
+    font-family:serif;
+}
+#like{
+    height:30px;
+    width:150px;
+}
+#like-container{
+    height: 30px;
+}
+button{
+    height: 30px;
+}
