@@ -3,40 +3,51 @@
   <head>
     <script src="js/gen_elements.js"></script>
     <script>header_gen();</script>
-    <title>Φιλανθρωπία προς τους άστεγους</title>
+    <title>Συλλογή ειδών πρώτης ανάγκης προς τους άστεγους</title>
     <link rel="stylesheet" href="css/post.css">
   </head>
 
     <body>
         <script>navbar_gen();</script>
-        <h1>Φιλανθρωπία προς τους άστεγους</h1>
-        <div class="table-container">
-        <p><b>Παρασκευή 5 Ιουνίου στις 11:00</b><br><p1 id="postTitle">Από:Παντελής<br>Αναρτήθηκε:18/3/2020</br></p1></br></p>
-
-        <p>Sample Text</p>
-        <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=22.93956899646219%2C40.63176667532697%2C22.94225120547708%2C40.63318137194274&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=19/40.63247/22.94091">Προβολή Μεγαλύτερου Χάρτη</a></small>
+        <h1>Συλλογή ειδών πρώτης ανάγκης για τους άστεγους</h1>
+        <div id="post" class="table-container container">
+            <p><b>Παρασκευή 5 Ιουνίου στις 11:00</b><br><p1 id="postTitle">Από:Παντελής<br>Αναρτήθηκε:18/3/2020</br></p1></br></p>
+            <p>Οι άστεγοι στη πόλη μας αυξάνονται μέρα με την μέρα. Θύματα της λαίλαπας της οικονομικής κρίσης,ολο και περισσότεροι συμπολίτες μας βρίσκονται χωρις στέγη πάνω από το κεφάλι τους, ενω τα αυξανόμενα νούμερα δε μπορούν πλεον να καλυφθούν ουτε από τις επίσημες οργανώσεις που βοηθούν αυτους που έχουν ανάγκη.</p>
+            <p>Ως προσωπική πρωτοβουλία λοιπόν,αποφάσισα να συλλέξω είδη πρώτης ανάγκης,τα οποία θα  μοιραστούν σε αστέγους στη περιοχή του κέντρου της Αθήνας.</p>
+            <p>Τα είδη αυτά περιλαμβάνουν:</p>
+            <ul>
+            <li>Φάρμακα</li>
+            <li>Τρόφιμα συσκευασμένα που διατηρούνται εκτος ψυγείου</li>
+            <li>Παιδικά γάλατα,κρέμες σε σκόνη</li>
+            <li>Ζεστά ρούχα,κουβέρτες,παπλώματα,μαξιλαροθήκες</li>
+            <li>Μωρομάντηλα</li>
+            <li>Εμφιαλωμένα νερά</li>
+            </ul>
+            <p>Η συλλογή των προϊόντων θα γίνει <b>Παρασκευή 5 Ιουνίου, 11:00-20:00 το απόγευμα</b>. Θα με βρείτε δίπλα στο μεγάλο συντριβάνι της πλατείας Συντάγματος.</p>
+            
+            <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=23.733529150485992%2C37.97475814116423%2C23.73621135950089%2C37.9762423906209&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=19/37.97550/23.73487&amp;layers=N">Προβολή Μεγαλύτερου Χάρτη</a></small>
+            
+            <!--Like button-->
+            <script>
+            var clicks=0;
+            function UpdateClickCount(){
+                clicks = clicks+1;
+                document.getElementById("interested").innerHTML = clicks;
+                element = document.querySelector('.container'); 
+                element.style.visibility = 'visible'; 
+            }
+            </script>
+            <div class="table-container">
+                <table class="topics-table">
+                    <thead>
+                        <tr>
+                            <td><button type="button" onClick="UpdateClickCount();" id="like">Interested!</button></td>
+                            <td href><span id="interested"><script>document.write("No");</script></span> people interested!</a></td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
-        <!--Like button-->
-        <script>
-        var clicks=0;
-        function UpdateClickCount(){
-            clicks = clicks+1;
-            document.getElementById("interested").innerHTML = clicks;
-            element = document.querySelector('.container'); 
-            element.style.visibility = 'visible'; 
-        }
-        </script>
-        <div class="table-container">
-            <table class="topics-table">
-                <thead>
-                    <tr>
-                        <td><button type="button" onClick="UpdateClickCount();" id="like">Interested!</button></td>
-                        <td href><span id="interested"><script>document.write("No");</script></span> people interested!</a></td>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-                
         <!-- Footer -->
         <script>footer_gen();</script>
         <!-- ./Footer -->

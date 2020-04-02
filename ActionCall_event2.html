@@ -3,37 +3,44 @@
   <head>
     <script src="js/gen_elements.js"></script>
     <script>header_gen();</script>
-    <title>Εθελοντισμός για σίτιση αστέγων στο κέντρο</title>
+    <title>Αποκατάσταση βανδαλισμών στη Πλατεία Όλγας</title>
     <link rel="stylesheet" href="css/post.css">
   </head>
 
     <body>
         <script>navbar_gen();</script>
-        <h1>Εθελοντισμός για σίτιση αστέγων στο κέντρο</h1>
-        <div class="table-container">
-        <p><b>Σάββατο 23 Μαιου στις 12:00</b><br><p1 id="postTitle">Από:Μιχάλης<br>Αναρτήθηκε:2/4/2020</br></p1></br></p>
-        <p>Sample Text</p>
-        <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=22.93956899646219%2C40.63176667532697%2C22.94225120547708%2C40.63318137194274&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=19/40.63247/22.94091">Προβολή Μεγαλύτερου Χάρτη</a></small>
-        </div>
-        <!--Like button-->
-        <script>
-        var clicks=0;
-        function UpdateClickCount(){
-            clicks = clicks+1;
-            document.getElementById("interested").innerHTML = clicks;
-            element = document.querySelector('.container'); 
-            element.style.visibility = 'visible'; 
-        }
-        </script>
-        <div class="table-container">
-            <table class="topics-table">
-                <thead>
-                    <tr>
-                        <td><button type="button" onClick="UpdateClickCount();" id="like">Interested!</button></td>
-                        <td href><span id="interested"><script>document.write("No");</script></span> people interested!</a></td>
-                    </tr>
-                </thead>
-            </table>
+        <h1>Αποκατάσταση βανδαλισμών στη Πλατεία Όλγας</h1>
+        <div id="post" class="table-container container">
+            <p><b>Σάββατο 23 Μαιου στις 12:00</b><br><p1 id="postTitle">Από:Μιχάλης<br>Αναρτήθηκε:2/4/2020</br></p1></br></p>
+            <p>Η πλατεία Όλγας,που κάποτε ήταν το στολίδι της πόλης, πλέον έχει γίνει αγνώριστη από τους βανδαλισμούς.Γραμμένοι τοίχοι, σπασμένα παγκάκια, και σκουπίδια σε καθε τετραγωνικό μέτρο, είναι μόνο κάποιες από τις λίγες φθορές που έχει υποστεί η πλατεία.</p>
+            <p><b>Σάββατο 23 Μαιου στις 12:00 το μεσημέρι</b> λοιπόν θα γίνει μια προσπάθεια αποκατάστασης της πλατείας από κάποια άτομα που λάβαμε τη πρωτοβουλία αυτή. Ωστόσο επειδή είμαστε λίγοι,το κάλεσμα μας είναι ανοιχτό. Όποιος  λοιπόν θέλει  να  βοηθήσει στο έργο μας είναι ευπρόσδεκτος. Το μόνο που χρειάζεται είναι: </p>
+            <ul>
+            <li>Είδη καθαρισμού(όπως πλαστικές σακούλες,πλαστικά γάντια μιας χρήσης,κλπ)</li>
+            <li>Εξοπλισμός καθαρισμού γκράφιτι(πλυστικό μηχάνημα,ασετον)</li>
+            <li>Είδη κατασκευής(κατσαβίδια,γυαλόχαρτο,σφυριά κλπ)</li>
+            </ul>
+            
+            <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=21.735361218452457%2C38.24838228118989%2C21.73898220062256%2C38.24986098073467&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=19/38.24912/21.73717&amp;layers=N">Προβολή Μεγαλύτερου Χάρτη</a></small>
+            <!--Like button-->
+            <script>
+            var clicks=0;
+            function UpdateClickCount(){
+                clicks = clicks+1;
+                document.getElementById("interested").innerHTML = clicks;
+                element = document.querySelector('.container'); 
+                element.style.visibility = 'visible'; 
+            }
+            </script>
+            <div class="table-container">
+                <table class="topics-table">
+                    <thead>
+                        <tr>
+                            <td><button type="button" onClick="UpdateClickCount();" id="like">Interested!</button></td>
+                            <td href><span id="interested"><script>document.write("No");</script></span> people interested!</a></td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
                 
         <!-- Footer -->
