@@ -19,8 +19,12 @@ ul {
     width: 100%;
 }
 
-tr:not(.last-row){
+tr:not(:last-child){
     border-bottom: 1px solid var(--teal-color);
+}
+
+td:not(:last-child){
+    border-right: 1px solid var(--teal-color);
 }
 
 th, td{

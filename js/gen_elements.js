@@ -72,4 +72,53 @@ function footer_gen()
     document.write(footer);
 }
 
+function forum_gen(filter){
+    //run an instance of an object called Post here below:
+    //Post Post1 = new Post(26-4-2020, Θεσσαλονίκη, "Καθαρισμός σκουπιδιών στην πλατεία Αριστοτέλους", Ορέστης);
+    //Console.log(Post1.date);
+    var forum = `<div id="forum" class="table-container">
+    <table class="topics-table">
+        <thead>    
+            <tr>
+                <th scope="col" width=15%>Για Ημερομηνία</th>
+                <th scope="col" width =15%>Πόλη</th>
+                <th scope="col" width=50%>Θέμα</th>
+                <th scope="col" width=20%>Από</th>
+            </tr>
+            <tr>
+                <td>26-4-2020</td>
+                <td href><a class="city" href = "ActionCall_forum_Θεσσαλονίκη.html">Θεσσαλονίκη</a></td>
+                <td href><a class="post" href = "ActionCall_event1.html">Καθαρισμός σκουπιδιών στην πλατεία Αριστοτέλους</a></td>
+                <td>Ορέστης</td>
+            </tr>
+            <tr>
+                <td>23-5-2020</td>
+                <td href><a class="city" href = "ActionCall_forum_Πάτρα.html">Πάτρα</a></td>
+                <td><a class="post" href = "ActionCall_event2.html">Εθελοντισμός για σίτιση αστέγων στο κέντρο</a></td>
+                <td>Μιχάλης</td>
+            </tr>
+            <tr>
+                <td>28-3-2020</td>
+                <td href><a class="city" href = "ActionCall_forum_Θεσσαλονίκη.html">Θεσσαλονίκη</a></td>
+                <td><a class="post" href = "ActionCall_event3.html">Παροχή βοήθειας σε αδέσποτα στην πλατεία Ελευθερίας</a></td>
+                <td>Μαρία</td>
+            </tr>
+            <tr>
+                <td>5-6-2020</td>
+                <td href><a class="city" href = "ActionCall_forum_Αθήνα.html">Αθηνα</a></td>
+                <td><a class="post" href = "ActionCall_event4.html">Φιλανθρωπία προς τους άστεγους</a></td>
+                <td>Παντελής</td>
+            </tr>
+            <tr>
+                <td>13-4-2020</td>
+                <td href><a class="city" href = "ActionCall_forum_Αθήνα.html">Αθηνα</a></td>
+                <td><a class="post" href = "ActionCall_event5.html">Σίτιση για τους μετανάστες</a></td>
+                <td>Pavlos</td>
+            </tr>
+        </thead>
+    </table>
+</div>`;
+document.write(forum);
+}
+
 
