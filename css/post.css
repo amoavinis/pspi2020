@@ -13,9 +13,9 @@
 button{
     height: 30px;
 }
-#post.container{
+#post.table-container{
     margin-top: 1rem;
-    width: 100%;
-    border: 2px solid var(--teal-color);
+    width: 80%;
+    border: 2px solid teal;
     border-radius: 10px;  
 }
