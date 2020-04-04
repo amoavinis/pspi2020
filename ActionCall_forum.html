@@ -11,7 +11,7 @@
         <script>navbar_gen();</script>
         <div class="container content">
             <!--Search Bar info-->
-            <h1>όλα τα αποτελέσματα</h1>
+            <h1 id="result">Όλα τα αποτελέσματα</h1>
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -24,54 +24,13 @@
                                 </div>
                             </div>
                         </form> 
-                        <!--Forum Table info-->
-                        <div id="forum" class="table-container">
-                            <table class="topics-table">
-                                <thead>    
-                                    <tr>
-                                        <th scope="col" width=15%>Για Ημερομηνία</th>
-                                        <th scope="col" width =15%>Πόλη</th>
-                                        <th scope="col" width=50%>Θέμα</th>
-                                        <th scope="col" width=20%>Από</th>
-                                    </tr>
-                                    <tr>
-                                        <td>26-4-2020</td>
-                                        <td href><a class="city" href = "ActionCall_forum_Θεσσαλονίκη.html">Θεσσαλονίκη</a></td>
-                                        <td href><a class="post" href = "ActionCall_event1.html">Καθαρισμός σκουπιδιών στην πλατεία Αριστοτέλους</a></td>
-                                        <td>Ορέστης</td>
-                                    </tr>
-                                    <tr>
-                                        <td>23-5-2020</td>
-                                        <td href><a class="city" href = "ActionCall_forum_Πάτρα.html">Πάτρα</a></td>
-                                        <td><a class="post" href = "ActionCall_event2.html">Αποκατάσταση βανδαλισμών στη Πλατεία Όλγας</a></td>
-                                        <td>Μιχάλης</td>
-                                    </tr>
-                                    <tr>
-                                        <td>28-3-2020</td>
-                                        <td href><a class="city" href = "ActionCall_forum_Θεσσαλονίκη.html">Θεσσαλονίκη</a></td>
-                                        <td><a class="post" href = "ActionCall_event3.html">Παροχή βοήθειας σε αδέσποτα στην Καμάρα</a></td>
-                                        <td>Μαρία</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5-6-2020</td>
-                                        <td href><a class="city" href = "ActionCall_forum_Αθήνα.html">Αθηνα</a></td>
-                                        <td><a class="post" href = "ActionCall_event4.html">Συλλογή ειδών πρώτης ανάγκης για τους άστεγους</a></td>
-                                        <td>Παντελής</td>
-                                    </tr>
-                                    <tr>
-                                        <td>13-4-2020</td>
-                                        <td href><a class="city" href = "ActionCall_forum_Αθήνα.html">Αθηνα</a></td>
-                                        <td><a class="post" href = "ActionCall_event5.html">Συσσίτιο για όσους το έχουν ανάγκη</a></td>
-                                        <td>Pavlos</td>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
+                        <!-- Forum-->
+                        <script>forum_gen("");</script>
+                        <!--./Forum-->
                     </div>
                 </div>
             </div>
         </div>
-        
         <!-- Footer -->
         <script>footer_gen();</script>
         <!-- ./Footer -->

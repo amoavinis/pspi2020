@@ -72,53 +72,90 @@ function footer_gen()
     document.write(footer);
 }
 
+//The function below should be removed and work remotely from the file: objects.js
+//function that represents all the data of a post, including a filter function that compares the filter with the post's city
+function Post(id, date, city, title, from){
+    this.id = id;
+    this.date = date;
+    this.city = city;
+    this.title = title;
+    this.from = from;
+    this.isSearched = function(filter){
+        if(normalizeGreek(filter.toLowerCase())===normalizeGreek(this.city.toLowerCase())){
+            return true;
+        }
+        return false;
+    }
+}
+//The function above should be removed and work remotely from the file: objects.js
+
+//the function below may be moved to a specific JS file.
+//function that normalizes all letters for filter purposes
+function normalizeGreek(text) {
+    text = text.replace(/Ά|Α|ά/g, 'α')
+        .replace(/Έ|Ε|έ/g, 'ε')
+        .replace(/Ή|Η|ή/g, 'η')
+        .replace(/Ί|Ϊ|Ι|ί|ΐ|ϊ/g, 'ι')
+        .replace(/Ό|Ο|ό/g, 'ο')
+        .replace(/Ύ|Ϋ|Υ|ύ|ΰ|ϋ/g, 'υ')
+        .replace(/Ώ|Ω|ώ/g, 'ω')
+        .replace(/Σ|ς/g, 'σ');
+    return text;
+}
+//the function above may be moved to a specific JS file.
+
 function forum_gen(filter){
-    //run an instance of an object called Post here below:
-    //Post Post1 = new Post(26-4-2020, Θεσσαλονίκη, "Καθαρισμός σκουπιδιών στην πλατεία Αριστοτέλους", Ορέστης);
-    //Console.log(Post1.date);
-    var forum = `<div id="forum" class="table-container">
-    <table class="topics-table">
-        <thead>    
-            <tr>
-                <th scope="col" width=15%>Για Ημερομηνία</th>
-                <th scope="col" width =15%>Πόλη</th>
-                <th scope="col" width=50%>Θέμα</th>
-                <th scope="col" width=20%>Από</th>
-            </tr>
-            <tr>
-                <td>26-4-2020</td>
-                <td href><a class="city" href = "ActionCall_forum_Θεσσαλονίκη.html">Θεσσαλονίκη</a></td>
-                <td href><a class="post" href = "ActionCall_event1.html">Καθαρισμός σκουπιδιών στην πλατεία Αριστοτέλους</a></td>
-                <td>Ορέστης</td>
-            </tr>
-            <tr>
-                <td>23-5-2020</td>
-                <td href><a class="city" href = "ActionCall_forum_Πάτρα.html">Πάτρα</a></td>
-                <td><a class="post" href = "ActionCall_event2.html">Εθελοντισμός για σίτιση αστέγων στο κέντρο</a></td>
-                <td>Μιχάλης</td>
-            </tr>
-            <tr>
-                <td>28-3-2020</td>
-                <td href><a class="city" href = "ActionCall_forum_Θεσσαλονίκη.html">Θεσσαλονίκη</a></td>
-                <td><a class="post" href = "ActionCall_event3.html">Παροχή βοήθειας σε αδέσποτα στην πλατεία Ελευθερίας</a></td>
-                <td>Μαρία</td>
-            </tr>
-            <tr>
-                <td>5-6-2020</td>
-                <td href><a class="city" href = "ActionCall_forum_Αθήνα.html">Αθηνα</a></td>
-                <td><a class="post" href = "ActionCall_event4.html">Φιλανθρωπία προς τους άστεγους</a></td>
-                <td>Παντελής</td>
-            </tr>
-            <tr>
-                <td>13-4-2020</td>
-                <td href><a class="city" href = "ActionCall_forum_Αθήνα.html">Αθηνα</a></td>
-                <td><a class="post" href = "ActionCall_event5.html">Σίτιση για τους μετανάστες</a></td>
-                <td>Pavlos</td>
-            </tr>
-        </thead>
-    </table>
-</div>`;
-document.write(forum);
+    var list = [];
+    //generates all data of each currently available post.
+    list.push(new Post(1, "26-4-2020", "Θεσσαλονίκη", "Καθαρισμός σκουπιδιών στην πλατεία Αριστοτέλους", "Ορέστης"));
+    list.push(new Post(2, "23-5-2020", "Πάτρα", "Αποκατάσταση βανδαλισμών στη Πλατεία Όλγας", "Μιχάλης"));
+    list.push(new Post(3, "28-3-2020", "Θεσσαλονίκη", "Παροχή βοήθειας σε αδέσποτα στην Καμάρα", "Μαρία"));
+    list.push(new Post(4, "5-6-2020", "Αθήνα", "Συλλογή ειδών πρώτης ανάγκης για τους άστεγους", "Παντελής"));
+    list.push(new Post(5, "23-5-2020", "Αθήνα", "Συσσίτιο για όσους το έχουν ανάγκη", "Pavlos"));
+    
+    //checks if filter is default. If it is, then the deletion with use of filter is not operated and all posts are being posted
+    if(filter !== ""){
+        //renaming the search text result and title
+        var title = document.getElementById("result")
+        if(title!==null){
+            title.innerHTML = 'Αποτελέσπατα για: ' + filter;
+        }
+        console.log("gg");
+        //deletion loop based on filter
+        for(var i=0;i<list.length;i++){
+            if(!list[i].isSearched(filter)){
+                list.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+   //generating the html of forum
+    var forum = 
+    `<div id="forum" class="table-container">
+        <table class="topics-table">
+            <thead>    
+                <tr>
+                    <th scope="col" width=15%>Για Ημερομηνία</th>
+                    <th scope="col" width =15%>Πόλη</th>
+                    <th scope="col" width=50%>Θέμα</th>
+                    <th scope="col" width=20%>Από</th>
+                </tr>`
+    for(let post of list){
+        forum +=
+                    `<tr>
+                        <td>`+post.date+`</td>
+                        <td href><a class="city" href = "ActionCall_forum_`+post.city+`.html">`+post.city+`</a></td>
+                        <td><a class="post" href = "ActionCall_event`+post.id+`.html">`+post.title+`</a></td>
+                        <td>`+post.from+`</td>
+                    </tr>`
+    }
+    forum +=
+           `</thead>
+        </table>
+    </div>`;
+
+    document.write(forum);
 }
 
 

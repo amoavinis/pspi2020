@@ -11,7 +11,7 @@
         <script>navbar_gen();</script>
         <div class="container content">
             <!--Search Bar info-->
-            <h1>αποτελέσματα: Πάτρα</h1>
+            <h1 id="result">Όλα τα αποτελέσματα</h1>
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -24,25 +24,9 @@
                                 </div>
                             </div>
                         </form> 
-                        <!--Forum Table info-->
-                        <div id="forum" class="table-container">
-                            <table class="topics-table">
-                                <thead>    
-                                    <tr>
-                                        <th scope="col" width=15%>Για Ημερομηνία</th>
-                                        <th scope="col" width =15%>Πόλη</th>
-                                        <th scope="col" width=50%>Θέμα</th>
-                                        <th scope="col" width=20%>Από</th>
-                                    </tr>
-                                    <tr>
-                                        <td>23-5-2020</td>
-                                        <td href><a class="city" href = "ActionCall_forum_Πάτρα.html">Πάτρα</a></td>
-                                        <td><a class="post" href = "ActionCall_event2.html">Αποκατάσταση βανδαλισμών στη Πλατεία Όλγας</a></td>
-                                        <td>Μιχάλης</td>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
+                        <!-- Forum-->
+                        <script>forum_gen("Πάτρα");</script>
+                        <!--./Forum-->
                     </div>
                 </div>
             </div>
