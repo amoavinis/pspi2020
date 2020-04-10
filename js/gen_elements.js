@@ -120,7 +120,6 @@ function forum_gen(filter){
         if(title!==null){
             title.innerHTML = 'Αποτελέσπατα για: ' + filter;
         }
-        console.log("gg");
         //deletion loop based on filter
         for(var i=0;i<list.length;i++){
             if(!list[i].isSearched(filter)){
@@ -136,10 +135,10 @@ function forum_gen(filter){
         <table class="topics-table">
             <thead>    
                 <tr>
-                    <th scope="col" width=15%>Για Ημερομηνία</th>
-                    <th scope="col" width =15%>Πόλη</th>
-                    <th scope="col" width=50%>Θέμα</th>
-                    <th scope="col" width=20%>Από</th>
+                    <th scope="cοl" 10%>Για Ημερομηνία</th>
+                    <th scope="col" 15%>Πόλη</th>
+                    <th scope="col" 60%>Θέμα</th>
+                    <th scope="col" 15%>Από</th>
                 </tr>`
     for(let post of list){
         forum +=
@@ -154,7 +153,7 @@ function forum_gen(filter){
            `</thead>
         </table>
     </div>`;
-
+    console.log(forum);
     document.write(forum);
 }
 
