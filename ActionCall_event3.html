@@ -3,6 +3,8 @@
   <head>
     <script src="js/gen_elements.js"></script>
     <script>header_gen();</script>
+    <script src="js/interestedButton.js"></script>
+
     <title>Παροχή βοήθειας σε αδέσποτα στην Καμάρα</title>
     <link rel="stylesheet" href="css/post.css">
   </head>
@@ -18,18 +20,7 @@
             </p>
             <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=22.950793504714966%2C40.6311165884472%2C22.95347571372986%2C40.63254554756534&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=19/40.63183/22.95213&amp;layers=N">Προβολή Μεγαλύτερου Χάρτη</a></small>
             
-            <!--Like button-->
-            <script>
-            var clicks=0;
-            var clicked = 1;
-            function UpdateClickCount(){
-                clicks += clicked;
-                clicked *= -1;
-                document.getElementById("interested").innerHTML = clicks;
-                element = document.querySelector('.container'); 
-                element.style.visibility = 'visible'; 
-            }
-            </script>
+            
             <div class="table-container">
                 <table class="topics-table">
                     <thead>

@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <script> src="js/gen_elements.js"></script>
+    <script src="js/gen_elements.js"></script>
     <script>header_gen();</script>
-    <script> src="js/interestedButton.js"</script>
+    <script src="js/interestedButton.js"></script>
+    
     <title>Καθαρισμός Σκουπιδιών στη Πλατεία Αριστοτέλους</title>
     <link rel="stylesheet" href="css/post.css">
   </head>
@@ -24,29 +25,12 @@
             </p>
             <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=22.93956899646219%2C40.63176667532697%2C22.94225120547708%2C40.63318137194274&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=19/40.63247/22.94091">Προβολή Μεγαλύτερου Χάρτη</a></small>
             
-            <!--Like button-->
-            <!--
-            <script>
-            var clicks=0;
-            var clicked = 1;
-            function UpdateClickCount(){
-                clicks += clicked;
-                clicked *= -1;
-                document.getElementById("interested").innerHTML = clicks;
-                element = document.querySelector('.container'); 
-                element.style.visibility = 'visible'; 
-            }
-            </script>
-            -->
 
-            <script>
-                UpdateClickCount() = js/interestedButton.js
-            </script>
             <div class="table-container">
                 <table class="topics-table">
                     <thead>
                         <tr>
-                            <td><button type="button" onClick="UpdateClickCount();" id="like">Interested!</button></td>
+                            <td><button type="button" onclick="UpdateClickCount();" id="like">Interested!</button></td>
                             <td href><span id="interested"><script>document.write("No");</script></span> people interested!</a></td>
                         </tr>
                     </thead>
