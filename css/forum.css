@@ -29,9 +29,19 @@ td:not(:last-child){
 th, td{
     padding: 1rem;
     text-align: left;
-    font-size: 2vw;
-
 }
+  
+  @media screen and (max-width: 450px) {
+    th, td {
+      font-size: 2vw;
+    }
+  }
+
+  @media screen and (max-width: 330px) {
+    th, td {
+      font-size: 1.5vw;
+    }
+  }
 
 a.city, a.city:hover{
     color: black;
