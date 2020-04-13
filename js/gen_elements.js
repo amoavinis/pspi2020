@@ -118,7 +118,7 @@ function forum_gen(filter){
         //renaming the search text result and title
         var title = document.getElementById("result")
         if(title!==null){
-            title.innerHTML = 'Αποτελέσπατα για: ' + filter;
+            title.innerHTML = 'Αποτελέσματα για: ' + filter;
         }
         //deletion loop based on filter
         for(var i=0;i<list.length;i++){
