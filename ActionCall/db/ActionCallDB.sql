@@ -1,0 +1,153 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 07, 2020 at 10:32 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.5
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `actioncalldb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `interested`
+--
+
+CREATE TABLE `interested` (
+  `user_email` varchar(64) NOT NULL,
+  `post_id` int(11) UNSIGNED ZEROFILL NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `interested`
+--
+
+INSERT INTO `interested` (`user_email`, `post_id`) VALUES
+('testemail3@test.email', 00000000001),
+('testemail3@test.email', 00000000002),
+('testemail3@test.email', 00000000004),
+('testemail4@test.email', 00000000002),
+('testemail5@test.email', 00000000003),
+('testemail6@test.email', 00000000003),
+('testemail6@test.email', 00000000004);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` int(11) UNSIGNED ZEROFILL NOT NULL,
+  `user_email` varchar(64) NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `details` text DEFAULT NULL,
+  `date_posted` datetime NOT NULL,
+  `date_of_event` datetime NOT NULL,
+  `city` varchar(20) NOT NULL COMMENT 'The village with the largest letter length in Greece is 16 characters long (Molyvdoskepastos).',
+  `geolocation` point NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `user_email`, `title`, `details`, `date_posted`, `date_of_event`, `city`, `geolocation`) VALUES
+(00000000001, 'testemail2@test.email', 'Post_Title_#1', '', '2020-05-07 19:04:36', '2020-05-09 20:32:31', 'Thessaloniki', 0x000000000101000000fbff0b54abf64b4008004099c05a0ac0),
+(00000000002, 'testemail2@test.email', 'White Tower', '', '2020-05-07 19:04:36', '2020-05-09 20:32:31', 'Thessaloniki', 0x000000000101000000cfbbb1a030504440d255babbcef23640),
+(00000000003, 'testemail2@test.email', 'Alexander the Great\'s Statue', '', '2020-05-07 19:04:36', '2020-05-10 20:32:31', 'Thessaloniki', 0x0000000001010000001669e21de04f4440795a7ee02af33640),
+(00000000004, 'testemail3@test.email', 'Ancient Roman Agora', '', '2020-05-07 19:04:36', '2020-05-09 10:23:15', 'Thessaloniki', 0x000000000101000000f984ecbc8d5144401e87c1fc15f23640);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `email` varchar(64) NOT NULL,
+  `username` varchar(32) NOT NULL,
+  `password` varchar(64) NOT NULL COMMENT 'hash256'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`email`, `username`, `password`) VALUES
+('testemail1@test.email', 'test_username1', 'test_password1'),
+('testemail2@test.email', 'test_username2', 'test_password2'),
+('testemail3@test.email', 'test_username3', 'test_password3'),
+('testemail4@test.email', 'test_username4', 'test_password4'),
+('testemail5@test.email', 'test_username5', 'test_password5'),
+('testemail6@test.email', 'test_username6', 'test_password6');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `interested`
+--
+ALTER TABLE `interested`
+  ADD KEY `user_email` (`user_email`),
+  ADD KEY `post_id` (`post_id`);
+
+--
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_email` (`user_email`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `interested`
+--
+ALTER TABLE `interested`
+  ADD CONSTRAINT `interested_ibfk_1` FOREIGN KEY (`user_email`) REFERENCES `users` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `interested_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`);
+
+--
+-- Constraints for table `posts`
+--
+ALTER TABLE `posts`
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`user_email`) REFERENCES `users` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

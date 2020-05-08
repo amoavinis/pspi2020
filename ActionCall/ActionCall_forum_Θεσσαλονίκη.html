@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="js/gen_elements.js"></script>
+    <script>header_gen();</script>
+    <link rel="stylesheet" href="css/forum.css">
+    <title>ActionCall Forum: Θεσσαλονίκη</title>
+  </head>
+
+    <body>
+        <script>navbar_gen();</script>
+        <div class="container content">
+            <!--Search Bar info-->
+            <h1 id="result">Όλα τα αποτελέσματα</h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <form class="search-form">
+                            <div class="input-group">
+                                <input id="input-1" class="form-control" type="text" aria-describedby="search-btn">
+                                <label for="input-1" class="sr-only">Search</label>
+                                <div class="input-group-append">
+                                    <button id="search-btn" class="btn btn-primary">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Forum-->
+                        <script>forum_gen("Θεσσαλονίκη");</script>
+                        <!--./Forum-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        	
+        <!-- Footer -->
+        <script>footer_gen();</script>
+        <!-- ./Footer -->
+    </body>
+</html>
