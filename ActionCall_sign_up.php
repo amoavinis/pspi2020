@@ -13,28 +13,51 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($con,$_POST['username']);
     $password = mysqli_real_escape_string($con,$_POST['password']);
     $password_confirmation = mysqli_real_escape_string($con,$_POST['password_confirmation']);  
-  
-    $sql = "SELECT * FROM users WHERE email = \"".$email_address."\"";
     
-    $result = mysqli_query($con, $sql);
-    
-    $count = mysqli_num_rows($result);
-    
-    if ($count>=1)
-    {
-        alert("Ο χρήστης υπάρχει ήδη, δοκιμάστε με νέο email.");
+    $flag = 1;
+
+    if (!filter_var($email_address, FILTER_VALIDATE_EMAIL)) {
+        $emailErr = "Άκυρη διεύθυνση email.";
+        alert($emailErr);
+        $flag = 0;
     }
-    else if (strcmp($password, $password_confirmation)==0)
-    {
-        //register user
-        $hashed_password = hash("sha256", $password);
-        $sql = "INSERT INTO users (email, username, password) VALUES (\"".$email_address."\", \"".$username."\", \"".$hashed_password."\")";
-        $result = mysqli_query($con, $sql);
-        alert("Επιτυχής εγγραφή!");
+    if (filter_var($username, FILTER_VALIDATE_EMAIL)) {
+        $usernameErr = "Το username δεν μπορεί να είναι στη μορφή email.";
+        alert($usernameErr);
+        $flag = 0;
     }
-    else
+
+    if ($flag==1)
     {
-        alert("Τα password δεν ταιριάζουν μεταξύ τους");
+        $sql1 = "SELECT * FROM users WHERE email = \"".$email_address."\"";
+        $sql2 = "SELECT * FROM users WHERE username = \"".$username."\"";
+        
+        $result1 = mysqli_query($con, $sql1);
+        $result2 = mysqli_query($con, $sql2);
+        
+        $count1 = mysqli_num_rows($result1);
+        $count2 = mysqli_num_rows($result2);
+        
+        if ($count1>=1)
+        {
+            alert("Το email που προσπαθείς να δηλώσεις έχει ήδη δηλωθεί από άλλο χρήστη, δοκίμασε με νέο email.");
+        }
+        else if ($count2>=1)
+        {
+            alert("Το username είναι κατειλημμένο, δοκίμασε κάποιο άλλο.");
+        }
+        else if (strcmp($password, $password_confirmation)==0)
+        {
+            //register user
+            $hashed_password = hash("sha256", $password);
+            $sql = "INSERT INTO users (email, username, password) VALUES (\"".$email_address."\", \"".$username."\", \"".$hashed_password."\")";
+            $result = mysqli_query($con, $sql);
+            alert("Επιτυχής εγγραφή!");
+        }
+        else
+        {
+            alert("Τα password δεν ταιριάζουν μεταξύ τους");
+        }
     }
 }
 
@@ -53,6 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php navbar_gen();?>
         <!--Navigation bar end-->
         <div class="container content">
+        <h2> Φόρμα εγγραφής </h2>
             <form class="needs-validation" action="" method="post">
                 <div class="form-group">
                     <label for="new_account_email">E-mail Address</label>

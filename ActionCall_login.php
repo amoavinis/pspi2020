@@ -13,35 +13,55 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form 
   
-    $email_address = mysqli_real_escape_string($con,$_POST['email']);
+    $login_id = mysqli_real_escape_string($con,$_POST['login_id']);
     $password = mysqli_real_escape_string($con,$_POST['password']); 
   
-    $sql = "SELECT * FROM users WHERE email = \"".$email_address."\"";
+    $sql1 = "SELECT * FROM users WHERE email = \"".$login_id."\"";
+    $sql2 = "SELECT * FROM users WHERE username = \"".$login_id."\"";
+
+    $result1 = mysqli_query($con, $sql1);
+    $result2 = mysqli_query($con, $sql2);
     
-    $result = mysqli_query($con, $sql);
+    $count1 = mysqli_num_rows($result1);
+    $count2 = mysqli_num_rows($result2);
     
-    $count = mysqli_num_rows($result);
-    
-    if ($count==1)
+    if ($count1==1)
     {
-        $row = mysqli_fetch_assoc($result);
+        $row = mysqli_fetch_assoc($result1);
         if ($row["password"]==hash("sha256", $password))
         {
             session_start();
             $_SESSION["loggedin"] = true;
-            $_SESSION["email"] = $email_address;
+            $_SESSION["email"] = $row["email"];
             $_SESSION["username"] = $row["username"];
             alert("Επιτυχής σύνδεση!");
             header("Location: index.php");
         }
         else
         {
-            alert("Λάθος email/password...");
+            alert("Λάθος email/username/password...");
+        }
+    }
+    else if ($count2==1)
+    {
+        $row = mysqli_fetch_assoc($result2);
+        if ($row["password"]==hash("sha256", $password))
+        {
+            session_start();
+            $_SESSION["loggedin"] = true;
+            $_SESSION["email"] = $row["email"];
+            $_SESSION["username"] = $row["username"];
+            alert("Επιτυχής σύνδεση!");
+            header("Location: index.php");
+        }
+        else
+        {
+            alert("Λάθος email/username/password...");
         }
     }
     else
     {
-        alert("Λάθος email/password...");
+        alert("Λάθος email/username/password...");
     }
 }
 
@@ -73,7 +93,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Όνομα χρήστη / email" name="email">
+                                <input type="text" class="form-control" placeholder="Όνομα χρήστη / email" name="login_id">
                                 
                             </div>
                             <div class="input-group form-group">
