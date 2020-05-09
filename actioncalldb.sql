@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2020 at 01:25 PM
+-- Generation Time: May 09, 2020 at 03:47 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -41,9 +41,7 @@ INSERT INTO `interested` (`user_email`, `post_id`) VALUES
 ('testemail3@test.email', 00000000002),
 ('testemail3@test.email', 00000000004),
 ('testemail4@test.email', 00000000002),
-('testemail5@test.email', 00000000003),
-('testemail6@test.email', 00000000003),
-('testemail6@test.email', 00000000004);
+('testemail5@test.email', 00000000003);
 
 -- --------------------------------------------------------
 
@@ -58,7 +56,7 @@ CREATE TABLE `posts` (
   `details` text DEFAULT NULL,
   `date_posted` datetime NOT NULL,
   `date_of_event` datetime NOT NULL,
-  `city` varchar(20) NOT NULL COMMENT 'The village with the largest letter length in Greece is 16 characters long (Molyvdoskepastos).',
+  `city` enum('Athens','Thessaloniki','Patras','Larissa','Heraklion','Peristeri','Kallithea','Acharnes','Kalamaria','Nikaia','Glyfada','Evosmos','Chalandri','Nea Smyrni','Marousi','Agios Dimitrios','Zografou','Egaleo','Nea Ionia','Ioannina','Palaio Faliro','Korydallos','Trikala','Vyronas','Agia Paraskevi','Galatsi','Agrinio','Chalcis','Petroupoli','Serres','Alexandroupoli','Xanthi','Katerini','Kalamata','Kavala','Chania','Lamia','Drama','Veria','Alimos','Kozani','Polichni','Karditsa','Sykies','Ampelokipoi','Pylaia','Agioi Anargyroi','Argyroupoli','Ano Liosia','Nea Ionia','Rethymno','Ptolemaida','Tripoli','Cholargos','Vrilissia','Aspropyrgos','Corinth','Gerakas','Metamorfosi','Giannitsa','Voula','Kamatero','Mytilene','Neapoli','Eleftherio-Kordelio','Chios','Agia Varvara','Kaisariani','Nea Filadelfeia','Moschato','Perama','Salamina','Eleusis','Corfu','Pyrgos','Megara','Kilkis','Dafni','Thebes','Melissia','Argos','Arta','Artemida','Livadeia','Pefki','Oraiokastro','Aigio','Kos','Koropi','Preveza','Naousa','Orestiada','Peraia','Edessa','Florina','Nea Erythraia','Elliniko','Amaliada','Pallini','Sparta','Agios Ioannis Rentis','Thermi','Vari','Nea Makri','Tavros','Alexandreia','Menemeni','Paiania','Kalyvia Thorikou','Nafplio','Drapetsona','Efkarpia','Papagou','Nafpaktos','Kastoria','Grevena','Pefka','Nea Alikarnassos','Missolonghi','Gazi','Ierapetra','Kalymnos','Rafina','Loutraki','Agios Nikolaos','Ermoupoli','Ialysos','Mandra','Tyrnavos','Glyka Nera','Ymittos','Neo Psychiko','') NOT NULL COMMENT 'All greek cities listed in https://simple.wikipedia.org/wiki/List_of_cities_in_Greece',
   `geolocation` point NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -95,7 +93,7 @@ INSERT INTO `users` (`email`, `username`, `password`, `authority`) VALUES
 ('testemail3@test.email', 'test_username3', 'test_password3', 'simple'),
 ('testemail4@test.email', 'test_username4', 'test_password4', 'simple'),
 ('testemail5@test.email', 'test_username5', 'test_password5', 'simple'),
-('testemail6@test.email', 'test_username6', 'test_password6', 'administrator');
+('testemail6@test.email', 'testsimple', '8e7a4a6e5ff1034956dfebed82ff7857473eea859badcb7b33a0697367e87a32', 'simple');
 
 --
 -- Indexes for dumped tables

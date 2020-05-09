@@ -50,13 +50,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         {
             //register user
             $hashed_password = hash("sha256", $password);
-            $sql = "INSERT INTO users (email, username, password) VALUES (\"".$email_address."\", \"".$username."\", \"".$hashed_password."\")";
+            //'administrator' authority can only be given by the database user manually.
+            $sql = "INSERT INTO users (email, username, password, authority)
+            VALUES (\"".$email_address."\", \"".$username."\", \"".$hashed_password."\",'simple')";
             $result = mysqli_query($con, $sql);
             alert("Επιτυχής εγγραφή!");
         }
         else
         {
-            alert("Τα password δεν ταιριάζουν μεταξύ τους");
+            alert("Τα συνθηματικά δεν ταιριάζουν μεταξύ τους");
         }
     }
 }

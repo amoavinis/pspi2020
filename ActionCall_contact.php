@@ -23,7 +23,7 @@ session_start();
                 </p>
             </div>
             <div class="container" >
-                <form class="needs-validation">
+                <form action="mailto:actioncallcontact@exampleemail.com" method="post" enctype="text/plain" class="needs-validation">  <!--TODO Create a real email address-->
                     <div class="form-group">
                         <label for="name">Όνομα</label>
                         <input type="text"  class="form-control" id="exampleName" placeholder="Όνομα">

@@ -24,7 +24,7 @@ session_start();
                         <li>Γεώργιος Ρωμανός: georgerom1999@gmail.com</li>
                         <li>Άγγελος Μοαβίνης: amoavinis@gmail.com</li>
                         <li>Γεώργιος Ραϊτσίδης: georgeraitsidis@gmail.com</li>
-                        <li>Κωνσταντίνος Σταβράτης: kostauratis@gmail.com</li>
+                        <li>Κωνσταντίνος Σταυράτης: kostauratis@gmail.com</li>
                     </ul>
                 </p>
                 <h2>Ποιοι είναι οι στόχοι της ιστοσελίδας;</h2>
