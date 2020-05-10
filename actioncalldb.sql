@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2020 at 03:47 PM
+-- Generation Time: May 10, 2020 at 11:15 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -41,7 +41,9 @@ INSERT INTO `interested` (`user_email`, `post_id`) VALUES
 ('testemail3@test.email', 00000000002),
 ('testemail3@test.email', 00000000004),
 ('testemail4@test.email', 00000000002),
-('testemail5@test.email', 00000000003);
+('testemail5@test.email', 00000000003),
+('testemail6@test.email', 00000000002),
+('testemail6@test.email', 00000000003);
 
 -- --------------------------------------------------------
 
@@ -51,7 +53,7 @@ INSERT INTO `interested` (`user_email`, `post_id`) VALUES
 
 CREATE TABLE `posts` (
   `id` int(11) UNSIGNED ZEROFILL NOT NULL,
-  `user_email` varchar(64) NOT NULL,
+  `poster_email` varchar(64) NOT NULL COMMENT 'Keeps track of the poster''s id.',
   `title` varchar(250) NOT NULL,
   `details` text DEFAULT NULL,
   `date_posted` datetime NOT NULL,
@@ -64,7 +66,7 @@ CREATE TABLE `posts` (
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `user_email`, `title`, `details`, `date_posted`, `date_of_event`, `city`, `geolocation`) VALUES
+INSERT INTO `posts` (`id`, `poster_email`, `title`, `details`, `date_posted`, `date_of_event`, `city`, `geolocation`) VALUES
 (00000000001, 'testemail2@test.email', 'Post_Title_#1', '', '2020-05-07 19:04:36', '2020-05-09 20:32:31', 'Thessaloniki', 0x000000000101000000fbff0b54abf64b4008004099c05a0ac0),
 (00000000002, 'testemail2@test.email', 'White Tower', '', '2020-05-07 19:04:36', '2020-05-09 20:32:31', 'Thessaloniki', 0x000000000101000000cfbbb1a030504440d255babbcef23640),
 (00000000003, 'testemail2@test.email', 'Alexander the Great\'s Statue', '', '2020-05-07 19:04:36', '2020-05-10 20:32:31', 'Thessaloniki', 0x0000000001010000001669e21de04f4440795a7ee02af33640),
@@ -111,7 +113,7 @@ ALTER TABLE `interested`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_email` (`user_email`);
+  ADD KEY `user_email` (`poster_email`);
 
 --
 -- Indexes for table `users`
@@ -144,7 +146,7 @@ ALTER TABLE `interested`
 -- Constraints for table `posts`
 --
 ALTER TABLE `posts`
-  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`user_email`) REFERENCES `users` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`poster_email`) REFERENCES `users` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

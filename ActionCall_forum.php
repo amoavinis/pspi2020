@@ -31,7 +31,45 @@ session_start();
                             </div>
                         </form> 
                         <!-- Forum-->
-                        <script>forum_gen("");</script>
+                        <div id="forum" class="table-container">
+
+                            <?php
+                            $all_posts_query =
+                            "SELECT date_of_event, city, title, username
+                            FROM posts JOIN users ON posts.poster_email = users.email
+                            ORDER BY date_of_event DESC";
+
+                            
+                            $all_posts_result = mysqli_query($con, $all_posts_query);
+
+                            if(mysqli_num_rows($all_posts_result) > 0){ ?>
+                            <table class="topics-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Για ημερομηνία</th>
+                                        <th scope="col">Πόλη</th>
+                                        <th scope="col">Θέμα</th>
+                                        <th scope="col">Από</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <?php
+                                    while($post = $all_posts_result -> fetch_assoc()){ ?>
+                                        <tr>
+                                            <td><?php echo($post["date_of_event"]); ?></td>
+                                            <td><?php echo($post["city"]); ?></td>
+                                            <td><?php echo($post["title"]); ?></td>
+                                            <td><?php echo($post["username"]); ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                            <?php } 
+                            else{
+                                echo("Currently, there are no posts.");
+                            } ?>
+                        </div>
                         <!--./Forum-->
                     </div>
                 </div>

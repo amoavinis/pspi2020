@@ -29,7 +29,7 @@ session_start();
                     <div class="col-sm-10">
                         <label for="username_text_field" class="col-sm-2 col-form-label">Username</label>
                         <input class="form-control" id="username_text_field" type="text" minlength="5" maxlength="32" 
-                            value="<?php echo($_SESSION["username"]); ?>" oninput="button_enable_disable_username(value)">
+                            value="<?php echo($_SESSION["username"]); ?>" oninput="button_enable_disable()">
                         <small class="form-text text-muted"> Your username must be 5-32 characters long.</small>
                     </div>             
                 </div>
@@ -37,7 +37,7 @@ session_start();
                     <div class="col-sm-10">
                         <label for="password_field" class="col-sm-2 col-form-label">Password</label>
                         <input class="form-control" id="password_field" type="password" minlength="1" 
-                            value="<?php echo($_SESSION["password"]); ?>" oninput="button_enable_disable_password(value)">
+                            value="<?php echo($_SESSION["password"]); ?>" oninput="button_enable_disable()">
                         <small class="form-text text-muted"> Your password must be at least one (1) character long. The longer, the better.</small>
                         <input type="checkbox" onclick="toggle_password_visibility()"> Show password
                     </div>             
@@ -58,8 +58,10 @@ session_start();
         <div class="container content">
             <?php
             $find_posts_user_is_interested_in_sql_query = 
-            "SELECT DISTINCT post_id , title, city, date_of_event, posts.user_email AS poster_id
-            FROM users JOIN interested ON user_email = \"".$_SESSION["email"]."\" JOIN posts ON post_id = id";
+            "SELECT DISTINCT post_id , title, city, date_of_event, posts.poster_email
+            FROM users AS users1 LEFT JOIN interested ON user_email = \"".$_SESSION["email"]."\" 
+            LEFT JOIN posts ON post_id = id 
+            LEFT JOIN users AS users2 ON users2.email = posts.poster_email";
 
             $posts_user_is_interested_in = mysqli_query($con, $find_posts_user_is_interested_in_sql_query);
 
@@ -83,7 +85,7 @@ session_start();
                                 <td><?php echo($posts_interested_row["title"]) ; ?></td>
                                 <td><?php echo($posts_interested_row["city"]) ; ?></td>
                                 <td><?php echo($posts_interested_row["date_of_event"]) ; ?></td>
-                                <td><?php echo($posts_interested_row["poster_id"]) ; ?></td>
+                                <td><?php echo($posts_interested_row["poster_email"]) ; ?></td>
                             </tr>
                         <?php } ?>
 
