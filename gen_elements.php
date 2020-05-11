@@ -35,7 +35,7 @@ function navbar_gen(){
     if (isset($_SESSION["username"]))
     {
         echo "<ul class=\"nav navbar-nav navbar-right\">
-        <li><a class=\"nav-link\" href=\"\"> <i class=\"fas fa-users\"></i> ".$_SESSION["username"]."</a> </li>
+        <li><a class=\"nav-link\" href=\"ActionCall_profile.php\"> <i class=\"fas fa-users\"></i> ".$_SESSION["username"]."</a> </li>
         <li><a class=\"nav-link\" href=\"logout.php\"> <i class=\"fas fa-sign-out-alt\"></i> Log out </a></li>
         </ul>
         </nav>\n";

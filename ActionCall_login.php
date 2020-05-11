@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["loggedin"] = true;
             $_SESSION["email"] = $row["email"];
             $_SESSION["username"] = $row["username"];
-            alert("Επιτυχής σύνδεση!");
+            $_SESSION["password"] = $password;
             header("Location: index.php");
         }
         else

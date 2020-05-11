@@ -23,23 +23,18 @@ function toggle_password_visibility(){
 }
 
 function button_enable_disable(){
-    
-    alert("username_input.length = " + username_input.value.length +", password_input.length = " + password_input.value.length);
 
     if (username_input.value.length >= username_input.minLength || 
         password_input.value.length >= password_input.minLength){
         if (username_input.value !== initial_username_value ||
             password_input.value !== initial_password_value){
             save_changes_button.disabled = false;
-            alert("Button enabled.");
         }
         else{
             save_changes_button.disabled = true;
-            alert("No change has taken place. Turning off button.");
         }
     }
     else{
         save_changes_button.disabled = true;
-        alert("Username or password are not long enough.");
     }
 }
