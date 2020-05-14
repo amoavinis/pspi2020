@@ -3,6 +3,16 @@
 require("config.php");
 require("gen_elements.php");
 session_start();
+if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) && isset($_COOKIE["ActionCallUserState"]))
+{
+    $_SESSION["loggedin"] = true;
+    $_SESSION["email"] = $_COOKIE["ActionCallUserEmail"];
+    $_SESSION["username"] = $_COOKIE["ActionCallUser"];
+}
+if (!isset($_SESSION["username"]))
+{
+    header("Location: index.php");
+}
 ?>
 <html>
     <head>
@@ -35,10 +45,19 @@ session_start();
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-10">
-                        <label for="password_field" class="col-sm-2 col-form-label">Password</label>
+                        <label for="password_field" class="col-sm-2 col-form-label">Change Password</label>
                         <input class="form-control" id="password_field" type="password" minlength="1" 
-                            value="<?php echo($_SESSION["password"]); ?>" oninput="button_enable_disable()">
+                            value="" oninput="button_enable_disable()">
                         <small class="form-text text-muted"> Your password must be at least one (1) character long. The longer, the better.</small>
+                        <input type="checkbox" onclick="toggle_password_visibility()"> Show password
+                    </div>             
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <label for="password_field" class="col-sm-2 col-form-label">Repeat New Password</label>
+                        <input class="form-control" id="password_field" type="password" minlength="1" 
+                            value="" oninput="button_enable_disable()">
+                        <small class="form-text text-muted"> Passwords must agree.</small>
                         <input type="checkbox" onclick="toggle_password_visibility()"> Show password
                     </div>             
                 </div>
@@ -59,14 +78,14 @@ session_start();
             <?php
             $find_posts_user_is_interested_in_sql_query = 
             "SELECT DISTINCT post_id , title, city, date_of_event, posts.poster_email
-            FROM users AS users1 LEFT JOIN interested ON user_email = \"".$_SESSION["email"]."\" 
-            LEFT JOIN posts ON post_id = id 
-            LEFT JOIN users AS users2 ON users2.email = posts.poster_email";
+            FROM users AS users1 JOIN interested ON user_email = \"".$_SESSION["email"]."\" 
+            JOIN posts ON post_id = id 
+            JOIN users AS users2 ON users2.email = posts.poster_email";
 
             $posts_user_is_interested_in = mysqli_query($con, $find_posts_user_is_interested_in_sql_query);
-
+            
             if (mysqli_num_rows($posts_user_is_interested_in) > 0){ ?>
-                <table class="table">
+                <table class="table" style="margin-top: 80px;">
                     <thead>
                         <tr>
                             <th scope="col">Post ID</th>

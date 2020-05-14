@@ -1,5 +1,20 @@
 <!doctype html>
-<html lang="en">
+<?php
+require("config.php");
+require("gen_elements.php");
+session_start();
+if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) && isset($_COOKIE["ActionCallUserState"]))
+{
+    $_SESSION["loggedin"] = true;
+    $_SESSION["email"] = $_COOKIE["ActionCallUserEmail"];
+    $_SESSION["username"] = $_COOKIE["ActionCallUser"];
+}
+if (!isset($_SESSION["username"]))
+{
+    header("Location: index.php");
+}
+?>
+<html>
   <head>
     <script src="js/gen_elements.js"></script>
     <script>header_gen();</script>
