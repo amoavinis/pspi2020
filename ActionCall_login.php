@@ -3,6 +3,7 @@
 require("config.php");
 require("gen_elements.php");
 session_start();
+
 function alert($msg) {
     echo "<script type='text/javascript'>alert('$msg');</script>";
 }
@@ -34,7 +35,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["loggedin"] = true;
             $_SESSION["email"] = $row["email"];
             $_SESSION["username"] = $row["username"];
-            $_SESSION["password"] = $password;
+            if (isset($_POST['actioncall_remember_me']))
+            {
+                setcookie("ActionCallUser", $row["username"], strtotime( '+ 1000 days' ));
+                setcookie("ActionCallUserEmail", $row["email"], strtotime( '+ 1000 days' ));
+                setcookie("ActionCallUserState", true, strtotime( '+ 1000 days' ));
+            }
+            alert("Επιτυχής σύνδεση!");
             header("Location: index.php");
         }
         else
@@ -103,7 +110,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <input type="password" class="form-control" placeholder="Κωδικός πρόσβασης" name="password">
                             </div>
                             <div class="row align-items-center remember">
-                                <input type="checkbox">Remember Me
+                                <input type="checkbox" name="actioncall_remember_me">Remember Me
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Σύνδεση" class="btn float-right login_btn">

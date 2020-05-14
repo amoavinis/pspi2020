@@ -3,6 +3,12 @@
 require("config.php");
 require("gen_elements.php");
 session_start();
+if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) && isset($_COOKIE["ActionCallUserState"]))
+{
+    $_SESSION["loggedin"] = true;
+    $_SESSION["email"] = $_COOKIE["ActionCallUserEmail"];
+    $_SESSION["username"] = $_COOKIE["ActionCallUser"];
+}
 function alert($msg) {
     echo "<script type='text/javascript'>alert('$msg');</script>";
 }
