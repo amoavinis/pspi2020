@@ -12,6 +12,7 @@ ul {
     width: 100%;
     border: 2px solid var(--teal-color);
     border-radius: 10px;
+    overflow-x: auto;
 }
 
 .topics-table {

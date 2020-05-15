@@ -27,19 +27,15 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <form class="search-form">
+                        <form action = "Actioncall_forum_search.php" method = "get" class="search-form">
                             <div class="input-group">
-                                <input id="input-1" class="form-control" type="text" aria-describedby="search-btn">
-                                <label for="input-1" class="sr-only">Search</label>
-                                <div class="input-group-append">
-                                    <button id="search-btn" class="btn btn-primary">Search</button>
-                                </div>
+                                <input class="form-control" type="text" name="search" aria-describedby="search-btn" placeholder="Search posts...">
+                                <input type = "submit" value = "Search">
+                                
                             </div>
                         </form> 
                         <!-- Forum-->
-                        <div id="forum" class="table-container">
-
-                            <?php
+                        <?php
                             $all_posts_query =
                             "SELECT date_of_event, city, title, username
                             FROM posts JOIN users ON posts.poster_email = users.email
@@ -49,33 +45,31 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                             $all_posts_result = mysqli_query($con, $all_posts_query);
 
                             if(mysqli_num_rows($all_posts_result) > 0){ ?>
-                            <table class="topics-table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Για ημερομηνία</th>
-                                        <th scope="col">Πόλη</th>
-                                        <th scope="col">Θέμα</th>
-                                        <th scope="col">Από</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <?php
-                                    while($post = $all_posts_result -> fetch_assoc()){ ?>
+                            <div id="forum" class="table-container">
+                                <table class="topics-table">
+                                    <thead>
                                         <tr>
-                                            <td><?php echo($post["date_of_event"]); ?></td>
-                                            <td><?php echo($post["city"]); ?></td>
-                                            <td><?php echo($post["title"]); ?></td>
-                                            <td><?php echo($post["username"]); ?></td>
+                                            <th scope="col">Για ημερομηνία</th>
+                                            <th scope="col">Πόλη</th>
+                                            <th scope="col">Θέμα</th>
+                                            <th scope="col">Από</th>
                                         </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
+                                        <?php
+                                        while($post = $all_posts_result -> fetch_assoc()){ ?>
+                                            <tr>
+                                                <td><?php echo($post["date_of_event"]); ?></td>
+                                                <td><?php echo($post["city"]); ?></td>
+                                                <td><?php echo($post["title"]); ?></td>
+                                                <td><?php echo($post["username"]); ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </thead>
+                                </table>
+                            </div>
                             <?php } 
                             else{
-                                echo("Currently, there are no posts.");
+                                echo("No results detected");
                             } ?>
-                        </div>
                         <!--./Forum-->
                     </div>
                 </div>
