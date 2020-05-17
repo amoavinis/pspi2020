@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 10, 2020 at 11:15 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.5
+-- Φιλοξενητής: 127.0.0.1
+-- Χρόνος δημιουργίας: 17 Μάη 2020 στις 17:49:27
+-- Έκδοση διακομιστή: 10.4.8-MariaDB
+-- Έκδοση PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `actioncalldb`
+-- Βάση δεδομένων: `actioncalldb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `interested`
+-- Δομή πίνακα για τον πίνακα `interested`
 --
 
 CREATE TABLE `interested` (
@@ -33,7 +34,7 @@ CREATE TABLE `interested` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `interested`
+-- Άδειασμα δεδομένων του πίνακα `interested`
 --
 
 INSERT INTO `interested` (`user_email`, `post_id`) VALUES
@@ -48,7 +49,18 @@ INSERT INTO `interested` (`user_email`, `post_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `posts`
+-- Δομή πίνακα για τον πίνακα `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `user_email` varchar(64) NOT NULL,
+  `reset_key` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Δομή πίνακα για τον πίνακα `posts`
 --
 
 CREATE TABLE `posts` (
@@ -63,7 +75,7 @@ CREATE TABLE `posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `posts`
+-- Άδειασμα δεδομένων του πίνακα `posts`
 --
 
 INSERT INTO `posts` (`id`, `poster_email`, `title`, `details`, `date_posted`, `date_of_event`, `city`, `geolocation`) VALUES
@@ -75,7 +87,18 @@ INSERT INTO `posts` (`id`, `poster_email`, `title`, `details`, `date_posted`, `d
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Δομή πίνακα για τον πίνακα `signup_confirms`
+--
+
+CREATE TABLE `signup_confirms` (
+  `user_email` varchar(64) NOT NULL,
+  `signup_key` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Δομή πίνακα για τον πίνακα `users`
 --
 
 CREATE TABLE `users` (
@@ -86,10 +109,12 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Άδειασμα δεδομένων του πίνακα `users`
 --
 
 INSERT INTO `users` (`email`, `username`, `password`, `authority`) VALUES
+('a@a.com', 'asdf', '4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8', 'simple'),
+('amoavinis@gmail.com', 'amoavinis', 'bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a', 'simple'),
 ('testemail1@test.email', 'test_username1', 'test_password1', 'simple'),
 ('testemail2@test.email', 'test_username2', 'test_password2', 'simple'),
 ('testemail3@test.email', 'test_username3', 'test_password3', 'simple'),
@@ -97,53 +122,84 @@ INSERT INTO `users` (`email`, `username`, `password`, `authority`) VALUES
 ('testemail5@test.email', 'test_username5', 'test_password5', 'simple'),
 ('testemail6@test.email', 'testsimple', '8e7a4a6e5ff1034956dfebed82ff7857473eea859badcb7b33a0697367e87a32', 'simple');
 
+-- --------------------------------------------------------
+
 --
--- Indexes for dumped tables
+-- Δομή πίνακα για τον πίνακα `users_waiting`
+--
+
+CREATE TABLE `users_waiting` (
+  `email` varchar(64) NOT NULL,
+  `username` varchar(32) NOT NULL,
+  `password` varchar(64) NOT NULL COMMENT 'hash256',
+  `authority` set('administrator','simple') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Ευρετήρια για άχρηστους πίνακες
 --
 
 --
--- Indexes for table `interested`
+-- Ευρετήρια για πίνακα `interested`
 --
 ALTER TABLE `interested`
   ADD KEY `user_email` (`user_email`),
   ADD KEY `post_id` (`post_id`);
 
 --
--- Indexes for table `posts`
+-- Ευρετήρια για πίνακα `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD PRIMARY KEY (`user_email`);
+
+--
+-- Ευρετήρια για πίνακα `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_email` (`poster_email`);
 
 --
--- Indexes for table `users`
+-- Ευρετήρια για πίνακα `signup_confirms`
+--
+ALTER TABLE `signup_confirms`
+  ADD PRIMARY KEY (`user_email`);
+
+--
+-- Ευρετήρια για πίνακα `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Ευρετήρια για πίνακα `users_waiting`
+--
+ALTER TABLE `users_waiting`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- AUTO_INCREMENT για άχρηστους πίνακες
 --
 
 --
--- AUTO_INCREMENT for table `posts`
+-- AUTO_INCREMENT για πίνακα `posts`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Constraints for dumped tables
+-- Περιορισμοί για άχρηστους πίνακες
 --
 
 --
--- Constraints for table `interested`
+-- Περιορισμοί για πίνακα `interested`
 --
 ALTER TABLE `interested`
   ADD CONSTRAINT `interested_ibfk_1` FOREIGN KEY (`user_email`) REFERENCES `users` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `interested_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`);
 
 --
--- Constraints for table `posts`
+-- Περιορισμοί για πίνακα `posts`
 --
 ALTER TABLE `posts`
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`poster_email`) REFERENCES `users` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
