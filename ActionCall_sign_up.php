@@ -12,6 +12,9 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
 function alert($msg) {
     echo "<script type='text/javascript'>alert('$msg');</script>";
 }
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+include("phpMailer/vendor/autoload.php");
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form 
   
@@ -56,11 +59,66 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         {
             //register user
             $hashed_password = hash("sha256", $password);
+
+            $mail = new PHPMailer(true);
+            //Disable SMTP debugging. 
+            $mail->SMTPDebug = 0;                               
+            //Set PHPMailer to use SMTP.
+            $mail->isSMTP();            
+            //Set SMTP host name                          
+            $mail->Host = "smtp.gmail.com";
+            //Set this to true if SMTP host requires authentication to send email
+            $mail->SMTPAuth = true;                          
+            //Provide username and password     
+            $mail->Username = "no.reply.actioncall@gmail.com";                 
+            $mail->Password = "pspi20201337";                           
+            //If SMTP requires TLS encryption then set it
+            $mail->SMTPSecure = "tls";                           
+            //Set TCP port to connect to 
+            $mail->Port = 587;                                   
+
+            $mail->From = "no.reply.actioncall@gmail.com";
+            $mail->FromName = "ActionCall no-reply";
+            
+            if (isset($email_address))
+            {
+                //header("Location: http://www.google.com");
+                $email = $email_address;
+                $sql = "SELECT * FROM users WHERE email=\"".$email."\";";
+                $result = mysqli_query($con, $sql);
+                $n = mysqli_num_rows($result);
+                if ($n==0)
+                {
+                    $mail->addAddress($email, "actioncall user");
+
+                    $mail->isHTML(true);
+
+                    $mail->Subject = "Confirm ActionCall Membership";
+                    $key = hash('sha256', microtime().$email);
+                    $sql1 = "INSERT INTO signup_confirms (user_email, signup_key) VALUES (\"".$email."\", \"".$key."\");";
+                    echo $sql1;
+                    $result1 = mysqli_query($con, $sql1);
+                    $sql = "INSERT INTO users_waiting (email, username, password, authority)
+                    VALUES (\"".$email_address."\", \"".$username."\", \"".$hashed_password."\",'simple')";
+                    $result = mysqli_query($con, $sql);
+                    
+                    $mail->Body = "ActionCall membership confirmation link: localhost/ActionCall/confirm_signup.php?key=".$key;
+                    //$mail->AltBody = "This is the plain text version of the email content";
+                    
+                    if(!$mail->send()) 
+                    {
+                        //echo "Mailer Error: " . $mail->ErrorInfo;
+                    } 
+                    else 
+                    {
+                        //echo "Message has been sent successfully";
+                    }
+                    alert("Επιτυχής εγγραφή! Θα σας έρθει μήνυμα επιβεβαίωσης στο email που δηλώσατε.");
+                    header("Location: ActionCall_login.php");
+                    die();
+                }
+            }
             //'administrator' authority can only be given by the database user manually.
-            $sql = "INSERT INTO users (email, username, password, authority)
-            VALUES (\"".$email_address."\", \"".$username."\", \"".$hashed_password."\",'simple')";
-            $result = mysqli_query($con, $sql);
-            alert("Επιτυχής εγγραφή!");
         }
         else
         {
@@ -91,11 +149,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="email" placeholder="name@example.com" class="form-control" name="new_account_email">
                 </div>
                 <div class = "form-group">
-                    <label for="account_username">Username</label>
+                    <label for="username">Username</label>
                     <input type="text" class="form-control" name="username">
                 </div>
                 <div class="form-group">
-                    <label for="account_password">Password</label>
+                    <label for="password">Password</label>
                     <input type="password" class="form-control" name="password">
                 </div>
                 <div class="form-group">

@@ -119,10 +119,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="card-footer">
                         <div class="d-flex justify-content-center links">
-                            Don't have an account? &nbsp;<a href="#"> Sign Up</a>
+                            Don't have an account? &nbsp;<a href="ActionCall_sign_up.php"> Sign Up</a>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <a href="#">Forgot your password?</a>
+                            <a href="ActionCall_forgot_password.php">Forgot your password?</a>
                         </div>
                     </div>
                 </div>

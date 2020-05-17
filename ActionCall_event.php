@@ -15,10 +15,10 @@ if(isset($_GET['postId'])){
 }
 
 ?>
-<html lang="en">
+<html>
   <head>
     <script src="js/gen_elements.js"></script>
-    <script>header_gen();</script>
+    <?php header_gen(); ?>
     <script src="js/interestedButton.js"></script>
     
     <title>Καθαρισμός Σκουπιδιών στη Πλατεία Αριστοτέλους</title>
@@ -26,7 +26,7 @@ if(isset($_GET['postId'])){
   </head>
 
     <body>
-        <script>navbar_gen();</script>
+        <?php navbar_gen(); ?>
         <h1>Καθαρισμός Σκουπιδιών στη Πλατεία Αριστοτέλους</h1>
         <div id="post" class="table-container container">
             <p><b>Κυριακή 26 Απριλίου στις 14:00</b><br>
@@ -57,7 +57,7 @@ if(isset($_GET['postId'])){
         </div>
                 
         <!-- Footer -->
-        <script>footer_gen();</script>
+        <?php footer_gen(); ?>
         <!-- ./Footer -->
     </body>
 </html>

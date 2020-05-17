@@ -9,8 +9,69 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
     $_SESSION["email"] = $_COOKIE["ActionCallUserEmail"];
     $_SESSION["username"] = $_COOKIE["ActionCallUser"];
 }
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+include("phpMailer/vendor/autoload.php");
+if (($_SERVER["REQUEST_METHOD"] == "POST"))
+{
+    $mail = new PHPMailer(true);
+    //Disable SMTP debugging. 
+    $mail->SMTPDebug = 0;                               
+    //Set PHPMailer to use SMTP.
+    $mail->isSMTP();            
+    //Set SMTP host name                          
+    $mail->Host = "smtp.gmail.com";
+    //Set this to true if SMTP host requires authentication to send email
+    $mail->SMTPAuth = true;                          
+    //Provide username and password     
+    $mail->Username = "info.actioncall@gmail.com";                 
+    $mail->Password = "4ct10nburr1t0";                           
+    //If SMTP requires TLS encryption then set it
+    $mail->SMTPSecure = "tls";                           
+    //Set TCP port to connect to 
+    $mail->Port = 587;                                   
+
+    $mail->From = "info.actioncall@gmail.com";
+    $mail->FromName = "ActionCall Contact Form";
+
+    $mail->addAddress("info.actioncall@gmail.com", "ActionCall Info");
+
+    $mail->isHTML(true);
+
+    $mail->Subject = "Contact form message";
+    if (isset($_POST["username"]))
+    {
+        $username = $_POST["username"];
+    }
+    else
+    {
+        $username = "";
+    }
+    if (isset($_POST["email"]))
+    {
+        $email = $_POST["email"];
+    }
+    else
+    {
+        $email = "";
+    }
+    $mail->Body = "Message from: <br>Name: ".$username."<br>Email: ".$email."<br><br>Message: <br>".$_POST["message"];
+    //$mail->AltBody = "This is the plain text version of the email content";
+
+    if(!$mail->send()) 
+    {
+        //echo "Mailer Error: " . $mail->ErrorInfo;
+    } 
+    else 
+    {
+        //echo "Message has been sent successfully";
+    }
+    header("Location: ActionCall_contact.php");
+    die();
+}
+
 ?>
-<html lang="en">
+<html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="js/gen_elements.js"></script>
@@ -29,19 +90,18 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                 </p>
             </div>
             <div class="container" >
-                <form action="mailto:actioncallcontact@exampleemail.com" method="post" enctype="text/plain" 
-                class="needs-validation">  <!--TODO Create a real email address-->
+                <form action="" method="POST" class="needs-validation">
                     <div class="form-group">
                         <label for="name">Όνομα</label>
-                        <input type="text"  class="form-control" id="exampleName" placeholder="Όνομα">
+                        <input type="text"  class="form-control" name="name" id="name" placeholder="Όνομα">
                     </div>
                     <div class="form-group">
-                        <label for="contact-email">Διεύθυνση e-mail </label>
-                        <input type="email"  class="form-control" id="exampleEmail" placeholder="Διεύθυνση ηλεκτρονικού ταχυδρομείου" required>
+                        <label for="email">Διεύθυνση e-mail </label>
+                        <input type="text"  class="form-control" name="email" id="email" placeholder="Διεύθυνση ηλεκτρονικού ταχυδρομείου">
                     </div>
                     <div class="form-group">
-                        <label for="inputText">Το μήνυμα σας </label>
-                        <textarea class="form-control" placeholder="Συμπληρώστε το μήνυμα σας εδώ..." required></textarea>
+                        <label for="message">Το μήνυμα σας </label>
+                        <textarea class="form-control" name="message" id="message" placeholder="Συμπληρώστε το μήνυμα σας εδώ..." required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary center-block">Αποστολή μηνύματος</button>
                 </form>
