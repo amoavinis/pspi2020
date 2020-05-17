@@ -37,7 +37,7 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                         <!-- Forum-->
                         <?php
                             $all_posts_query =
-                            "SELECT date_of_event, city, title, username
+                            "SELECT id, email, date_of_event, city, title, username
                             FROM posts JOIN users ON posts.poster_email = users.email
                             ORDER BY date_of_event DESC";
 
@@ -58,9 +58,9 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                                         while($post = $all_posts_result -> fetch_assoc()){ ?>
                                             <tr>
                                                 <td><?php echo($post["date_of_event"]); ?></td>
-                                                <td><?php echo($post["city"]); ?></td>
-                                                <td><?php echo($post["title"]); ?></td>
-                                                <td><?php echo($post["username"]); ?></td>
+                                                <td><a class="city" href = 'ActionCall_forum_search.php?search=<?php echo($post["city"]);?>'><?php echo($post["city"]); ?></td>
+                                                <td><a class="post" href = 'ActionCall_event.php?postId=<?php echo($post["id"]);?>'><?php echo($post["title"]);?></a></td>
+                                                <td><a class="user" href = 'ActionCall_forum_search.php?username=<?php echo($post["username"]); ?>'><?php echo($post["username"]); ?></a></td>
                                             </tr>
                                         <?php } ?>
                                     </thead>

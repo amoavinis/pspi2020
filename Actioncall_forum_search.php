@@ -14,20 +14,31 @@ if (isset($_GET['search']))
 {
     $searchQ = $_GET['search'];
     if ($searchQ == ""){
-        $all_posts_query = "SELECT date_of_event, city, title, username
+        $all_posts_query =  "SELECT id, email, date_of_event, city, title, username
                             FROM posts JOIN users ON posts.poster_email = users.email
                             ORDER BY date_of_event DESC";
+
         $searchO = "Όλα τα αποτελέσματα";
                             
     }else{
-        $all_posts_query = "SELECT date_of_event, city, title, username
+        $all_posts_query =  "SELECT id, email, date_of_event, city, title, username
                             FROM posts JOIN users ON posts.poster_email = users.email
                             WHERE city LIKE '%$searchQ%' OR title LIKE '%$searchQ%'
                             ORDER BY date_of_event DESC";
+                           
         $searchO = "Αποτελέσματα για: ";
         $searchO .= $searchQ;
     }
+}else if (isset($_GET['username'])){
+    $searchQ = $_GET['username'];
+    $all_posts_query =  "SELECT id, email, date_of_event, city, title, username
+                        FROM posts JOIN users ON posts.poster_email = users.email
+                        WHERE username = '$searchQ'
+                        ORDER BY date_of_event DESC";
+    $searchO = "Εύρεση αναρτήσεων χρήστη: ";
+    $searchO .= $searchQ;
 }
+
 ?>
 <html>
   <head>
@@ -70,10 +81,10 @@ if (isset($_GET['search']))
                                     <?php
                                     while($post = $all_posts_result -> fetch_assoc()){ ?>
                                         <tr>
-                                            <td><?php echo($post["date_of_event"]); ?></td>
-                                            <td><?php echo($post["city"]); ?></td>
-                                            <td><?php echo($post["title"]); ?></td>
-                                            <td><?php echo($post["username"]); ?></td>
+                                        <td><?php echo($post["date_of_event"]); ?></td>
+                                                <td><a class="city" href = 'ActionCall_forum_search.php?search=<?php echo($post["city"]);?>'><?php echo($post["city"]); ?></td>
+                                                <td><a class="post" href = 'ActionCall_event.php?postId=<?php echo($post["id"]);?>'><?php echo($post["title"]);?></a></td>
+                                                <td><a class="user" href = 'ActionCall_forum_search.php?username=<?php echo($post["username"]); ?>'><?php echo($post["username"]); ?></a></td>
                                         </tr>
                                     <?php } ?>
                                 </thead>
