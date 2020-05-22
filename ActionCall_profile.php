@@ -34,12 +34,12 @@ if (!isset($_SESSION["username"]))
         <div class="container">
             <h2>Account Information</h2>
 
-            <form>
+            <form action="save_changes_profile.php" method="POST">
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <label for="username_text_field" class="col-sm-2 col-form-label">Username</label>
                         <input class="form-control" id="username_text_field" type="text" minlength="5" maxlength="32" 
-                            value="<?php echo($_SESSION["username"]); ?>" oninput="button_enable_disable()">
+                            name="username_profile" value="<?php echo($_SESSION["username"]); ?>" oninput="button_enable_disable()">
                         <small class="form-text text-muted"> Your username must be 5-32 characters long.</small>
                     </div>             
                 </div>
@@ -47,7 +47,7 @@ if (!isset($_SESSION["username"]))
                     <div class="col-sm-10">
                         <label for="password_field" class="col-sm-2 col-form-label">Change Password</label>
                         <input class="form-control" id="password_field" type="password" minlength="1" 
-                            value="" oninput="button_enable_disable()">
+                            name="new_password" value="" oninput="button_enable_disable()">
                         <small class="form-text text-muted"> Your password must be at least one (1) character long. The longer, the better.</small>
                         <input type="checkbox" onclick="toggle_password_visibility()"> Show password
                     </div>             
@@ -55,10 +55,10 @@ if (!isset($_SESSION["username"]))
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <label for="password_field" class="col-sm-2 col-form-label">Repeat New Password</label>
-                        <input class="form-control" id="password_field" type="password" minlength="1" 
-                            value="" oninput="button_enable_disable()">
+                        <input class="form-control" id="repeat_password_field" type="password" minlength="1" 
+                            name="new_password_repetition" value="" oninput="button_enable_disable()">
                         <small class="form-text text-muted"> Passwords must agree.</small>
-                        <input type="checkbox" onclick="toggle_password_visibility()"> Show password
+                        <input type="checkbox" onclick="toggle_repeat_password_visibility()"> Show password
                     </div>             
                 </div>
                 <div class="form-group row">
