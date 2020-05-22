@@ -76,7 +76,7 @@ if (($_SERVER["REQUEST_METHOD"] == "POST"))
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="js/gen_elements.js"></script>
     <?php header_gen();?>
-    <title>ActionCall Contact</title>
+    <title>ActionCall - Contact</title>
 
   </head>
 

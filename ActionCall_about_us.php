@@ -16,7 +16,7 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
         <script src="js/gen_elements.js"></script>
         <?php header_gen();?>
         <link rel="stylesheet" href="css/about_us.css">
-        <title>ActionCall About Us People</title>
+        <title>ActionCall - About Us</title>
     </head>
 
     <body>
