@@ -31,7 +31,6 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                             <div class="input-group">
                                 <input class="form-control" type="text" name="search" aria-describedby="search-btn" placeholder="Search posts...">
                                 <input type = "submit" value = "Search">
-                                
                             </div>
                         </form> 
                         <!-- Forum-->
