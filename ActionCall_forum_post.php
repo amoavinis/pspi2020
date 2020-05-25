@@ -20,6 +20,7 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
     <script>header_gen();</script>
     <title>ActionCall - Create Post</title>
     <script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/19.0.0/classic/ckeditor.js"></script>
   </head>
 
     <body>
@@ -30,9 +31,13 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
             </div>
             <div class="container" >
                 <form class="needs-validation">
+                <div class="form-group">
+                        <label for="title">Τίτλος δράσης</label>
+                        <input type="text" class="form-control" id="postTitle" placeholder="e.g. Καθαρισμός της Πλατείας Αριστοτέλους" required>
+                    </div>
                     <div class="form-group">
                         <label for="name">Πόλη/Μέρος</label>
-                        <input type="text"  class="form-control" id="exampleName" placeholder="Θεσσαλονίκη" required>
+                        <input type="text"  class="form-control" id="exampleName" placeholder="e.g. Θεσσαλονίκη" required>
                     </div>
                     <div class="form-group">
                         <label for="date">Ημερομηνία</label>
@@ -42,13 +47,18 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                         <label for="repeat">Επαναλαμβανόμενο</label>
                         <input type="checkbox" id="rep" name="repeated_event" value="isRepeated">
                     </div>
-                
                     <div class="form-group">
-                        <label for="inputText">Περιεχόμενο</label>
-                        <textarea id="editor" class="form-control" placeholder="Συμπληρώστε το μήνυμα σας εδώ..." required></textarea>
+                    <textarea name="content" id="editor" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary center-block">Αποστολή</button>
                 </form>
+                <button style="margin:10px;" type="submit" class="btn btn-primary center-block">Αποστολή</button>
+                <script>
+        ClassicEditor
+        .create( document.querySelector( '#editor'))
+        .catch( error => {
+            console.error( error );
+        });
+        </script>
             </div>
         </div>
 

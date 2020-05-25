@@ -33,6 +33,7 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                                 <input type = "submit" value = "Search">
                             </div>
                         </form> 
+                        <button type="submit" style="margin-top: 20px; margin-bottom: 10px;margin-right: 150px; margin-left: 80px;position:relative;left:850px;" onclick="location.href='ActionCall_forum_post.php'">Δημιουργία Post</button>
                         <!-- Forum-->
                         <?php
                             $all_posts_query =
