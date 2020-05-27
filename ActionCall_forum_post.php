@@ -35,11 +35,11 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                 <form autocomplete ="off" class="needs-validation">
                 <div class="form-group">
                         <label for="title">Τίτλος δράσης</label>
-                        <input type="text" class="form-control" id="postTitle" placeholder="e.g. Καθαρισμός της Πλατείας Αριστοτέλους" required>
+                        <input type="text" class="form-control" id="postTitle" name="title" placeholder="e.g. Καθαρισμός της Πλατείας Αριστοτέλους" required>
                     </div>
                     <div class="autocomplete">
                         <label for="city">Πόλη/Μέρος</label>
-                        <input type="text"  class="form-control" id="cityName" placeholder="e.g. Thessaloniki" required>
+                        <input type="text"  class="form-control" id="cityName" name="city" placeholder="e.g. Thessaloniki" required>
                     </div>
                     <div class="form-group">
                     <label for="place">Διεύθυνση</label>
@@ -47,9 +47,9 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                     </div>
                     <div class="form-group">
                         <label for="date">Ημερομηνία</label>
-                        <input type="date" class="form-control" id="eventDate" required>
+                        <input type="date" class="form-control" id="eventDate" name="evDate" required>
                         <label for="hour">Ώρα</label>
-                        <input type="time" class="form-control" id="eventTime" min="1:00" max ="24:00" required>
+                        <input type="time" class="form-control" id="eventTime" name="evTime" min="1:00" max ="24:00" required>
                         <label for="repeat">Επαναλαμβανόμενο</label>
                         <input type="checkbox" id="rep" name="repeated_event" value="isRepeated">
                     </div>
@@ -58,10 +58,13 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                     </div>
                 </form>
                 <button style="margin:10px;" type="submit" class="btn btn-primary center-block">Αποστολή</button>
-
-
             </div>
         </div>
+        <script>
+            createEditor();
+             var cities=['Attica, Athens','Thessaloniki','Patras','Larissa','Heraklion','Attica, Peristeri','Attica, Kallithea','Attica, Acharnes','Thessaloniki, Kalamaria','Attica, Nikaia','Attica, Glyfada','Thessaloniki, Evosmos','Attica, Chalandri','Attica, Nea Smyrni','Attica, Marousi','Attica, Agios Dimitrios','Attica, Zografou','Attica, Egaleo','Attica, Nea Ionia','Ioannina','Attica, Palaio Faliro','Attica, Korydallos','Trikala','Attica, Vyronas','Attica, Agia Paraskevi','Attica, Galatsi','Agrinio','Chalcis','Attica, Petroupoli','Serres','Alexandroupoli','Xanthi','Katerini','Kalamata','Kavala','Chania','Lamia','Drama','Veria','Attica, Alimos','Kozani','Thessaloniki, Polichni','Karditsa','Thessaloniki, Sykies','Thessaloniki, Ampelokipoi','Thessaloniki, Pylaia','Attica, Agioi Anargyroi','Attica, Argyroupoli','Attica, Ano Liosia','Rethymno','Ptolemaida','Tripoli','Attica, Cholargos','Attica, Vrilissia','Attica, Aspropyrgos','Corinth','Attica, Gerakas','Attica, Metamorfosi','Giannitsa','Athens, Voula','Athens, Kamatero','Mytilene','Thessaloniki, Neapoli','Thessaloniki, Eleftherio-Kordelio','Chios','Attica, Agia Varvara','Attica, Kaisariani','Attica, Nea Filadelfeia','Attica, Moschato','Attica, Perama','Salamina','Attica, Eleusis','Corfu','Pyrgos','Megara','Kilkis','Attica, Dafni','Thebes','Attica, Melissia','Argos','Arta','Artemida','Livadeia','Attica, Pefki','Thessaloniki, Oraiokastro','Aigio','Kos','Attica, Koropi','Preveza','Naousa','Orestiada','Thessaloniki, Peraia','Edessa','Florina','Attica, Nea Erythraia','Attica, Elliniko','Amaliada','Attica, Pallini','Sparta','Attica, Agios Ioannis Rentis','Thessaloniki, Thermi','Attica, Vari','Attica, Nea Makri','Attica, Tavros','Alexandreia','Thessaloniki, Menemeni','Paiania','Attica, Kalyvia Thorikou','Nafplio','Drapetsona','Thessaloniki, Efkarpia','Attica, Papagou','Nafpaktos','Kastoria','Grevena','Thessaloniki, Pefka','Nea Alikarnassos','Missolonghi','Attica, Gazi','Ierapetra','Kalymnos','Attica, Rafina','Attica, Loutraki','Agios Nikolaos','Ermoupoli','Ialysos','Attica, Mandra','Tyrnavos','Attica, Glyka Nera','Attica, Ymittos','Attica, Neo Psychiko'];
+            autocomplete(document.getElementById("cityName"), cities);
+        </script>
 
         <!-- Footer -->
         <script>footer_gen();</script>
