@@ -16,28 +16,34 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
 ?>
 <html>
   <head>
+    <link rel="stylesheet" href="css/autocomplete.css"> 
+    <script src="js/editor.js"></script>
     <script src="js/gen_elements.js"></script>
-    <script>header_gen();</script>
+    <script src="js/autocomplete.js"></script>
+    <?php header_gen();?>
     <title>ActionCall - Create Post</title>
-    <script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/19.0.0/classic/ckeditor.js"></script>
   </head>
 
     <body>
-    <script>navbar_gen();</script>
+    <?php navbar_gen();?>
         <div class="container content">
             <div class="container">
                 <h1>Κάντε μία ανάρτηση</h1>
             </div>
             <div class="container" >
-                <form class="needs-validation">
+                <form autocomplete ="off" class="needs-validation">
                 <div class="form-group">
                         <label for="title">Τίτλος δράσης</label>
                         <input type="text" class="form-control" id="postTitle" placeholder="e.g. Καθαρισμός της Πλατείας Αριστοτέλους" required>
                     </div>
+                    <div class="autocomplete">
+                        <label for="city">Πόλη/Μέρος</label>
+                        <input type="text"  class="form-control" id="cityName" placeholder="e.g. Thessaloniki" required>
+                    </div>
                     <div class="form-group">
-                        <label for="name">Πόλη/Μέρος</label>
-                        <input type="text"  class="form-control" id="exampleName" placeholder="e.g. Θεσσαλονίκη" required>
+                    <label for="place">Διεύθυνση</label>
+                    <input type="text" class="form-control" id="addressName" placeholder="e.g. Πλατεία Αριστοτέλους" required>
                     </div>
                     <div class="form-group">
                         <label for="date">Ημερομηνία</label>
@@ -52,13 +58,8 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                     </div>
                 </form>
                 <button style="margin:10px;" type="submit" class="btn btn-primary center-block">Αποστολή</button>
-                <script>
-        ClassicEditor
-        .create( document.querySelector( '#editor'))
-        .catch( error => {
-            console.error( error );
-        });
-        </script>
+
+
             </div>
         </div>
 

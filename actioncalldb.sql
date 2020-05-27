@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Φιλοξενητής: 127.0.0.1
--- Χρόνος δημιουργίας: 17 Μάη 2020 στις 17:49:27
--- Έκδοση διακομιστή: 10.4.8-MariaDB
--- Έκδοση PHP: 7.3.11
+-- Χρόνος δημιουργίας: 27 Μάη 2020 στις 12:41:48
+-- Έκδοση διακομιστή: 10.4.11-MariaDB
+-- Έκδοση PHP: 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -70,7 +69,7 @@ CREATE TABLE `posts` (
   `details` text DEFAULT NULL,
   `date_posted` datetime NOT NULL,
   `date_of_event` datetime NOT NULL,
-  `city` enum('Athens','Thessaloniki','Patras','Larissa','Heraklion','Peristeri','Kallithea','Acharnes','Kalamaria','Nikaia','Glyfada','Evosmos','Chalandri','Nea Smyrni','Marousi','Agios Dimitrios','Zografou','Egaleo','Nea Ionia','Ioannina','Palaio Faliro','Korydallos','Trikala','Vyronas','Agia Paraskevi','Galatsi','Agrinio','Chalcis','Petroupoli','Serres','Alexandroupoli','Xanthi','Katerini','Kalamata','Kavala','Chania','Lamia','Drama','Veria','Alimos','Kozani','Polichni','Karditsa','Sykies','Ampelokipoi','Pylaia','Agioi Anargyroi','Argyroupoli','Ano Liosia','Nea Ionia','Rethymno','Ptolemaida','Tripoli','Cholargos','Vrilissia','Aspropyrgos','Corinth','Gerakas','Metamorfosi','Giannitsa','Voula','Kamatero','Mytilene','Neapoli','Eleftherio-Kordelio','Chios','Agia Varvara','Kaisariani','Nea Filadelfeia','Moschato','Perama','Salamina','Eleusis','Corfu','Pyrgos','Megara','Kilkis','Dafni','Thebes','Melissia','Argos','Arta','Artemida','Livadeia','Pefki','Oraiokastro','Aigio','Kos','Koropi','Preveza','Naousa','Orestiada','Peraia','Edessa','Florina','Nea Erythraia','Elliniko','Amaliada','Pallini','Sparta','Agios Ioannis Rentis','Thermi','Vari','Nea Makri','Tavros','Alexandreia','Menemeni','Paiania','Kalyvia Thorikou','Nafplio','Drapetsona','Efkarpia','Papagou','Nafpaktos','Kastoria','Grevena','Pefka','Nea Alikarnassos','Missolonghi','Gazi','Ierapetra','Kalymnos','Rafina','Loutraki','Agios Nikolaos','Ermoupoli','Ialysos','Mandra','Tyrnavos','Glyka Nera','Ymittos','Neo Psychiko','') NOT NULL COMMENT 'All greek cities listed in https://simple.wikipedia.org/wiki/List_of_cities_in_Greece',
+  `city` enum('Attica, Athens','Thessaloniki','Patras','Larissa','Heraklion','Attica, Peristeri','Attica, Kallithea','Attica, Acharnes','Thessaloniki, Kalamaria','Attica, Nikaia','Attica, Glyfada','Thessaloniki, Evosmos','Attica, Chalandri','Attica, Nea Smyrni','Attica, Marousi','Attica, Agios Dimitrios','Attica, Zografou','Attica, Egaleo','Attica, Nea Ionia','Ioannina','Attica, Palaio Faliro','Attica, Korydallos','Trikala','Attica, Vyronas','Attica, Agia Paraskevi','Attica, Galatsi','Agrinio','Chalcis','Attica, Petroupoli','Serres','Alexandroupoli','Xanthi','Katerini','Kalamata','Kavala','Chania','Lamia','Drama','Veria','Attica, Alimos','Kozani','Thessaloniki, Polichni','Karditsa','Thessaloniki, Sykies','Thessaloniki, Ampelokipoi','Thessaloniki, Pylaia','Attica, Agioi Anargyroi','Attica, Argyroupoli','Attica, Ano Liosia','Rethymno','Ptolemaida','Tripoli','Attica, Cholargos','Attica, Vrilissia','Attica, Aspropyrgos','Corinth','Attica, Gerakas','Attica, Metamorfosi','Giannitsa','Athens, Voula','Athens, Kamatero','Mytilene','Thessaloniki, Neapoli','Thessaloniki, Eleftherio-Kordelio','Chios','Attica, Agia Varvara','Attica, Kaisariani','Attica, Nea Filadelfeia','Attica, Moschato','Attica, Perama','Salamina','Attica, Eleusis','Corfu','Pyrgos','Megara','Kilkis','Attica, Dafni','Thebes','Attica, Melissia','Argos','Arta','Artemida','Livadeia','Attica, Pefki','Thessaloniki, Oraiokastro','Aigio','Kos','Attica, Koropi','Preveza','Naousa','Orestiada','Thessaloniki, Peraia','Edessa','Florina','Attica, Nea Erythraia','Attica, Elliniko','Amaliada','Attica, Pallini','Sparta','Attica, Agios Ioannis Rentis','Thessaloniki, Thermi','Attica, Vari','Attica, Nea Makri','Attica, Tavros','Alexandreia','Thessaloniki, Menemeni','Paiania','Attica, Kalyvia Thorikou','Nafplio','Drapetsona','Thessaloniki, Efkarpia','Attica, Papagou','Nafpaktos','Kastoria','Grevena','Thessaloniki, Pefka','Nea Alikarnassos','Missolonghi','Attica, Gazi','Ierapetra','Kalymnos','Attica, Rafina','Attica, Loutraki','Agios Nikolaos','Ermoupoli','Ialysos','Attica, Mandra','Tyrnavos','Attica, Glyka Nera','Attica, Ymittos','Attica, Neo Psychiko','') NOT NULL COMMENT 'All greek cities listed in https://simple.wikipedia.org/wiki/List_of_cities_in_Greece',
   `geolocation` point NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
