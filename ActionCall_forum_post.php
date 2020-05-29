@@ -29,6 +29,17 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
 
     <body>
     <?php navbar_gen();?>
+    <script>
+    $.ajax({
+        url:'https://nominatim.openstreetmap.org/search/q=addressName?city=city',
+        datatype:'json',
+        success:function(data){
+            data=data.results;
+            console.log(data)
+            setDataSelectionEvent(data);
+        }
+    });
+    </script>
         <div class="container content">
             <div class="container">
                 <h1>Κάντε μία ανάρτηση</h1>
