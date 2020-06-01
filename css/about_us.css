@@ -2,11 +2,6 @@
     margin-top: 1rem;
     width: 80%;
     border: 2px solid teal;
-    border-radius: 10px;  
+    border-radius: 10px;
+    overflow-x: auto;
 }
-
-@media screen and (max-width: 330px) {
-    ul {
-      font-size: small;
-    }
-  }
