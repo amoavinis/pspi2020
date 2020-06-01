@@ -41,6 +41,4 @@
     unset($_SESSION["password_repetition"]);
 
     header("Location: ActionCall_profile.php");
-
-
 ?>

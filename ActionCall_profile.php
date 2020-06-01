@@ -1,4 +1,6 @@
 <!doctype html>
+
+<link rel="stylesheet" href="css/profile.css">
 <?php
 require("config.php");
 require("gen_elements.php");
@@ -74,13 +76,59 @@ if (!isset($_SESSION["username"]))
             </form>
         </div>
 
+
+
+        <!--Red trash button for deleting an account.-->
+        <!--//TODO Show button depending on whether users is an administrator or the shown page's owner.
+        Should be completed in future expansions, in case we allow other users to view other users' profiles. -->
+        <!-- <?php /*
+        if($_SESSION["email"] === email_on_shown_in_page){ ?>
+            <div class="container">
+            <form action="delete_account.php">
+                <i class="fas fa-trash-alt delete-account-trash-button"></i>       
+            </div>
+        <?php }
+        else{
+            $user_authority_query = 
+            "
+            SELECT authority
+            FROM users
+            WHERE email = \"".$_SESSION["email"]."\"
+            "
+            ;
+    
+            $user_authority = mysqli_query($con, $user_authority_query);
+
+            if($user_authority === "administrator"){ ?>
+                <div class="container">
+                <form action="delete_account.php">
+                    <i class="fas fa-trash-alt delete-account-trash-button"></i>       
+                </div>
+            <?php }
+        } */ ?> -->
+
+        <div class="container">
+            <form action="delete_account.php">
+                <button type="submit" style="background: transparent; border: 0" class="delete-account-trash-button">
+                <i type="submit" class="fas fa-trash-alt"></i>  
+                </button>
+            </form>    
+        </div>
+
+
+
+
+
+
+
         <div class="container content">
             <?php
             $find_posts_user_is_interested_in_sql_query = 
             "SELECT DISTINCT post_id , title, city, date_of_event, posts.poster_email
             FROM users AS users1 JOIN interested ON user_email = \"".$_SESSION["email"]."\" 
             JOIN posts ON post_id = id 
-            JOIN users AS users2 ON users2.email = posts.poster_email";
+            JOIN users AS users2 ON users2.email = posts.poster_email
+            ORDER ";
 
             $posts_user_is_interested_in = mysqli_query($con, $find_posts_user_is_interested_in_sql_query);
             
