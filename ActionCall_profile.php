@@ -82,7 +82,7 @@ if (!isset($_SESSION["username"]))
         <!--//TODO Show button depending on whether users is an administrator or the shown page's owner.
         Should be completed in future expansions, in case we allow other users to view other users' profiles. -->
         <!-- <?php /*
-        if($_SESSION["email"] === email_on_shown_in_page){ ?>
+        if($_SESSION["email"] === email_shown_in_page){ ?>
             <div class="container">
             <form action="delete_account.php">
                 <i class="fas fa-trash-alt delete-account-trash-button"></i>       
@@ -128,7 +128,7 @@ if (!isset($_SESSION["username"]))
             FROM users AS users1 JOIN interested ON user_email = \"".$_SESSION["email"]."\" 
             JOIN posts ON post_id = id 
             JOIN users AS users2 ON users2.email = posts.poster_email
-            ORDER ";
+            ORDER BY date_of_event DESC";
 
             $posts_user_is_interested_in = mysqli_query($con, $find_posts_user_is_interested_in_sql_query);
             
