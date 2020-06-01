@@ -2,6 +2,19 @@
 	--teal-color: #24A9A7;
 }
 
+button.make_post{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-right: 150px; 
+    margin-left: 80px;
+    position:relative;
+    left:850px;
+}
+
+.radiogroup{
+    text-align: center;
+}
+
 ul {
     padding: 0;
     list-style: none;

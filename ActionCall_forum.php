@@ -9,6 +9,62 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
     $_SESSION["email"] = $_COOKIE["ActionCallUserEmail"];
     $_SESSION["username"] = $_COOKIE["ActionCallUser"];
 }
+
+function setOrder($value) {
+    $order = $value;
+  }
+
+/*basic querry bodies*/
+$querryB =  "SELECT id, email, date_of_event, city, title, username
+             FROM posts JOIN users ON posts.poster_email = users.email";
+$querryW = "";
+$searchO = "Όλα τα αποτελέσματα";
+$querryO = "";
+$searchQ = "";
+
+/*getting the order type*/
+$order = "orderOne";
+if(isset($_GET['order'])){
+    $order = $_GET['order'];
+}
+
+if($order==='orderOne'){
+    $querryO = " ORDER BY date_of_event DESC";
+}else if($order==='orderTwo'){
+    $querryO = " ORDER BY date_posted DESC";
+}
+
+/*getting the search querries and search text based on the textfield*/
+if(isset($_GET['search'])&&$_GET['search']!=""){
+    $searchQ = $_GET['search'];
+    $querryW = " WHERE city LIKE '%$searchQ%' OR title LIKE '%$searchQ%'";
+    $searchO = "Αποτελέσματα για: " . $searchQ;
+}
+/*getting the search querries and search text based on the username*/
+else if(isset($_GET['username'])){
+    $searchU = $_GET['username'];
+    $querryW = " WHERE username = '$searchU'";
+    $searchO = "Εύρεση αναρτήσεων χρήστη: " . $searchU;
+}
+
+/*getting the page number*/
+if (isset($_GET['pageno'])) {
+    $pageno = $_GET['pageno'];
+} else {
+    $pageno = 1;
+}
+
+/*making the querry per 10 posts*/
+$no_of_records_per_page = 10;
+$offset = ($pageno-1) * $no_of_records_per_page; 
+$total_pages_sql = "SELECT COUNT(*) FROM posts JOIN users ON posts.poster_email = users.email" . $querryW;
+$result = mysqli_query($con, $total_pages_sql);
+$total_rows = mysqli_fetch_array($result)[0];
+$total_pages = ceil($total_rows / $no_of_records_per_page);
+$all_posts_query = $querryB . $querryW . $querryO . " LIMIT $offset, $no_of_records_per_page";
+$all_posts_result = mysqli_query($con, $all_posts_query);
+
+
 ?>
 <html>
   <head>
@@ -23,53 +79,54 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
         <?php navbar_gen();?>
         <div class="container content">
             <!--Search Bar info-->
-            <h1 id="result">Όλα τα αποτελέσματα</h1>
+            <h1 id="result"><?php print($searchO);?></h1>
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <form action = "Actioncall_forum_search.php" method = "get" class="search-form">
+                        <form action = "Actioncall_forum.php" method = "get" class="search-form">
                             <div class="input-group">
                                 <input class="form-control" type="text" name="search" aria-describedby="search-btn" placeholder="Search posts...">
                                 <input type = "submit" value = "Search">
                             </div>
-                        </form> 
-                        <button type="submit" style="margin-top: 20px; margin-bottom: 10px;margin-right: 150px; margin-left: 80px;position:relative;left:850px;" onclick="location.href='ActionCall_forum_post.php'">Δημιουργία Post</button>
-                        <!-- Forum-->
-                        <?php
-                            $all_posts_query =
-                            "SELECT id, email, date_of_event, city, title, username
-                            FROM posts JOIN users ON posts.poster_email = users.email
-                            ORDER BY date_of_event DESC";
-
-                            
-                            $all_posts_result = mysqli_query($con, $all_posts_query);
-
-                            if(mysqli_num_rows($all_posts_result) > 0){ ?>
-                            <div id="forum" class="table-container">
-                                <table class="topics-table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Για ημερομηνία</th>
-                                            <th scope="col">Πόλη</th>
-                                            <th scope="col">Θέμα</th>
-                                            <th scope="col">Από</th>
-                                        </tr>
-                                        <?php
-                                        while($post = $all_posts_result -> fetch_assoc()){ ?>
-                                            <tr>
-                                                <td><?php echo($post["date_of_event"]); ?></td>
-                                                <td><a class="city" href = 'ActionCall_forum_search.php?search=<?php echo($post["city"]);?>'><?php echo($post["city"]); ?></td>
-                                                <td><a class="post" href = 'ActionCall_event.php?postId=<?php echo($post["id"]);?>'><?php echo($post["title"]);?></a></td>
-                                                <td><a class="user" href = 'ActionCall_forum_search.php?username=<?php echo($post["username"]); ?>'><?php echo($post["username"]); ?></a></td>
-                                            </tr>
-                                        <?php } ?>
-                                    </thead>
-                                </table>
+                            <div class = "radiogroup" style="text-align: center;">
+                                <label>Μελλοντικά Events</label>
+                                <input type="radio" name="order" value="orderOne" onclick="setOrder(this.value)" <?php if($order === "orderOne"){echo(" checked");}?>/>
+                                <label>Πρόσφατες Αναρτήσεις</label>
+                                <input type="radio" name="order" value="orderTwo" onclick="setOrder(this.value)"<?php if($order === "orderTwo"){echo(" checked");}?>/>
                             </div>
-                            <?php } 
-                            else{
-                                echo("No results detected");
-                            } ?>
+                        </form>
+                        <button class="make_post" onclick="location.href='ActionCall_forum_post.php'">Δημιουργία Post</button>
+                        <!-- Forum-->
+                        <?php  
+                            if(mysqli_num_rows($all_posts_result) > 0){ ?>
+                                <div id="forum" class="table-container">
+                                    <table class="topics-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Για ημερομηνία</th>
+                                                <th scope="col">Πόλη</th>
+                                                <th scope="col">Θέμα</th>
+                                                <th scope="col">Από</th>
+                                            </tr>
+                                            <?php
+                                            while($post = mysqli_fetch_array($all_posts_result)){ ?>
+                                                <tr>
+                                                <td><?php echo($post["date_of_event"]); ?></td>
+                                                        <td><a class="city" href = 'ActionCall_forum.php?search=<?php echo($post["city"]);?>&order=<?php echo($order);?>&pageno=1'><?php echo($post["city"]); ?></td>
+                                                        <td><a class="post" href = 'ActionCall_event.php?postId=<?php echo($post["id"]);?>'><?php echo($post["title"]);?></a></td>
+                                                        <td><a class="user" href = 'ActionCall_forum.php?username=<?php echo($post["username"]); ?>&order=<?php echo($order);?>&pageno=1'><?php echo($post["username"]); ?></a></td>
+                                                </tr>
+                                            <?php } ?>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <ul class="pagination">
+                                    <li><button onclick="location.href ='ActionCall_forum.php<?php if(isset($_GET['username'])){echo('?username=' . $searchU);} else {echo('?search=' . $searchQ);} ?>&order=<?php echo($order);?>&pageno=<?php echo(1); ?>'">First</button></li>
+                                    <li><button onclick="location.href ='ActionCall_forum.php<?php if(isset($_GET['username'])){echo('?username=' . $searchU);} else {echo('?search=' . $searchQ);} ?>&order=<?php echo($order);?>&pageno=<?php echo($pageno-1); ?>'" <?php if($pageno == 1){ echo("disabled"); } ?>>Prev</button></li>
+                                    <li><button onclick="location.href ='ActionCall_forum.php<?php if(isset($_GET['username'])){echo('?username=' . $searchU);} else {echo('?search=' . $searchQ);} ?>&order=<?php echo($order);?>&pageno=<?php echo($pageno+1); ?>'" <?php if($pageno >= $total_pages){ echo("disabled"); } ?>>Next</button></li>
+                                    <li><button onclick="location.href ='ActionCall_forum.php<?php if(isset($_GET['username'])){echo('?username=' . $searchU);} else {echo('?search=' . $searchQ);} ?>&order=<?php echo($order);?>&pageno=<?php echo($total_pages); ?>'">Last</button></li>
+                                </ul>
+                                <?php } ?>
                         <!--./Forum-->
                     </div>
                 </div>
