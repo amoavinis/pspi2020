@@ -1,0 +1,7 @@
+#index.table-container{
+    margin-top: 1rem;
+    width: 80%;
+    border: 2px solid teal;
+    border-radius: 10px;
+    overflow-x: auto;
+}

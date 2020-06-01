@@ -17,6 +17,7 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
         <?php header_gen();?>
         <title>ActionCall Homepage</title>
         <link rel="stylesheet" href="css/forum.css">
+        <link rel="stylesheet" href="css/index.css">
     </head>
 
     <body>
@@ -58,11 +59,25 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                     iframes[i].height=400;
                 }
             } );
-            
         </script>
-        <div class="container">
-            <h3 align = "center">Δείτε και αυτά</h3>
+        <br>
+        <div class="container"> 
+            <div id="index" class = "table-container container">
+                <h5 style ="text-align: center">Για πληροφορίες άλλων εθελοντικών οργανισμών ή ομάδων, κάντε κλικ <a href = "ActionCall_volunteer_organizations.php">εδώ</a></h5>
+            </div>
         </div>
+        <br>
+        <!--adding the images, doesn't work
+        <div class = "imageset" style="width: 100%">
+        <img class= "image" src="imageVolunteer1.jpg" style="width: 20%; margin:0px !important; padding: 0px !important; border:0 !important;">
+        <img class= "image" src="imageVolunteer1.jpg" style="width: 20%; margin:0px !important; padding: 0px !important; border:0 !important;">
+        <img class= "image" src="imageVolunteer1.jpg" style="width: 20%; margin:0px !important; padding: 0px !important; border:0 !important;">
+        <img class= "image" src="imageVolunteer1.jpg" style="width: 20%; margin:0px !important; padding: 0px !important; border:0 !important;">
+        <img class= "image" src="imageVolunteer1.jpg" style="width: 20%; margin:0px !important; padding: 0px !important; border:0 !important;">
+        </div>
+        -->
+  
+        <!--the 4 sites
         <div class="container">
             <div class="row">
               <div class="col">
@@ -89,7 +104,8 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                 </div>
               </div>
         </div>
-        	
+                  -->
+        
         <!-- Footer -->
         <?php footer_gen();?>
         <!-- ./Footer -->
