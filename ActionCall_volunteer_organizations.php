@@ -21,7 +21,7 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
 
     <body>
     <?php navbar_gen();?>
-    <div class = "container">
+    <div class = "container content">
     <h1>Δείτε τις παρακάτω εθελοντικές ομάδες και οργανισμούς</h1>
     <div id="forum" class="table-container">
             

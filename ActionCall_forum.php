@@ -95,7 +95,7 @@ $all_posts_result = mysqli_query($con, $all_posts_query);
                                 <input type="radio" name="order" value="orderTwo" onclick="setOrder(this.value)"<?php if($order === "orderTwo"){echo(" checked");}?>/>
                             </div>
                         </form>
-                        <button class="make_post" onclick="location.href='ActionCall_forum_post.php'">Δημιουργία Post</button>
+                        <button class="make_post" onclick="location.href='ActionCall_create_post.php'">Δημιουργία Post</button>
                         <!-- Forum-->
                         <?php  
                             if(mysqli_num_rows($all_posts_result) > 0){ ?>
