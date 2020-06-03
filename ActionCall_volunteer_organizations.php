@@ -1,6 +1,7 @@
 <!doctype html>
 <?php
 require("config.php");
+include("config1.php");
 require("gen_elements.php");
 session_start();
 if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) && isset($_COOKIE["ActionCallUserState"]))
@@ -9,6 +10,8 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
     $_SESSION["email"] = $_COOKIE["ActionCallUserEmail"];
     $_SESSION["username"] = $_COOKIE["ActionCallUser"];
 }
+
+
 ?>
 <html>
     <head>
@@ -22,24 +25,22 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
     <body>
     <?php navbar_gen();?>
     <div class = "container content">
-    <h1>Δείτε τις παρακάτω εθελοντικές ομάδες και οργανισμούς</h1>
-    <div id="forum" class="table-container">
-            
-            <table class="topics-table">
-                <tr>
-                    <td style = "text-align: center;"><a href = "#">link1</a></td>
-                </tr>
-                <tr>
-                    <td style = "text-align: center;"><a href = "#">link2</a></td>
-                </tr>
-                <tr>
-                    <td style = "text-align: center;"><a href = "#">link3</a></td>
-                </tr>
-                <tr>
-                    <td style = "text-align: center;"><a href = "#">link4</a></td>
-                </tr>
-            </table>
-        </div>
+        <h1>Δείτε τις παρακάτω εθελοντικές ομάδες και οργανισμούς</h1>
+        <div id="forum" class="table-container">
+        <?php
+                $all_organizations_querry = "SELECT * FROM organizations";
+                $results = mysqli_query($conn, $all_organizations_querry);
+                if(mysqli_num_rows($results)>0){ ?>
+                    <table class="topics-table">
+                    <?php 
+                        while($organization = mysqli_fetch_array($results)){ ?>
+                            <tr>
+                                <td style = "text-align: center;"><a href = <?php echo($organization["url"]);?>><?php echo($organization["name"]);?></a></td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                <?php } ?>
+            </div>
     </div>
     <br>
     

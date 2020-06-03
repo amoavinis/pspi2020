@@ -86,7 +86,7 @@ $all_posts_result = mysqli_query($con, $all_posts_query);
                         <form action = "Actioncall_forum.php" method = "get" class="search-form">
                             <div class="input-group">
                                 <input class="form-control" type="text" name="search" aria-describedby="search-btn" placeholder="Search posts...">
-                                <input type = "submit" value = "Search">
+                                <input class="btn btn-primary" type = "submit" value = "Search">
                             </div>
                             <div class = "radiogroup" style="text-align: center;">
                                 <label>Μελλοντικά Events</label>
@@ -95,7 +95,7 @@ $all_posts_result = mysqli_query($con, $all_posts_query);
                                 <input type="radio" name="order" value="orderTwo" onclick="setOrder(this.value)"<?php if($order === "orderTwo"){echo(" checked");}?>/>
                             </div>
                         </form>
-                        <button class="make_post" onclick="location.href='ActionCall_create_post.php'">Δημιουργία Post</button>
+                        <button class="btn btn-primary" id = "make_post" onclick="location.href='ActionCall_create_post.php'" <?php if((!isset($_SESSION["loggedin"])||$_SESSION["loggedin"]!=true)){echo("disabled");}?>>Δημιουργία Post</button>
                         <!-- Forum-->
                         <?php  
                             if(mysqli_num_rows($all_posts_result) > 0){ ?>
@@ -121,10 +121,10 @@ $all_posts_result = mysqli_query($con, $all_posts_query);
                                     </table>
                                 </div>
                                 <ul class="pagination">
-                                    <li><button onclick="location.href ='ActionCall_forum.php<?php if(isset($_GET['username'])){echo('?username=' . $searchU);} else {echo('?search=' . $searchQ);} ?>&order=<?php echo($order);?>&pageno=<?php echo(1); ?>'">First</button></li>
-                                    <li><button onclick="location.href ='ActionCall_forum.php<?php if(isset($_GET['username'])){echo('?username=' . $searchU);} else {echo('?search=' . $searchQ);} ?>&order=<?php echo($order);?>&pageno=<?php echo($pageno-1); ?>'" <?php if($pageno == 1){ echo("disabled"); } ?>>Prev</button></li>
-                                    <li><button onclick="location.href ='ActionCall_forum.php<?php if(isset($_GET['username'])){echo('?username=' . $searchU);} else {echo('?search=' . $searchQ);} ?>&order=<?php echo($order);?>&pageno=<?php echo($pageno+1); ?>'" <?php if($pageno >= $total_pages){ echo("disabled"); } ?>>Next</button></li>
-                                    <li><button onclick="location.href ='ActionCall_forum.php<?php if(isset($_GET['username'])){echo('?username=' . $searchU);} else {echo('?search=' . $searchQ);} ?>&order=<?php echo($order);?>&pageno=<?php echo($total_pages); ?>'">Last</button></li>
+                                    <li><button class="btn btn-primary" id = "navigation" onclick="location.href ='ActionCall_forum.php<?php if(isset($_GET['username'])){echo('?username=' . $searchU);} else {echo('?search=' . $searchQ);} ?>&order=<?php echo($order);?>&pageno=<?php echo(1); ?>'">First</button></li>
+                                    <li><button class="btn btn-primary" id = "navigation" onclick="location.href ='ActionCall_forum.php<?php if(isset($_GET['username'])){echo('?username=' . $searchU);} else {echo('?search=' . $searchQ);} ?>&order=<?php echo($order);?>&pageno=<?php echo($pageno-1); ?>'" <?php if($pageno == 1){ echo("disabled"); } ?>>Prev</button></li>
+                                    <li><button class="btn btn-primary" id = "navigation" onclick="location.href ='ActionCall_forum.php<?php if(isset($_GET['username'])){echo('?username=' . $searchU);} else {echo('?search=' . $searchQ);} ?>&order=<?php echo($order);?>&pageno=<?php echo($pageno+1); ?>'" <?php if($pageno >= $total_pages){ echo("disabled"); } ?>>Next</button></li>
+                                    <li><button class="btn btn-primary" id = "navigation" onclick="location.href ='ActionCall_forum.php<?php if(isset($_GET['username'])){echo('?username=' . $searchU);} else {echo('?search=' . $searchQ);} ?>&order=<?php echo($order);?>&pageno=<?php echo($total_pages); ?>'">Last</button></li>
                                 </ul>
                                 <?php } ?>
                         <!--./Forum-->
