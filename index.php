@@ -9,6 +9,7 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
     $_SESSION["email"] = $_COOKIE["ActionCallUserEmail"];
     $_SESSION["username"] = $_COOKIE["ActionCallUser"];
 }
+
 ?>
 <html>
     <head>
@@ -19,8 +20,8 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
         <link rel="stylesheet" href="css/forum.css">
         <link rel="stylesheet" href="css/index.css">
     </head>
-
-    <body>
+    
+    <body onload="getLocation()">
         <?php navbar_gen();?>
         <div class="container">
             <p class="lead">Καλωσήρθατε στη σελίδα του Action Call! </p>
@@ -29,7 +30,106 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
             <h3 style="text-align: center;">Προτεινόμενες δραστηριότητες κοντά σας</h3>
             <div class="container">
                 <!--Search Bar info-->
-                <h3>Θεσσαλονίκη</h3>
+                <h3 id="geolocation" align="center">Όλη η Ελλάδα</h3>
+                
+                <script>
+                    var getJSON = function(url, callback) {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('GET', url, true);
+                        xhr.responseType = 'json';
+                        xhr.onload = function() {
+                            var status = xhr.status;
+                            if (status === 200) {
+                                callback(null, xhr.response);
+                            } else {
+                                callback(status, xhr.response);
+                            }
+                        };
+                        xhr.send();
+                    };
+                    var x = document.getElementById("geolocation");
+                    var y = document.getElementById("events");
+                    function getLocation() {
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(showPosition, showDefault);
+                        } else {
+                            x.innerHTML = "Geolocation is not supported by this browser.";
+                        }
+                    }
+                    
+                    function showPosition(position) {
+                        var xmlhttp = new XMLHttpRequest();
+                        xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var response = JSON.parse(this.responseText);
+                            x.innerHTML = response["features"][0]["properties"]["address"]["city"];
+                            getEvents(position);
+                            return;
+                        }
+                        };
+                        xmlhttp.open("GET", 
+                                     'https://nominatim.openstreetmap.org/reverse?format=geojson&lat='.concat(position.coords.latitude,
+                                                                                                              '&lon=',
+                                                                                                              position.coords.longitude,
+                                                                                                              "&zoom=18"), true);
+                        xmlhttp.send();                        
+                    }
+                    function showDefault(error) {
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                x.innerHTML = "Όλη η Ελλάδα";
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                x.innerHTML = "Όλη η Ελλάδα";
+                                break;
+                            case error.TIMEOUT:
+                                x.innerHTML = "Όλη η Ελλάδα";
+                                break;
+                            case error.UNKNOWN_ERROR:
+                                x.innerHTML = "Όλη η Ελλάδα";
+                                break; 
+                        }
+                        showDefaultEvents();
+                        return;
+                    }
+                    function getEvents(position)
+                    {
+                        var xmlhttp = new XMLHttpRequest();
+                        if (this.readyState == 4 && this.status == 200){
+                            document.getElementById("events").innerHTML = "waiting";
+                            return;
+                        }
+                        else {
+                            var xmlhttp = new XMLHttpRequest();
+                            xmlhttp.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                                console.log(this.responseText);
+                                document.getElementById("events").innerHTML = this.responseText;
+                            }
+                            };
+                            xmlhttp.open("POST","get_nearest_events.php", true);
+                            var data = new FormData();
+                            data.append("latitude", position.coords.latitude);
+                            data.append("longitude", position.coords.longitude);
+                            xmlhttp.send(data);
+                        }
+                    }
+                    function showDefaultEvents()
+                    {
+                        var xmlhttp = new XMLHttpRequest();
+                        xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            console.log(this.responseText);
+                            var response = JSON.parse(JSON.stringify(this.responseText));
+                            document.getElementById("events").innerHTML = this.responseText;
+                        }
+                        };
+                        
+                        xmlhttp.open("POST", "get_nearest_events.php", true);
+                        xmlhttp.send();        
+                    }
+                </script>
+                <h4 id="here"></h4>
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
@@ -43,7 +143,11 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                                 </div>
                             </form>
                             <!-- Forum-->
-                            <script>forum_gen("Θεσσαλονίκη");</script>
+                            <div id="events">
+                                <div id="forum" align="center" class="container table-container"> 
+                                    Enable your geolocation to see the closest events to you
+                                </div>
+                            </div>
                              <!--./Forum-->
                         </div>
                     </div>

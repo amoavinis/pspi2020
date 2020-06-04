@@ -70,18 +70,19 @@ CREATE TABLE `posts` (
   `date_posted` datetime NOT NULL,
   `date_of_event` datetime NOT NULL,
   `city` enum('Attica, Athens','Thessaloniki','Patras','Larissa','Heraklion','Attica, Peristeri','Attica, Kallithea','Attica, Acharnes','Thessaloniki, Kalamaria','Attica, Nikaia','Attica, Glyfada','Thessaloniki, Evosmos','Attica, Chalandri','Attica, Nea Smyrni','Attica, Marousi','Attica, Agios Dimitrios','Attica, Zografou','Attica, Egaleo','Attica, Nea Ionia','Ioannina','Attica, Palaio Faliro','Attica, Korydallos','Trikala','Attica, Vyronas','Attica, Agia Paraskevi','Attica, Galatsi','Agrinio','Chalcis','Attica, Petroupoli','Serres','Alexandroupoli','Xanthi','Katerini','Kalamata','Kavala','Chania','Lamia','Drama','Veria','Attica, Alimos','Kozani','Thessaloniki, Polichni','Karditsa','Thessaloniki, Sykies','Thessaloniki, Ampelokipoi','Thessaloniki, Pylaia','Attica, Agioi Anargyroi','Attica, Argyroupoli','Attica, Ano Liosia','Rethymno','Ptolemaida','Tripoli','Attica, Cholargos','Attica, Vrilissia','Attica, Aspropyrgos','Corinth','Attica, Gerakas','Attica, Metamorfosi','Giannitsa','Athens, Voula','Athens, Kamatero','Mytilene','Thessaloniki, Neapoli','Thessaloniki, Eleftherio-Kordelio','Chios','Attica, Agia Varvara','Attica, Kaisariani','Attica, Nea Filadelfeia','Attica, Moschato','Attica, Perama','Salamina','Attica, Eleusis','Corfu','Pyrgos','Megara','Kilkis','Attica, Dafni','Thebes','Attica, Melissia','Argos','Arta','Artemida','Livadeia','Attica, Pefki','Thessaloniki, Oraiokastro','Aigio','Kos','Attica, Koropi','Preveza','Naousa','Orestiada','Thessaloniki, Peraia','Edessa','Florina','Attica, Nea Erythraia','Attica, Elliniko','Amaliada','Attica, Pallini','Sparta','Attica, Agios Ioannis Rentis','Thessaloniki, Thermi','Attica, Vari','Attica, Nea Makri','Attica, Tavros','Alexandreia','Thessaloniki, Menemeni','Paiania','Attica, Kalyvia Thorikou','Nafplio','Drapetsona','Thessaloniki, Efkarpia','Attica, Papagou','Nafpaktos','Kastoria','Grevena','Thessaloniki, Pefka','Nea Alikarnassos','Missolonghi','Attica, Gazi','Ierapetra','Kalymnos','Attica, Rafina','Attica, Loutraki','Agios Nikolaos','Ermoupoli','Ialysos','Attica, Mandra','Tyrnavos','Attica, Glyka Nera','Attica, Ymittos','Attica, Neo Psychiko','') NOT NULL COMMENT 'All greek cities listed in https://simple.wikipedia.org/wiki/List_of_cities_in_Greece',
-  `geolocation` point NOT NULL
+  `latitude` float NOT NULL DEFAULT 0,
+  `longitude` float NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Άδειασμα δεδομένων του πίνακα `posts`
 --
 
-INSERT INTO `posts` (`id`, `poster_email`, `title`, `details`, `date_posted`, `date_of_event`, `city`, `geolocation`) VALUES
-(00000000001, 'testemail2@test.email', 'Post_Title_#1', '', '2020-05-07 19:04:36', '2020-05-09 20:32:31', 'Thessaloniki', 0x000000000101000000fbff0b54abf64b4008004099c05a0ac0),
-(00000000002, 'testemail2@test.email', 'White Tower', '', '2020-05-07 19:04:36', '2020-05-09 20:32:31', 'Thessaloniki', 0x000000000101000000cfbbb1a030504440d255babbcef23640),
-(00000000003, 'testemail2@test.email', 'Alexander the Great\'s Statue', '', '2020-05-07 19:04:36', '2020-05-10 20:32:31', 'Thessaloniki', 0x0000000001010000001669e21de04f4440795a7ee02af33640),
-(00000000004, 'testemail3@test.email', 'Ancient Roman Agora', '', '2020-05-07 19:04:36', '2020-05-09 10:23:15', 'Thessaloniki', 0x000000000101000000f984ecbc8d5144401e87c1fc15f23640);
+INSERT INTO `posts` (`id`, `poster_email`, `title`, `details`, `date_posted`, `date_of_event`, `city`, `latitude`, `longitude`) VALUES
+(00000000001, 'testemail2@test.email', 'Megaro Mousikis Thessalonikis', '', '2020-05-07 19:04:36', '2020-05-09 20:32:31', 'Thessaloniki', 40.5975, 22.9478),
+(00000000002, 'testemail2@test.email', 'White Tower', '', '2020-05-07 19:04:36', '2020-05-09 20:32:31', 'Thessaloniki', 40.6264, 22.9483),
+(00000000003, 'testemail2@test.email', 'Alexander the Great\'s Statue', '', '2020-05-07 19:04:36', '2020-05-10 20:32:31', 'Thessaloniki', 40.6241, 22.95),
+(00000000004, 'testemail3@test.email', 'Ancient Roman Agora', '', '2020-05-07 19:04:36', '2020-05-09 10:23:15', 'Thessaloniki', 40.6377, 22.9459);
 
 -- --------------------------------------------------------
 
