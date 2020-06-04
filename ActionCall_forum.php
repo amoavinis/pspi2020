@@ -95,7 +95,23 @@ $all_posts_result = mysqli_query($con, $all_posts_query);
                                 <input type="radio" name="order" value="orderTwo" onclick="setOrder(this.value)"<?php if($order === "orderTwo"){echo(" checked");}?>/>
                             </div>
                         </form>
-                        <button class="btn btn-primary" id = "make_post" onclick="location.href='ActionCall_create_post.php'" <?php if((!isset($_SESSION["loggedin"])||$_SESSION["loggedin"]!=true)){echo("disabled");}?>>Δημιουργία Post</button>
+                        <button class="btn btn-primary" style="float: right;" id = "make_post" onclick="location.href='ActionCall_create_post.php'"
+                        <?php
+                        // Button is not clickable when the user is not logged in and an appropriate message is shown on the button.
+                        // In case that a user is logged in, the button is clickable and the normal "create post" is written on the button.
+                        $user_is_logged_in = true;
+                        if((!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"]!=true)){
+                            $user_is_logged_in = false;
+                            }
+                        if(!$user_is_logged_in){
+                            echo("disabled");
+                            echo(">Απαιτείται να είστε συνδεδεμένος/η σε λογαριασμό για να δημιουργήσετε μία αγγελία");
+                        }
+                        else{
+                            echo(">Δημιουργία αγγελίας");
+                        }
+                        ?>
+                        </button>
                         <!-- Forum-->
                         <?php  
                             if(mysqli_num_rows($all_posts_result) > 0){ ?>
