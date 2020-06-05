@@ -52,7 +52,131 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                     </div>
                     <div class="autocomplete">
                         <label for="city">Πόλη/Μέρος</label>
-                        <input type="text"  class="form-control" id="cityName" name="city" placeholder="e.g. Thessaloniki" required>
+                        <select name="cityNames" id="cities">
+                        <option value="">-Select a city-</option>
+                        <option value="Agios Nikolaos">Agios Nikolaos</option>
+                        <option value="Agrinio">Agrinio</option>
+                        <option value="Aigio">Aigio</option>
+                        <option value="Alexandreia">Alexandreia</option>
+                        <option value="Alexandroupoli">Alexandroupoli</option>
+                        <option value="Amaliada">Amaliada</option>
+                        <option value="Argos">Argos</option>
+                        <option value="Arta">Arta</option>
+                        <option value="Artemida">Artemida</option>
+                        <option value="Attica, Acharnes">Attica, Acharnes</option>
+                        <option value="Attica, Agia Paraskevi">Attica, Agia Paraskevi</option>
+                        <option value="Attica, Agia Varvara">Attica, Agia Varvara</option>
+                        <option value="Attica, Agioi Anargyroi">Attica, Agioi Anargyroi</option>
+                        <option value="Attica, Agios Dimitrios">Attica, Agios Dimitrios</option>
+                        <option value="Attica, Agios Ioannis Rentis">Attica, Agios Ioannis Rentis</option>
+                        <option value="Attica, Alimos">Attica, Alimos</option>
+                        <option value="Attica, Ano Losia">Attica, Ano Losia</option>
+                        <option value="Attica, Argyroupoli">Attica, Argyroupoli</option>
+                        <option value="Attica, Aspropyrgos">Attica, Aspropyrgos</option>
+                        <option value="Attica, Athens">Attica, Athens</option>
+                        <option value="Attica, Chalandri">Attica, Chalandri</option>
+                        <option value="Attica, Cholargos">Attica, Cholargos</option>
+                        <option value="Attica, Dafni">Attica, Dafni</option>
+                        <option value="Attica, Egaleo">Attica, Egaleo</option>
+                        <option value="Attica, Eleusis">Attica, Eleusis</option>
+                        <option value="Attica, Elliniko">Attica, Elliniko</option>
+                        <option value="Attica, Galatsi">Attica, Galatsi</option>
+                        <option value="Attica, Gazi">Attica, Gazi</option>
+                        <option value="Attica, Gerakas">Attica, Gerakas</option>
+                        <option value="Attica, Glyfada"> Attica, Glyfada</option>
+                        <option value="Attica, Glyka Nera">Attica, Glyka Nera</option>
+                        <option value="Attica, Kaisariani">Attica, Kaisariani</option>
+                        <option value="Attica, Kalithea">Attica, Kalithea</option>
+                        <option value="Attica, Kalyvia Thorikou">Attica, Kalyvia Thorikou</option>
+                        <option value="Attica, Kamatero">Attica, Kamatero</option>
+                        <option value="Attica, Koropi">Attica, Koropi</option>
+                        <option value="Attica, Korydallos">Attica, Korydallos</option>
+                        <option value="Attica, Loutraki">Attica, Loutraki</option>
+                        <option value="Attica, Mandra">Attica, Mandra</option>
+                        <option value="Attica,Marousi">Attica, Marousi</option>
+                        <option value="Attica, Melissia">Attica, Melissia</option>
+                        <option value="Attica, Metamorfosi">Attica, Metamorfosi</option>
+                        <option value="Attica, Moschato">Attica, Moschato</option>
+                        <option value="Attica, Nea Erythraia">Attica, Nea Erythraia</option>
+                        <option value="Attica, Nea Filadelfeia">Attica, Nea Filadelfeia</option>
+                        <option value="Attica, Nea Ionia">Attica,Nea Ionia</option>
+                        <option value="Attica, Nea Makri">Attica, Nea Makri</option>
+                        <option value="Attica, Nea Smyrni">Attica, Nea Smyrni</option>
+                        <option value="Attica, Neo Psychiko">Attica, Neo Psychiko</option>
+                        <option value="Attica, Nikaia">Attica, Nikaia</option>
+                        <option value="Attica, Palaio Faliro">Attica, Palaio Faliro</option>
+                        <option value="Attica, Pallini">Attica, Pallini</option>
+                        <option value="Attica, Papagou">Attica, Papagou</option>
+                        <option value="Attica, Pefki">Attica, Pefki</option>
+                        <option value="Attica, Perama">Attica, Perama</option>
+                        <option value="Attica, Peristeri">Attica, Peristeri</option>
+                        <option value="Attica, Petroupoli">Attica, Petroupoli</option>
+                        <option value="Attica, Rafina">Attica, Rafina</option>
+                        <option value="Attica, Tavros">Attica, Tavros</option>
+                        <option value="Attica, Vari">Attica, Vari</option>
+                        <option value="Attica, Voula">Attica, Voula</option>
+                        <option value="Attica, Vrilissia">Attica, Vrilissia</option>
+                        <option value="Attica, Vyronas">Attica, Vyronas</option>
+                        <option value="Attica, Ymittos">Attica, Ymittos</option>
+                        <option value="Attica, Zografou">Attica, Zografou</option>
+                        <option value="Chalkis">Chalkis</option>
+                        <option value="Chania">Chania</option>
+                        <option value="Chios">Chios</option>
+                        <option value="Corfu">Corfu</option>
+                        <option value="Corinth">Corinth</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Edessa">Edessa</option>
+                        <option value="Ermoupoli">Ermoupoli</option>
+                        <option value="Florina">Florina</option>
+                        <option value="Giannitsa">Giannitsa</option>
+                        <option value="Heraklion">Heraklion</option>
+                        <option value="Ialysos">Ialysos</option>
+                        <option value="Ierapetra">Ierapetra</option>
+                        <option value="Ioannina">Ioannina</option>
+                        <option value="Kalamata">Kalamata</option>
+                        <option value="Kalymnos">Kalymnos</option>
+                        <option value="Karditsa">Karditsa</option>
+                        <option value="Katerini">Katerini</option>
+                        <option value="Kilkis">Kilkis</option>
+                        <option value="Kos">Kos</option>
+                        <option value="Kozani">Kozani</option>
+                        <option value="Lamia">Lamia</option>
+                        <option value="Larissa">Larissa</option>
+                        <option value="Livadeia">Livadeia</option>
+                        <option value="Megara">Megara</option>
+                        <option value="Missolonghi">Missolonghi</option>
+                        <option value="Mytilene">Mytilene</option>
+                        <option value="Naousa">Naousa</option>
+                        <option value="Nea Alikarnassos">Nea Alikarnassos</option>
+                        <option value="Orestiada">Orestiada</option>
+                        <option value="Patras">Patras</option>
+                        <option value="Preveza">Preveza</option>
+                        <option value="Ptolemaida">Ptolemaida</option>
+                        <option value="Pyrgos">Pyrgos</option>
+                        <option value="Rethymno">Rethymno</option>
+                        <option value="Salamina">Salamina</option>
+                        <option value="Serres">Serres</option>
+                        <option value="Sparta">Sparta</option>
+                        <option value="Thebes">Thebes</option>
+                        <option value="Thessaloniki">Thessaloniki</option>
+                        <option value="Thessaloniki, Ampelokipoi">Thessaloniki, Ampelokipoi</option>
+                        <option value="Thessaloniki, Eleftherio-Kordelio">Thessaloniki, Eleftherio-Kordelio</option>
+                        <option value="Thessaloniki,Evosmos">Thessaloniki,Evosmos</option>
+                        <option value="Thessaloniki,Kalamaria">Thessaloniki, Kalamaria</option>
+                        <option value="Thessaloniki, Neapoli">Thessaloniki, Neapoli</option>
+                        <option value="Thessaloniki, Oraiokastro">Thessaloniki, Oraiokastro</option>
+                        <option value="Thessaloniki, Pefka">Thessaloniki, Pefka</option>
+                        <option value="Thessaloniki, Peraia">Thessaloniki, Peraia</option>
+                        <option value="Thessaloniki, Polichni">Thessaloniki, Polichni</option>
+                        <option value="Thessaloniki,Pylaia">Thessaloniki, Pylaia</option>
+                        <option value="Thessaloniki, Sykies">Thessaloniki, Sykies</option>
+                        <option value="Thessaloniki, Thermi">Thessaloniki, Thermi</option>
+                        <option value="Tripoli">Tripoli</option>
+                        <option value="Tyrnavos">Tyrnavos</option>
+                        <option value="Veria">Veria</option>
+                        <option value="Trikala">Trikala</option>
+                        <option value="Xanthi">Xanthi</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="place">Διεύθυνση</label>
@@ -81,8 +205,6 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
         </div>
         <script>
             createEditor();
-             var cities=['Attica, Athens','Thessaloniki','Patras','Larissa','Heraklion','Attica, Peristeri','Attica, Kallithea','Attica, Acharnes','Thessaloniki, Kalamaria','Attica, Nikaia','Attica, Glyfada','Thessaloniki, Evosmos','Attica, Chalandri','Attica, Nea Smyrni','Attica, Marousi','Attica, Agios Dimitrios','Attica, Zografou','Attica, Egaleo','Attica, Nea Ionia','Ioannina','Attica, Palaio Faliro','Attica, Korydallos','Trikala','Attica, Vyronas','Attica, Agia Paraskevi','Attica, Galatsi','Agrinio','Chalcis','Attica, Petroupoli','Serres','Alexandroupoli','Xanthi','Katerini','Kalamata','Kavala','Chania','Lamia','Drama','Veria','Attica, Alimos','Kozani','Thessaloniki, Polichni','Karditsa','Thessaloniki, Sykies','Thessaloniki, Ampelokipoi','Thessaloniki, Pylaia','Attica, Agioi Anargyroi','Attica, Argyroupoli','Attica, Ano Liosia','Rethymno','Ptolemaida','Tripoli','Attica, Cholargos','Attica, Vrilissia','Attica, Aspropyrgos','Corinth','Attica, Gerakas','Attica, Metamorfosi','Giannitsa','Athens, Voula','Athens, Kamatero','Mytilene','Thessaloniki, Neapoli','Thessaloniki, Eleftherio-Kordelio','Chios','Attica, Agia Varvara','Attica, Kaisariani','Attica, Nea Filadelfeia','Attica, Moschato','Attica, Perama','Salamina','Attica, Eleusis','Corfu','Pyrgos','Megara','Kilkis','Attica, Dafni','Thebes','Attica, Melissia','Argos','Arta','Artemida','Livadeia','Attica, Pefki','Thessaloniki, Oraiokastro','Aigio','Kos','Attica, Koropi','Preveza','Naousa','Orestiada','Thessaloniki, Peraia','Edessa','Florina','Attica, Nea Erythraia','Attica, Elliniko','Amaliada','Attica, Pallini','Sparta','Attica, Agios Ioannis Rentis','Thessaloniki, Thermi','Attica, Vari','Attica, Nea Makri','Attica, Tavros','Alexandreia','Thessaloniki, Menemeni','Paiania','Attica, Kalyvia Thorikou','Nafplio','Drapetsona','Thessaloniki, Efkarpia','Attica, Papagou','Nafpaktos','Kastoria','Grevena','Thessaloniki, Pefka','Nea Alikarnassos','Missolonghi','Attica, Gazi','Ierapetra','Kalymnos','Attica, Rafina','Attica, Loutraki','Agios Nikolaos','Ermoupoli','Ialysos','Attica, Mandra','Tyrnavos','Attica, Glyka Nera','Attica, Ymittos','Attica, Neo Psychiko'];
-            autocomplete(document.getElementById("cityName"), cities);
         </script>
 
         <!-- Footer -->
