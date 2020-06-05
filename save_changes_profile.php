@@ -17,8 +17,12 @@
         WHERE email = \"".$_SESSION["email"]."\"
         ";
 
-        echo ("<script>alert('You have successfully changed your username!');</script>");
         mysqli_query($con, $update_user_elements);
+        ?>
+
+        <script>alert("You have successfully changed your username!")</script>
+
+        <?php
 
     }
     else{
@@ -30,8 +34,12 @@
             WHERE email = \"".$_SESSION["email"]."\"
             ";
 
-            echo ("<script>alert('You have successfully changed your username and/or password!');</script>");
             mysqli_query($con, $update_user_elements);
+
+            ?>
+            <script>alert('You have successfully changed your username and/or password!');</script>
+
+            <?php
         }
     }
 
