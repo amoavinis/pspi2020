@@ -29,27 +29,6 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
 
     <body>
     <?php navbar_gen();?>
-    <script>
-    var getJSON=function(url,callback){
-        var xhr= newXMLHttpRequest();
-        xhr.open('GET', url, true);
-                        xhr.responseType = 'json';
-                        xhr.onload = function() {
-                            var status = xhr.status;
-                            if (status === 200) {
-                                callback(null, xhr.response);
-                            } else {
-                                callback(status, xhr.response);
-                            }
-                        };
-                        xhr.send();
-    };
-    var x=document.getElementByID("cities");
-    var city=x.options[x.selectedIndex].value;
-    var place=document.getElementByID(addressName).value;
-    console.log(city);
-    console.log(place);
-    </script>
         <div class="container content">
             <div class="container">
                 <h1>Κάντε μία ανάρτηση</h1>
@@ -214,7 +193,34 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
             </div>
         </div>
         <script>
-            createEditor();
+         function getSelectedCity(){
+        var val=document.getElementById("cities").value;
+        return val;
+    }
+    var getJSON=function(url,callback){
+        var xhr= newXMLHttpRequest();
+        xhr.open('GET', url, true);
+                        xhr.responseType = 'json';
+                        xhr.onload = function() {
+                            var status = xhr.status;
+                            if (status === 200) {
+                                callback(null, xhr.response);
+                            } else {
+                                callback(status, xhr.response);
+                            }
+                        };
+                        xhr.send();
+    };
+    $('#cities').on('change', () => {
+        var city=getSelectedCity();
+        console.log(city);
+    });
+    $('#addressName').on('change', () => {
+        var place=document.getElementById("addressName").value;
+        console.log(place);
+    });
+
+         createEditor();
         </script>
 
         <!-- Footer -->
