@@ -147,7 +147,7 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                             </form>
                             <!-- Forum-->
                             <div id="events">
-                                <div id="forum" align="center" class="container table-container"> 
+                                <div id="forum" class="container table-container" style ="text-align: center;"> 
                                     Enable your geolocation to see the closest events to you
                                 </div>
                             </div>
