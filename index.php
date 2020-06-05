@@ -133,13 +133,16 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <form class="search-form">
+                            <form action = "Actioncall_forum.php" method = "get" class="search-form">
                                 <div class="input-group">
-                                    <input id="input-1" class="form-control" type="text" aria-describedby="search-btn">
-                                    <label for="input-1" class="sr-only">Search</label>
-                                    <div class="input-group-append">
-                                        <button id="search-btn" class="btn btn-primary">Search</button>
-                                    </div>
+                                    <input class="form-control" type="text" name="search" aria-describedby="search-btn" placeholder="Search posts...">
+                                    <input class="btn btn-primary" type = "submit" value = "Search">
+                                </div>
+                                <div class = "radiogroup" style="text-align: center;">
+                                    <label>Μελλοντικά Events</label>
+                                    <input type="radio" name="order" value="orderOne" checked />
+                                    <label>Πρόσφατες Αναρτήσεις</label>
+                                    <input type="radio" name="order" value="orderTwo"/>
                                 </div>
                             </form>
                             <!-- Forum-->
