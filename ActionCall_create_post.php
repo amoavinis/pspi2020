@@ -30,15 +30,25 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
     <body>
     <?php navbar_gen();?>
     <script>
-    $.ajax({
-        url:'https://nominatim.openstreetmap.org/search/q=addressName?city=city',
-        datatype:'json',
-        success:function(data){
-            data=data.results;
-            console.log(data)
-            setDataSelectionEvent(data);
-        }
-    });
+    var getJSON=function(url,callback){
+        var xhr= newXMLHttpRequest();
+        xhr.open('GET', url, true);
+                        xhr.responseType = 'json';
+                        xhr.onload = function() {
+                            var status = xhr.status;
+                            if (status === 200) {
+                                callback(null, xhr.response);
+                            } else {
+                                callback(status, xhr.response);
+                            }
+                        };
+                        xhr.send();
+    };
+    var x=document.getElementByID("cities");
+    var city=x.options[x.selectedIndex].value;
+    var place=document.getElementByID(addressName).value;
+    console.log(city);
+    console.log(place);
     </script>
         <div class="container content">
             <div class="container">
@@ -184,10 +194,10 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                     </div>
                     <div class="form-group">
                         <!--
-                        <label for="date">Ημερομηνία</label>
                         <input type="date" class="form-control" id="eventDate" name="evDate" required>
                         <label for="hour">Ώρα</label>
                         <input type="time" class="form-control" id="eventTime" name="evTime" min="0:00" max ="24:00" required> -->
+                        <label for="date">Ημερομηνία-Ώρα</label>
                         <input type="datetime-local" class="form-control" name="evDateTime" required>
                         <label for="repeat">Επαναλαμβανόμενο</label>
                         <input type="checkbox" id="rep" name="repeated_event" onClick="toggleVisibility(this,'recurring')" value="isRepeated">
