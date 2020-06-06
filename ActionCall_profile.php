@@ -108,7 +108,7 @@ if (!isset($_SESSION["username"]))
         } */ ?> -->
 
         <div class="container">
-            <form action="delete_account.php">
+            <form action="delete_account_user.php">
                 <button type="submit" style="background: transparent; border: 0" class="delete-account-trash-button">
                 <i type="submit" class="fas fa-trash-alt"></i>  
                 </button>
@@ -128,7 +128,7 @@ if (!isset($_SESSION["username"]))
             FROM users AS users1 JOIN interested ON user_email = \"".$_SESSION["email"]."\" 
             JOIN posts ON post_id = id 
             JOIN users AS users2 ON users2.email = posts.poster_email
-            ORDER BY date_of_event DESC";
+            ORDER BY date_of_event ASC";
 
             $posts_user_is_interested_in = mysqli_query($con, $find_posts_user_is_interested_in_sql_query);
             
