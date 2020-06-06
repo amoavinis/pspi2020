@@ -6,13 +6,13 @@
         if(isset($_GET['postId'])){
             $delete_user_from_interested_people_query =
             "DELETE FROM `interested`
-            WHERE user_email = \"".$_POST["email"]."\" AND post_id =  \"".$_GET['postId']."\"
+            WHERE user_email = \"".$_SESSION["email"]."\" AND post_id =  \"".$_GET['postId']."\"
             "
             ;
 
             $con = include "config.php";
             mysqli_query($con, $delete_user_from_interested_people_query);
-            header("Location: Action_Call_event.php?postId=" .$_GET['postId']);
+            header("Location: ActionCall_event.php?postId=" . $_GET['postId']);
         }
         else{ ?>
             <script>alert("The $_GET[postId] element has no value.")</script>

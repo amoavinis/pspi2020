@@ -124,7 +124,7 @@ if (!isset($_SESSION["username"]))
         <div class="container content">
             <?php
             $find_posts_user_is_interested_in_sql_query = 
-            "SELECT DISTINCT post_id , title, city, date_of_event, posts.poster_email
+            "SELECT DISTINCT post_id , title, city, date_of_event, users2.username
             FROM users AS users1 JOIN interested ON user_email = \"".$_SESSION["email"]."\" 
             JOIN posts ON post_id = id 
             JOIN users AS users2 ON users2.email = posts.poster_email
@@ -152,7 +152,7 @@ if (!isset($_SESSION["username"]))
                                 <td><?php echo($posts_interested_row["title"]) ; ?></td>
                                 <td><?php echo($posts_interested_row["city"]) ; ?></td>
                                 <td><?php echo($posts_interested_row["date_of_event"]) ; ?></td>
-                                <td><?php echo($posts_interested_row["poster_email"]) ; ?></td>
+                                <td><?php echo($posts_interested_row["username"]) ; ?></td>
                             </tr>
                         <?php } ?>
 

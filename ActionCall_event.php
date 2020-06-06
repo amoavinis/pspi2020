@@ -81,15 +81,17 @@ if(isset($_GET['postId'])){
 
                                 if($user_has_shown_interest_in_the_event_data === NULL){ ?>
                                     <td>
-                                        <form action="show_interest_in_event.php">
-                                            <button class="btn btn-primary" type="submit" onclick="UpdateClickCount();" id="like">Interested!</button>
+                                        <form action="show_interest_in_event.php", method="GET">
+                                            <button class="btn btn-primary" type="submit"  id="like">Interested!</button>
+                                            <input type="hidden" name="postId" value="<?php echo($_GET['postId']) ?>">
                                         </form>
                                     </td>
                                 <?php }
                                 else{ ?>
                                     <td>
-                                        <form action="stop_showing_interest_in_event.php">
-                                            <button class="btn btn-primary" type="submit" onclick="UpdateClickCount();" id="like">Not interested</button>
+                                        <form action="stop_showing_interest_in_event.php", method="GET">
+                                            <button class="btn btn-primary" type="submit" id="like">Not interested</button>
+                                            <input type="hidden" name="postId" value="<?php echo($_GET['postId']) ?>">
                                         </form>
                                     </td>
                                 <?php }

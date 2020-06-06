@@ -13,7 +13,7 @@
 
             $con = include "config.php";
             mysqli_query($con, $add_user_to_interested_people_query);
-            echo("Location: ActionCall_event.php?postId=" . $_GET['postId']);
+            header("Location: ActionCall_event.php?postId=" . $_GET['postId']);
         }
         else{ ?>
             <script>alert("The $_GET[postId] element has no value.")</script>
