@@ -193,32 +193,40 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
             </div>
         </div>
         <script>
+        var city=null;
+        var place=null;
          function getSelectedCity(){
         var val=document.getElementById("cities").value;
         return val;
     }
-    var getJSON=function(url,callback){
-        var xhr= newXMLHttpRequest();
-        xhr.open('GET', url, true);
-                        xhr.responseType = 'json';
-                        xhr.onload = function() {
-                            var status = xhr.status;
-                            if (status === 200) {
-                                callback(null, xhr.response);
-                            } else {
-                                callback(status, xhr.response);
-                            }
-                        };
-                        xhr.send();
-    };
     $('#cities').on('change', () => {
-        var city=getSelectedCity();
-        console.log(city);
+        city=getSelectedCity();
+        checkNames(city,place);
     });
     $('#addressName').on('change', () => {
-        var place=document.getElementById("addressName").value;
-        console.log(place);
+        place=document.getElementById("addressName").value;
+        checkNames(city,place);
     });
+    
+    function checkNames(city,place){
+    if(city!=null && place!=null){
+        getCoordinates(city,place);
+    }
+    }
+    function getCoordinates(city,place)
+    {
+        $.ajax({
+			url:'https://nominatim.openstreetmap.org/search/place?city',
+			dataType:'json',
+			success:function(data){
+				data = data.results;
+                console.log(data);
+			}
+		});
+    }
+   
+
+
 
          createEditor();
         </script>
