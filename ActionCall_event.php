@@ -36,7 +36,7 @@ if(isset($_GET['postId'])){
 
     <body>
         <?php navbar_gen(); ?>
-        <h1><?php echo($post_data["title"]); ?></h1>
+        <div class="container"> <h1><?php echo($post_data["title"]); ?></h1> </div>
         <div id="post" class="table-container container">
             <p><b>
                 Ημερομηνία διεξαγωγής:
@@ -71,7 +71,7 @@ if(isset($_GET['postId'])){
                                 $check_whether_user_has_shown_interest_in_the_event_query =
                                 "SELECT *
                                 FROM interested
-                                WHERE user_email = \"".$_SESSION["email"]."\" AND post_id = \"".$_GET["postId"]."\"
+                                WHERE user_email = \"".$_SESSION['email']."\" AND post_id = \"".$_GET['postId']."\"
                                 "
                                 ;
 
@@ -80,16 +80,40 @@ if(isset($_GET['postId'])){
                                 $user_has_shown_interest_in_the_event_data = $user_has_shown_interest_in_the_event_result->fetch_assoc();
 
                                 if($user_has_shown_interest_in_the_event_data === NULL){ ?>
-                                    <td><button class="btn btn-primary" type="button" onclick="UpdateClickCount();" id="like">Interested!</button></td>
+                                    <td>
+                                        <form action="show_interest_in_event.php", method="GET">
+                                            <button class="btn btn-primary" type="submit"  id="like">Interested!</button>
+                                            <input type="hidden" name="postId" value="<?php echo($_GET['postId']) ?>">
+                                        </form>
+                                    </td>
                                 <?php }
                                 else{ ?>
-                                    <td><button class="btn btn-primary" type="button" onclick="UpdateClickCount();" id="like">Not interested</button></td>
+                                    <td>
+                                        <form action="stop_showing_interest_in_event.php", method="GET">
+                                            <button class="btn btn-primary" type="submit" id="like">Not interested</button>
+                                            <input type="hidden" name="postId" value="<?php echo($_GET['postId']) ?>">
+                                        </form>
+                                    </td>
                                 <?php }
                             }
 
                             ?>
-                            <td href><span id="interested"><script>document.write("No");</script></span> people interested!</a></td>
-                        </tr>
+                                    <td href>
+                                        <span id="interested">
+                                        <?php
+
+                                        $people_interested_in_event_query = 
+                                        "SELECT COUNT(*) AS number_of_people_interested
+                                        FROM `interested`
+                                        WHERE post_id = \"".$_GET["postId"]."\"
+                                        "
+                                        ;
+                                        echo(mysqli_fetch_assoc(mysqli_query($con, $people_interested_in_event_query))['number_of_people_interested']);
+                                        ?>
+                                
+                                        </span> people interested!</a>
+                                    </td>
+                                </tr>
                     </thead>
                 </table>
             </div>
