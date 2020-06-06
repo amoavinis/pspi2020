@@ -12,7 +12,7 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
 
 function setOrder($value) {
     $order = $value;
-  }
+}
 
 /*basic querry bodies*/
 $querryB =  "SELECT id, email, date_of_event, city, title, username
@@ -124,15 +124,15 @@ $all_posts_result = mysqli_query($con, $all_posts_query);
                                     <table class="topics-table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Για ημερομηνία</th>
+                                                <th scope="col" width = 20%>Για ημερομηνία</th>
                                                 <th scope="col">Πόλη</th>
                                                 <th scope="col">Θέμα</th>
-                                                <th scope="col">Από</th>
+                                                <th scope="col" width = 20%>Από</th>
                                             </tr>
                                             <?php
                                             while($post = mysqli_fetch_array($all_posts_result)){ ?>
                                                 <tr>
-                                                <td><?php echo($post["date_of_event"]); ?></td>
+                                                        <td><?php echo($post["date_of_event"]); ?></td>
                                                         <td><a class="city" href = 'ActionCall_forum.php?search=<?php echo($post["city"]);?>&order=<?php echo($order);?>&pageno=1'><?php echo($post["city"]); ?></td>
                                                         <td><a class="post" href = 'ActionCall_event.php?postId=<?php echo($post["id"]);?>'><?php echo($post["title"]);?></a></td>
                                                         <td><a class="user" href = 'ActionCall_forum.php?username=<?php echo($post["username"]); ?>&order=<?php echo($order);?>&pageno=1'><?php echo($post["username"]); ?></a></td>
