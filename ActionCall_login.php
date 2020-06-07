@@ -35,6 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["loggedin"] = true;
             $_SESSION["email"] = $row["email"];
             $_SESSION["username"] = $row["username"];
+            $_SESSION['authority'] = $row['authority'];
             if (isset($_POST['actioncall_remember_me']))
             {
                 setcookie("ActionCallUser", $row["username"], strtotime( '+ 1000 days' ));
@@ -58,6 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["loggedin"] = true;
             $_SESSION["email"] = $row["email"];
             $_SESSION["username"] = $row["username"];
+            $_SESSION['authority'] = $row['authority'];
             alert("Επιτυχής σύνδεση!");
             header("Location: index.php");
         }

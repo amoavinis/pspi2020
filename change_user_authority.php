@@ -18,6 +18,7 @@ mysqli_query($con, $change_user_authority_query);
 //In case that the administrator changed their own authority.
 if($_POST['userEmail'] == $_SESSION['email']){
     unset($_POST['userEmail']); unset($_POST['chosen_authority']);
+    $_SESSION['authority'] = 'simple';
     header("Location: index.php");
 }
 //"Expected behaviour: changing someone else's authority.

@@ -29,6 +29,7 @@ if(isset($_GET['postId'])){
   <head>
     <?php header_gen(); ?>
     <script src="js/interestedButton.js"></script>
+    <link rel="stylesheet" href="css/profile.css">
     
     <title><?php echo($post_data["title"])?></title>
     <link rel="stylesheet" href="css/post.css">
@@ -36,7 +37,20 @@ if(isset($_GET['postId'])){
 
     <body>
         <?php navbar_gen(); ?>
-        <div class="container"> <h1><?php echo($post_data["title"]); ?></h1> </div>
+        <div class="container">
+            <h1><?php echo($post_data["title"]); ?></h1>
+            <?php
+            if($_SESSION['email'] === $post_data['poster_email'] || $_SESSION['authority'] === 'administrator'){ ?>
+                <form action="delete_event.php" method="POST">
+                <button type="submit" style="background: transparent; border: 0" class="delete-account-trash-button">
+                    <i type="submit" class="fas fa-trash-alt"></i>  
+                </button>
+                <input type="hidden" name="postId" value="<?php echo($post_data['id']); ?>">
+            <?php } ?>
+        </div>
+
+    
+
         <div id="post" class="table-container container">
             <p><b>
                 Ημερομηνία διεξαγωγής:
@@ -53,6 +67,8 @@ if(isset($_GET['postId'])){
                     unset($date_event_was_posted);?> </br>
                 </p1></br>
             </p>
+
+
 
             <p> <?php echo($post_data["details"]); ?> </p>
             

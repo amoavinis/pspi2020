@@ -16,10 +16,10 @@ $con = include 'config.php';
 // Delete specified account
 mysqli_query($con, $delete_account_query);
 
-session_unset();
 
 // Unexpected behaviour: administrator deleted his own account.
 if($_POST['email'] == $_SESSION['email']){
+    session_unset();
     header("Location: index.php"); 
 }
 // Expected behaviour: administrator created an account other than theirs.
