@@ -2,9 +2,9 @@
 
     session_start();
 
-    $username = $_POST["username_profile"];
-    $new_password = hash("sha256", $_POST["new_password"]);
-    $new_password_repetition = hash("sha256", $_POST["new_password_repetition"]);
+    $username = htmlspecialchars($_POST["username_profile"]);
+    $new_password = hash("sha256", htmlspecialchars($_POST["new_password"]));
+    $new_password_repetition = hash("sha256", htmlspecialchars($_POST["new_password_repetition"]));
 
     // Database connection
     $con = include 'config.php';
