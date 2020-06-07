@@ -106,8 +106,8 @@ if(isset($_GET['userEmail'])){
                         <?php // Output data of each row
                         while($posts_interested_row = $posts_user_is_interested_in -> fetch_assoc()){ ?>
                             <tr>
-                                <th scope="row"> <?php echo($posts_interested_row["post_id"]) ; ?> </th>
-                                <td><?php echo($posts_interested_row["title"]) ; ?></td>
+                                <th scope="row"><a href="ActionCall_event.php?postId=<?php echo($posts_interested_row["post_id"]); ?>"><?php echo($posts_interested_row["post_id"]) ; ?> </a></th>
+                                <td><a href="ActionCall_event.php?postId=<?php echo($posts_interested_row["post_id"]); ?>"><?php echo($posts_interested_row["title"]) ; ?> </a></td>
                                 <td><?php echo($posts_interested_row["city"]) ; ?></td>
                                 <td><?php echo($posts_interested_row["date_of_event"]) ; ?></td>
                                 <td><?php echo($posts_interested_row["username"]) ; ?></td>
