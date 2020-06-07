@@ -42,10 +42,11 @@ if(isset($_GET['postId'])){
             <?php
             if($_SESSION['email'] === $post_data['poster_email'] || $_SESSION['authority'] === 'administrator'){ ?>
                 <form action="delete_event.php" method="POST">
-                <button type="submit" style="background: transparent; border: 0" class="delete-account-trash-button">
-                    <i type="submit" class="fas fa-trash-alt"></i>  
-                </button>
-                <input type="hidden" name="postId" value="<?php echo($post_data['id']); ?>">
+                    <button type="submit" style="background: transparent; border: 0" class="delete-account-trash-button">
+                        <i type="submit" class="fas fa-trash-alt"></i>  
+                    </button>
+                    <input type="hidden" name="postId" value="<?php echo($post_data['id']); ?>">
+                </form>
             <?php } ?>
         </div>
 
