@@ -9,6 +9,7 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
 {
     $_SESSION["loggedin"] = true;
     $_SESSION["email"] = $_COOKIE["ActionCallUserEmail"];
+    $sql = "SELECT username FROM users WHERE ";
     $_SESSION["username"] = $_COOKIE["ActionCallUser"];
 }
 if (!isset($_SESSION["username"]))
@@ -48,16 +49,16 @@ if (!isset($_SESSION["username"]))
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <label for="password_field" class="col-sm-2 col-form-label">Change Password</label>
-                        <input class="form-control" id="password_field" type="password" minlength="1" 
+                        <input class="form-control" id="password_field" type="password" minlength="5" 
                             name="new_password" value="" oninput="button_enable_disable()">
-                        <small class="form-text text-muted"> Your password must be at least one (1) character long. The longer, the better.</small>
+                        <small class="form-text text-muted"> Your password must be at least five (5) characters long. The longer, the better.</small>
                         <input type="checkbox" onclick="toggle_password_visibility()"> Show password
                     </div>             
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <label for="password_field" class="col-sm-2 col-form-label">Repeat New Password</label>
-                        <input class="form-control" id="repeat_password_field" type="password" minlength="1" 
+                        <input class="form-control" id="repeat_password_field" type="password" minlength="5" 
                             name="new_password_repetition" value="" oninput="button_enable_disable()">
                         <small class="form-text text-muted"> Passwords must agree.</small>
                         <input type="checkbox" onclick="toggle_repeat_password_visibility()"> Show password

@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
     if(isset($_GET['key'])) 
     {
         // username and password sent from form 
-        $key = mysqli_real_escape_string($con, $_GET['key']);
+        $key = mysqli_real_escape_string($con, htmlentities($_GET['key'], ENT_QUOTES));
 
         $sql = "SELECT * FROM password_resets WHERE reset_key=\"".$key."\";";
         $result = mysqli_query($con, $sql);
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 }
 if($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        $key = mysqli_real_escape_string($con, $_GET['key']);
+        $key = mysqli_real_escape_string($con, htmlentities($_GET['key'], ENT_QUOTES));
 
         $sql = "SELECT * FROM password_resets WHERE reset_key=\"".$key."\";";
         $result = mysqli_query($con, $sql);
@@ -44,8 +44,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         {
             $email = mysqli_fetch_row($result)[0];
         }
-        $password = mysqli_real_escape_string($con, $_POST['password']);
-        $password_confirmation = mysqli_real_escape_string($con, $_POST['password_confirmation']);
+        $password = mysqli_real_escape_string($con, htmlentities($_POST['password'], ENT_QUOTES));
+        $password_confirmation = mysqli_real_escape_string($con, htmlentities($_POST['password_confirmation'], ENT_QUOTES));
         if (strcmp($password, $password_confirmation)==0)
         {
             //register user

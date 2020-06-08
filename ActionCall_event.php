@@ -16,7 +16,7 @@ if(isset($_GET['postId'])){
     $post_data_query = 
     "SELECT posts.*, users.username
     FROM posts INNER JOIN users ON posts.poster_email = users.email
-    WHERE posts.id = \"".$_GET["postId"]."\"
+    WHERE posts.id = \"".htmlentities($_GET["postId"], ENT_QUOTES)."\"
     "
     ;
 
@@ -88,7 +88,7 @@ if(isset($_GET['postId'])){
                                 $check_whether_user_has_shown_interest_in_the_event_query =
                                 "SELECT *
                                 FROM interested
-                                WHERE user_email = \"".$_SESSION['email']."\" AND post_id = \"".$_GET['postId']."\"
+                                WHERE user_email = \"".$_SESSION['email']."\" AND post_id = \"".htmlentities($_GET['postId'], ENT_QUOTES)."\"
                                 "
                                 ;
 
@@ -100,7 +100,7 @@ if(isset($_GET['postId'])){
                                     <td>
                                         <form action="show_interest_in_event.php", method="GET">
                                             <button class="btn btn-primary" type="submit"  id="like">Interested!</button>
-                                            <input type="hidden" name="postId" value="<?php echo($_GET['postId']) ?>">
+                                            <input type="hidden" name="postId" value="<?php echo(htmlentities($_GET['postId'], ENT_QUOTES)) ?>">
                                         </form>
                                     </td>
                                 <?php }
@@ -108,7 +108,7 @@ if(isset($_GET['postId'])){
                                     <td>
                                         <form action="stop_showing_interest_in_event.php", method="GET">
                                             <button class="btn btn-primary" type="submit" id="like">Not interested</button>
-                                            <input type="hidden" name="postId" value="<?php echo($_GET['postId']) ?>">
+                                            <input type="hidden" name="postId" value="<?php echo(htmlentities($_GET['postId'], ENT_QUOTES)) ?>">
                                         </form>
                                     </td>
                                 <?php }
@@ -122,7 +122,7 @@ if(isset($_GET['postId'])){
                                         $people_interested_in_event_query = 
                                         "SELECT COUNT(*) AS number_of_people_interested
                                         FROM `interested`
-                                        WHERE post_id = \"".$_GET["postId"]."\"
+                                        WHERE post_id = \"".htmlentities($_GET["postId"], ENT_QUOTES)."\"
                                         "
                                         ;
                                         echo(mysqli_fetch_assoc(mysqli_query($con, $people_interested_in_event_query))['number_of_people_interested']);
