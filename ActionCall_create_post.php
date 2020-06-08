@@ -214,13 +214,10 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
         console.log(city);
         console.log(place);
         $.ajax({
-			url:'https://nominatim.openstreetmap.org/search/q='.concat(place,'?city=',city,'&format=geojson'),
+			url:'https://nominatim.openstreetmap.org/search?q='.concat(place,'+',city,'&format=geojson'),
 			dataType:'json',
 			success:function(data){
                 console.log(data);
-                lat=data.features.geometry.coordinates[1];
-                long=data.features.geometry.coordinates[0];
-                
 			},
             error:function(text){
                 console.log("There was an error");
