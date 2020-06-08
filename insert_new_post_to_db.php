@@ -7,7 +7,7 @@ session_start();
 
 $insert_post_sql_query = 
 "INSERT INTO `posts`(`poster_email`, `title`, `details`, `city`, `date_of_event`, `date_posted`) 
-VALUES (\"".$_SESSION["email"]."\",\"".$_POST["title"]."\",\"".$_POST["content"]."\", \"".$_POST["cityNames"]."\", \"".$_POST["evDateTime"]."\", NOW())
+VALUES (\"".htmlentities($_SESSION["email"], ENT_QUOTES)."\",\"".htmlentities($_POST["title"], ENT_QUOTES)."\",\"".htmlentities($_POST["content"], ENT_QUOTES)."\", \"".htmlentities($_POST["cityNames"], ENT_QUOTES)."\", \"".htmlentities($_POST["evDateTime"], ENT_QUOTES)."\", NOW())
 "
 ;
 
