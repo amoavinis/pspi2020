@@ -187,8 +187,8 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
         <script>
         var city=null;
         var place=null;
-        var lat=null;
-        var long=null;
+        var lat=0;
+        var long=0;
          function getSelectedCity(){
         var val=document.getElementById("cities").value;
         return val;
@@ -215,7 +215,8 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
 			url:'https://nominatim.openstreetmap.org/search?q='.concat(place,'+',city,'&format=geojson'),
 			dataType:'json',
 			success:function(data){
-                console.log(data);
+                lat=data.features[0].geometry.coordinates[1];
+                long=data.features[0].geometry.coordinates[0];
 			},
             error:function(text){
                 console.log("There was an error");
