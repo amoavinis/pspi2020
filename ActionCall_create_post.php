@@ -178,12 +178,6 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                         <input type="time" class="form-control" id="eventTime" name="evTime" min="0:00" max ="24:00" required> -->
                         <label for="date">Ημερομηνία-Ώρα</label>
                         <input type="datetime-local" class="form-control" name="evDateTime" required>
-                        <label for="repeat">Επαναλαμβανόμενο</label>
-                        <input type="checkbox" id="rep" name="repeated_event" onClick="toggleVisibility(this,'recurring')" value="isRepeated">
-                    </div>
-                    <div id="recurring" style="display:none" class="form-group">
-                        <label for="times">Πόσες φορές;</label>
-                        <input type="number" class="form-control" id="recc" name="reccTimes" placeholder="1" min="1">
                     </div>
                     <div class="form-group">
                         <textarea name="content" id="editor"></textarea>
@@ -195,6 +189,8 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
         <script>
         var city=null;
         var place=null;
+        var lat=null;
+        var long=null;
          function getSelectedCity(){
         var val=document.getElementById("cities").value;
         return val;
@@ -215,20 +211,23 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
     }
     function getCoordinates(city,place)
     {
+        console.log(city);
+        console.log(place);
         $.ajax({
-			url:'https://nominatim.openstreetmap.org/search/place?city',
+			url:'https://nominatim.openstreetmap.org/search/q='.concat(place,'?city=',city,'&format=geojson'),
 			dataType:'json',
 			success:function(data){
-				data = data.results;
                 console.log(data);
-			}
+                lat=data.features.geometry.coordinates[1];
+                long=data.features.geometry.coordinates[0];
+                
+			},
+            error:function(text){
+                console.log("There was an error");
+            }
 		});
     }
-   
-
-
-
-         createEditor();
+    createEditor();
         </script>
 
         <!-- Footer -->
