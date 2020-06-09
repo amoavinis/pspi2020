@@ -14,7 +14,7 @@ if(isset($_GET['userEmail'])){
     $account_information_query = 
     "SELECT *
     FROM users
-    WHERE email = \"".$_GET["userEmail"]."\"
+    WHERE email = \"".htmlentities($_GET["userEmail"], ENT_QUOTES)."\"
     "
     ;
 

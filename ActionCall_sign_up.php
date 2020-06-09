@@ -18,10 +18,10 @@ include("phpMailer/vendor/autoload.php");
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form 
   
-    $email_address = mysqli_real_escape_string($con,$_POST['new_account_email']);
-    $username = mysqli_real_escape_string($con,$_POST['username']);
-    $password = mysqli_real_escape_string($con,$_POST['password']);
-    $password_confirmation = mysqli_real_escape_string($con,$_POST['password_confirmation']);  
+    $email_address = mysqli_real_escape_string($con,htmlentities($_POST['new_account_email'], ENT_QUOTES));
+    $username = mysqli_real_escape_string($con,htmlentities($_POST['username'], ENT_QUOTES));
+    $password = mysqli_real_escape_string($con,htmlentities($_POST['password'], ENT_QUOTES));
+    $password_confirmation = mysqli_real_escape_string($con,htmlentities($_POST['password_confirmation'], ENT_QUOTES));  
     
     $flag = 1;
 
@@ -150,15 +150,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class = "form-group">
                     <label for="username">Username</label>
-                    <input type="text" class="form-control" name="username">
+                    <input type="text" class="form-control" name="username" minlength="5" maxlength="32">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" name="password">
+                    <input type="password" class="form-control" name="password" minlength="5">
                 </div>
                 <div class="form-group">
                     <label for="password_confirmation">Confirm Password</label>
-                    <input type="password" class="form-control" name="password_confirmation">
+                    <input type="password" class="form-control" name="password_confirmation" minlength="5">
                 </div>
                 <div>
                     <button type="submit" class="btn btn-primary center-block">Sign Up</button>

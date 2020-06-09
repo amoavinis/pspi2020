@@ -9,10 +9,10 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
     $_SESSION["email"] = $_COOKIE["ActionCallUserEmail"];
     $_SESSION["username"] = $_COOKIE["ActionCallUser"];
 }
-/*if (!isset($_SESSION["username"]))
+if (!isset($_SESSION["username"]))
 {
     header("Location: index.php");
-}*/
+}
 ?>
 <html>
   <head>

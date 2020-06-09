@@ -14,8 +14,8 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form 
   
-    $login_id = mysqli_real_escape_string($con,$_POST['login_id']);
-    $password = mysqli_real_escape_string($con,$_POST['password']); 
+    $login_id = mysqli_real_escape_string($con,htmlentities($_POST['login_id'], ENT_QUOTES));
+    $password = mysqli_real_escape_string($con,htmlentities($_POST['password'], ENT_QUOTES)); 
   
     $sql1 = "SELECT * FROM users WHERE email = \"".$login_id."\"";
     $sql2 = "SELECT * FROM users WHERE username = \"".$login_id."\"";

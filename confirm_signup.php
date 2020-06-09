@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"]=="GET")
 {
     if (isset($_GET['key']))
     {
-        $key = $_GET['key'];
+        $key = htmlentities($_GET['key'], ENT_QUOTES);
         $sql = "SELECT * FROM signup_confirms WHERE signup_key=\"".$key."\";";
         $result = mysqli_query($con, $sql);
         $n = mysqli_num_rows($result);

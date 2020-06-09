@@ -38,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
     if (isset($_POST["email"]))
     {
-        $email = mysqli_real_escape_string($con,$_POST['email']);
+        $email = mysqli_real_escape_string($con, htmlentities($_POST['email'], ENT_QUOTES));
         $sql = "SELECT * FROM users WHERE email=\"".$email."\";";
         $result = mysqli_query($con, $sql);
         $n = mysqli_num_rows($result);

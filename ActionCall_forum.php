@@ -25,7 +25,7 @@ $searchQ = "";
 /*getting the order type*/
 $order = "orderOne";
 if(isset($_GET['order'])){
-    $order = $_GET['order'];
+    $order = htmlentities($_GET['order'], ENT_QUOTES);
 }
 
 if($order==='orderOne'){
@@ -36,20 +36,20 @@ if($order==='orderOne'){
 
 /*getting the search querries and search text based on the textfield*/
 if(isset($_GET['search'])&&$_GET['search']!=""){
-    $searchQ = $_GET['search'];
+    $searchQ = htmlentities($_GET['search'], ENT_QUOTES);
     $querryW = " WHERE city LIKE '%$searchQ%' OR title LIKE '%$searchQ%'";
     $searchO = "Αποτελέσματα για: " . $searchQ;
 }
 /*getting the search querries and search text based on the username*/
 else if(isset($_GET['username'])){
-    $searchU = $_GET['username'];
+    $searchU = htmlentities($_GET['username'], ENT_QUOTES);
     $querryW = " WHERE username = '$searchU'";
     $searchO = "Εύρεση αναρτήσεων χρήστη: " . $searchU;
 }
 
 /*getting the page number*/
 if (isset($_GET['pageno'])) {
-    $pageno = $_GET['pageno'];
+    $pageno = htmlentities($_GET['pageno'], ENT_QUOTES);
 } else {
     $pageno = 1;
 }
