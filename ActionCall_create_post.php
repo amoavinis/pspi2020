@@ -169,6 +169,9 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                         <label for="place">Διεύθυνση</label>
                         <input type="text" class="form-control" id="addressName" placeholder="e.g. Πλατεία Αριστοτέλους" required>
                     </div>
+                    <div class= "form-group">
+                    <iframe id="map" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=6.240234375%2C32.0639555946604%2C35.90332031250001%2C44.15068115978094&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=6/38.359/21.072">Προβολή Μεγαλύτερου Χάρτη</a></small>
+                    </div>
                     <div class="form-group">
                         <!--
                         <input type="date" class="form-control" id="eventDate" name="evDate" required>
@@ -189,6 +192,10 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
         var place=null;
         var lat=0;
         var long=0;
+        var bbox0=0;
+        var bbox1=0;
+        var bbox2=0;
+        var bbox3=0;
          function getSelectedCity(){
         var val=document.getElementById("cities").value;
         return val;
@@ -215,13 +222,24 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
 			url:'https://nominatim.openstreetmap.org/search?q='.concat(place,'+',city,'&format=geojson'),
 			dataType:'json',
 			success:function(data){
+                console.log(data);
                 lat=data.features[0].geometry.coordinates[1];
                 long=data.features[0].geometry.coordinates[0];
+                bbox0=data.features[0].bbox[0];
+                bbox1=data.features[0].bbox[1];
+                bbox2=data.features[0].bbox[2];
+                bbox3=data.features[0].bbox[3];
+                getMap(bbox0,bbox1,bbox2,bbox3);
 			},
             error:function(text){
                 console.log("There was an error");
             }
 		});
+    }
+    function getMap(bbox0,bbox1,bbox2,bbox3){
+        var map=document.getElementById("map");
+        map.src="https://www.openstreetmap.org/export/embed.html?bbox=".concat(bbox0,"%2C",bbox1,"%2C",bbox2,"%2C",bbox3,"&amp;layer=mapnik");
+
     }
     createEditor();
         </script>
