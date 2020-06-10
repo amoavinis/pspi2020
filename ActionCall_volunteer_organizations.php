@@ -32,15 +32,10 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                 $results = mysqli_query($conn, $all_organizations_querry);
                 if(mysqli_num_rows($results)>0){ ?>
                     <table class="topics-table">
-                    <tr>
-                        <th style= "text-align:center" width=80%>Οργανισμοί</th>
-                        <th style= "text-align:center" width=20%>Τύπος</th>
-                    <tr>
-                    <?php
+                    <?php 
                         while($organization = mysqli_fetch_array($results)){ ?>
                             <tr>
                                 <td style = "text-align: center;"><a href = <?php echo($organization["url"]);?>><?php echo($organization["name"]);?></a></td>
-                                <td style = "text-align: center;"><?php echo($organization["type"]);?></td>
                             </tr>
                         <?php } ?>
                     </table>
