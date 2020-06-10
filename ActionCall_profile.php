@@ -9,6 +9,7 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
 {
     $_SESSION["loggedin"] = true;
     $_SESSION["email"] = $_COOKIE["ActionCallUserEmail"];
+    $sql = "SELECT username FROM users WHERE ";
     $_SESSION["username"] = $_COOKIE["ActionCallUser"];
 }
 if (!isset($_SESSION["username"]))
@@ -48,16 +49,16 @@ if (!isset($_SESSION["username"]))
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <label for="password_field" class="col-sm-2 col-form-label">Change Password</label>
-                        <input class="form-control" id="password_field" type="password" minlength="1" 
+                        <input class="form-control" id="password_field" type="password" minlength="5" 
                             name="new_password" value="" oninput="button_enable_disable()">
-                        <small class="form-text text-muted"> Your password must be at least one (1) character long. The longer, the better.</small>
+                        <small class="form-text text-muted"> Your password must be at least five (5) characters long. The longer, the better.</small>
                         <input type="checkbox" onclick="toggle_password_visibility()"> Show password
                     </div>             
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <label for="password_field" class="col-sm-2 col-form-label">Repeat New Password</label>
-                        <input class="form-control" id="repeat_password_field" type="password" minlength="1" 
+                        <input class="form-control" id="repeat_password_field" type="password" minlength="5" 
                             name="new_password_repetition" value="" oninput="button_enable_disable()">
                         <small class="form-text text-muted"> Passwords must agree.</small>
                         <input type="checkbox" onclick="toggle_repeat_password_visibility()"> Show password
@@ -108,7 +109,7 @@ if (!isset($_SESSION["username"]))
         } */ ?> -->
 
         <div class="container">
-            <form action="delete_account.php">
+            <form action="delete_account_user.php">
                 <button type="submit" style="background: transparent; border: 0" class="delete-account-trash-button">
                 <i type="submit" class="fas fa-trash-alt"></i>  
                 </button>
@@ -128,7 +129,7 @@ if (!isset($_SESSION["username"]))
             FROM users AS users1 JOIN interested ON user_email = \"".$_SESSION["email"]."\" 
             JOIN posts ON post_id = id 
             JOIN users AS users2 ON users2.email = posts.poster_email
-            ORDER BY date_of_event DESC";
+            ORDER BY date_of_event ASC";
 
             $posts_user_is_interested_in = mysqli_query($con, $find_posts_user_is_interested_in_sql_query);
             
@@ -148,8 +149,8 @@ if (!isset($_SESSION["username"]))
                         <?php // Output data of each row
                         while($posts_interested_row = $posts_user_is_interested_in -> fetch_assoc()){ ?>
                             <tr>
-                                <th scope="row"> <?php echo($posts_interested_row["post_id"]) ; ?> </th>
-                                <td><?php echo($posts_interested_row["title"]) ; ?></td>
+                                <th scope="row"><a href="ActionCall_event.php?postId=<?php echo($posts_interested_row["post_id"]); ?>"> <?php echo($posts_interested_row["post_id"]) ; ?> </a> </th>
+                                <td><a href="ActionCall_event.php?postId=<?php echo($posts_interested_row["post_id"]); ?>"> <?php echo($posts_interested_row["title"]) ; ?> </a></td>
                                 <td><?php echo($posts_interested_row["city"]) ; ?></td>
                                 <td><?php echo($posts_interested_row["date_of_event"]) ; ?></td>
                                 <td><?php echo($posts_interested_row["username"]) ; ?></td>

@@ -117,8 +117,9 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
                         $sql1 = "SELECT username FROM users WHERE email=\"".$row['poster_email']."\"";
                         $result1 = mysqli_query($con, $sql1);
                         $poster_username = mysqli_fetch_row($result1)[0];
+                        $datetime = date("F j, Y, g:i", strtotime($row['date_of_event']));
                         echo "<tr>
-                        <td>".$row['date_of_event']."</td>
+                        <td>".$datetime."</td>
                         <td><a class=\"city\" href = \"ActionCall_forum.php?search=".$row['city']."\">".$row['city']."</a></td>
                         <td><a class=\"post\" href = \"ActionCall_event.php?postId=".$row['id']."\">".$row['title']."</a></td>
                         <td><a class=\"user\" href = \"ActionCall_forum.php?username=".$poster_username."\">".$poster_username."</a></td>
@@ -152,8 +153,9 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
                     $sql1 = "SELECT username FROM users WHERE email=\"".$row['poster_email']."\"";
                     $result1 = mysqli_query($con, $sql1);
                     $poster_username = mysqli_fetch_row($result1)[0];
+                    $datetime = date("F j, Y, H:i", strtotime($row['date_of_event']));
                     echo "<tr>
-                    <td>".$row['date_of_event']."</td>
+                    <td>".$datetime."</td>
                     <td><a class=\"city\" href = \"ActionCall_forum.php?search=".$row['city']."\">".$row['city']."</a></td>
                     <td><a class=\"post\" href = \"ActionCall_event.php?postId=".$row['id']."\">".$row['title']."</a></td>
                     <td><a class=\"user\" href = \"ActionCall_forum.php?username=".$poster_username."\">".$poster_username."</a></td>

@@ -14,8 +14,8 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form 
   
-    $login_id = mysqli_real_escape_string($con,$_POST['login_id']);
-    $password = mysqli_real_escape_string($con,$_POST['password']); 
+    $login_id = mysqli_real_escape_string($con,htmlentities($_POST['login_id'], ENT_QUOTES));
+    $password = mysqli_real_escape_string($con,htmlentities($_POST['password'], ENT_QUOTES)); 
   
     $sql1 = "SELECT * FROM users WHERE email = \"".$login_id."\"";
     $sql2 = "SELECT * FROM users WHERE username = \"".$login_id."\"";
@@ -35,6 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["loggedin"] = true;
             $_SESSION["email"] = $row["email"];
             $_SESSION["username"] = $row["username"];
+            $_SESSION['authority'] = $row['authority'];
             if (isset($_POST['actioncall_remember_me']))
             {
                 setcookie("ActionCallUser", $row["username"], strtotime( '+ 1000 days' ));
@@ -58,6 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["loggedin"] = true;
             $_SESSION["email"] = $row["email"];
             $_SESSION["username"] = $row["username"];
+            $_SESSION['authority'] = $row['authority'];
             alert("Επιτυχής σύνδεση!");
             header("Location: index.php");
         }

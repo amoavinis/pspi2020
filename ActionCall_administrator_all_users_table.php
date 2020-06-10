@@ -26,7 +26,7 @@ $searchQ = "";
 
 /*getting the search querries and search text based on the textfield and radiogroup selection*/
 if(isset($_GET['search'])&&$_GET['search']!=""){
-    $searchQ = $_GET['search'];
+    $searchQ = htmlentities($_GET['search'], ENT_QUOTES);
     $querryW1 = " (username LIKE '%$searchQ%' OR email LIKE '%$searchQ%')";
     $searchO = "Αποτελέσματα για: " . $searchQ;
     $querryW = " WHERE";
@@ -54,7 +54,7 @@ if(($querryW1 != "") && ($querryW2 != "")){
 
 /*getting the page number*/
 if (isset($_GET['pageno'])) {
-    $pageno = $_GET['pageno'];
+    $pageno = htmlentities($_GET['pageno'], ENT_QUOTES);
 } else {
     $pageno = 1;
 }

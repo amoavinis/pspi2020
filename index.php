@@ -62,6 +62,7 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                         xmlhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
                             var response = JSON.parse(this.responseText);
+                            console.log(response);
                             x.innerHTML = response["features"][0]["properties"]["address"]["city"];
                             getEvents(position);
                             return;
@@ -71,7 +72,7 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                                      'https://nominatim.openstreetmap.org/reverse?format=geojson&lat='.concat(position.coords.latitude,
                                                                                                               '&lon=',
                                                                                                               position.coords.longitude,
-                                                                                                              "&zoom=18"), true);
+                                                                                                              "&zoom=10"), true);
                         xmlhttp.send();                        
                     }
                     function showDefault(error) {

@@ -41,7 +41,7 @@ if (($_SERVER["REQUEST_METHOD"] == "POST"))
     $mail->Subject = "Contact form message";
     if (isset($_POST["username"]))
     {
-        $username = $_POST["username"];
+        $username = htmlentities($_POST["username"], ENT_QUOTES);
     }
     else
     {
@@ -49,13 +49,13 @@ if (($_SERVER["REQUEST_METHOD"] == "POST"))
     }
     if (isset($_POST["email"]))
     {
-        $email = $_POST["email"];
+        $email = htmlentities($_POST["email"], ENT_QUOTES);
     }
     else
     {
         $email = "";
     }
-    $mail->Body = "Message from: <br>Name: ".$username."<br>Email: ".$email."<br><br>Message: <br>".$_POST["message"];
+    $mail->Body = "Message from: <br>Name: ".$username."<br>Email: ".$email."<br><br>Message: <br>".htmlentities($_POST["message"], ENT_QUOTES);
     //$mail->AltBody = "This is the plain text version of the email content";
 
     if(!$mail->send()) 

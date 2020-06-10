@@ -16,7 +16,7 @@ if(isset($_GET['postId'])){
     $post_data_query = 
     "SELECT posts.*, users.username
     FROM posts INNER JOIN users ON posts.poster_email = users.email
-    WHERE posts.id = \"".$_GET["postId"]."\"
+    WHERE posts.id = \"".htmlentities($_GET["postId"], ENT_QUOTES)."\"
     "
     ;
 
@@ -29,6 +29,7 @@ if(isset($_GET['postId'])){
   <head>
     <?php header_gen(); ?>
     <script src="js/interestedButton.js"></script>
+    <link rel="stylesheet" href="css/profile.css">
     
     <title><?php echo($post_data["title"])?></title>
     <link rel="stylesheet" href="css/post.css">
@@ -36,28 +37,43 @@ if(isset($_GET['postId'])){
 
     <body>
         <?php navbar_gen(); ?>
-        <div class="container"> <h1><?php echo($post_data["title"]); ?></h1> </div>
+        <div class="container">
+            <h1><?php echo($post_data["title"]); ?></h1>
+            <?php
+            if($_SESSION['email'] === $post_data['poster_email'] || $_SESSION['authority'] === 'administrator'){ ?>
+                <form action="delete_event.php" method="POST">
+                    <button type="submit" style="background: transparent; border: 0" class="delete-account-trash-button">
+                        <i type="submit" class="fas fa-trash-alt"></i>  
+                    </button>
+                    <input type="hidden" name="postId" value="<?php echo($post_data['id']); ?>">
+                </form>
+            <?php } ?>
+        </div>
+
+    
+
         <div id="post" class="table-container container">
             <p><b>
                 Ημερομηνία διεξαγωγής:
                 <?php
                 $date_of_event = date_create($post_data["date_of_event"]);
-                echo(date_format($date_of_event, 'm/d/Y, H:i:s')); 
+                echo(date_format($date_of_event, 'F j, Y, H:i')); 
                 unset($date_of_event); ?>
                 </b><br>
                 <p1 id="postTitle">Από: <?php echo($post_data["username"]); ?><br>
                     Αναρτήθηκε:
                     <?php
                     $date_event_was_posted = date_create($post_data["date_posted"]);
-                    echo(date_format($date_event_was_posted, 'm/d/Y, H:i:s')); 
+                    echo(date_format($date_event_was_posted, 'F j, Y, H:i')); 
                     unset($date_event_was_posted);?> </br>
                 </p1></br>
             </p>
 
+
             <p> <?php echo($post_data["details"]); ?> </p>
             
 
-            <iframe width="200" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=22.93956899646219%2C40.63176667532697%2C22.94225120547708%2C40.63318137194274&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=19/40.63247/22.94091">Προβολή Μεγαλύτερου Χάρτη</a></small>
+            <iframe width="200" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=22.93956899646219%2C40.63176667532697%2C22.94225120547708%2C40.63318137194274&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a target="_blank" href="https://www.openstreetmap.org/#map=19/40.63247/22.94091">Προβολή Μεγαλύτερου Χάρτη</a></small>
             
 
             <div class="table-container">
@@ -71,7 +87,7 @@ if(isset($_GET['postId'])){
                                 $check_whether_user_has_shown_interest_in_the_event_query =
                                 "SELECT *
                                 FROM interested
-                                WHERE user_email = \"".$_SESSION['email']."\" AND post_id = \"".$_GET['postId']."\"
+                                WHERE user_email = \"".$_SESSION['email']."\" AND post_id = \"".htmlentities($_GET['postId'], ENT_QUOTES)."\"
                                 "
                                 ;
 
@@ -83,7 +99,7 @@ if(isset($_GET['postId'])){
                                     <td>
                                         <form action="show_interest_in_event.php", method="GET">
                                             <button class="btn btn-primary" type="submit"  id="like">Interested!</button>
-                                            <input type="hidden" name="postId" value="<?php echo($_GET['postId']) ?>">
+                                            <input type="hidden" name="postId" value="<?php echo(htmlentities($_GET['postId'], ENT_QUOTES)) ?>">
                                         </form>
                                     </td>
                                 <?php }
@@ -91,7 +107,7 @@ if(isset($_GET['postId'])){
                                     <td>
                                         <form action="stop_showing_interest_in_event.php", method="GET">
                                             <button class="btn btn-primary" type="submit" id="like">Not interested</button>
-                                            <input type="hidden" name="postId" value="<?php echo($_GET['postId']) ?>">
+                                            <input type="hidden" name="postId" value="<?php echo(htmlentities($_GET['postId'], ENT_QUOTES)) ?>">
                                         </form>
                                     </td>
                                 <?php }
@@ -105,7 +121,7 @@ if(isset($_GET['postId'])){
                                         $people_interested_in_event_query = 
                                         "SELECT COUNT(*) AS number_of_people_interested
                                         FROM `interested`
-                                        WHERE post_id = \"".$_GET["postId"]."\"
+                                        WHERE post_id = \"".htmlentities($_GET["postId"], ENT_QUOTES)."\"
                                         "
                                         ;
                                         echo(mysqli_fetch_assoc(mysqli_query($con, $people_interested_in_event_query))['number_of_people_interested']);

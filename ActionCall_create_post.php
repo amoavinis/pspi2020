@@ -9,20 +9,27 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
     $_SESSION["email"] = $_COOKIE["ActionCallUserEmail"];
     $_SESSION["username"] = $_COOKIE["ActionCallUser"];
 }
-/*if (!isset($_SESSION["username"]))
+if (!isset($_SESSION["username"]))
 {
     header("Location: index.php");
-}*/
+}
 ?>
 <html>
   <head>
     <link rel="stylesheet" href="css/forum_post.css"> 
+    
     <script src="js/editor.js"></script>
     <script src="js/gen_elements.js"></script>
     <script src="js/autocomplete.js"></script>
     <script src="js/togglevisibility.js"></script>
-
+   
     <?php header_gen();?>
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
     <title>ActionCall - Create Post</title>
     <script src="https://cdn.ckeditor.com/ckeditor5/19.0.0/classic/ckeditor.js"></script>
   </head>
@@ -52,62 +59,60 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                         <option value="Argos">Argos</option>
                         <option value="Arta">Arta</option>
                         <option value="Artemida">Artemida</option>
-                        <option value="Attica, Acharnes">Attica, Acharnes</option>
-                        <option value="Attica, Agia Paraskevi">Attica, Agia Paraskevi</option>
+                        <option value="Acharnes">Attica, Acharnes</option>
+                        <option value="Agia Paraskevi">Attica, Agia Paraskevi</option>
                         <option value="Attica, Agia Varvara">Attica, Agia Varvara</option>
-                        <option value="Attica, Agioi Anargyroi">Attica, Agioi Anargyroi</option>
                         <option value="Attica, Agios Dimitrios">Attica, Agios Dimitrios</option>
-                        <option value="Attica, Agios Ioannis Rentis">Attica, Agios Ioannis Rentis</option>
-                        <option value="Attica, Alimos">Attica, Alimos</option>
-                        <option value="Attica, Ano Losia">Attica, Ano Losia</option>
-                        <option value="Attica, Argyroupoli">Attica, Argyroupoli</option>
-                        <option value="Attica, Aspropyrgos">Attica, Aspropyrgos</option>
-                        <option value="Attica, Athens">Attica, Athens</option>
-                        <option value="Attica, Chalandri">Attica, Chalandri</option>
+                        <option value="Agios Ioannis Rentis">Attica, Agios Ioannis Rentis</option>
+                        <option value="Alimos">Attica, Alimos</option>
+                        <option value="Ano Losia">Attica, Ano Losia</option>
+                        <option value="Argyroupoli">Attica, Argyroupoli</option>
+                        <option value="Aspropyrgos">Attica, Aspropyrgos</option>
+                        <option value="Athens">Attica, Athens</option>
+                        <option value="Chalandri">Attica, Chalandri</option>
                         <option value="Attica, Cholargos">Attica, Cholargos</option>
-                        <option value="Attica, Dafni">Attica, Dafni</option>
-                        <option value="Attica, Egaleo">Attica, Egaleo</option>
-                        <option value="Attica, Eleusis">Attica, Eleusis</option>
-                        <option value="Attica, Elliniko">Attica, Elliniko</option>
-                        <option value="Attica, Galatsi">Attica, Galatsi</option>
-                        <option value="Attica, Gazi">Attica, Gazi</option>
-                        <option value="Attica, Gerakas">Attica, Gerakas</option>
-                        <option value="Attica, Glyfada"> Attica, Glyfada</option>
-                        <option value="Attica, Glyka Nera">Attica, Glyka Nera</option>
-                        <option value="Attica, Kaisariani">Attica, Kaisariani</option>
-                        <option value="Attica, Kalithea">Attica, Kalithea</option>
-                        <option value="Attica, Kalyvia Thorikou">Attica, Kalyvia Thorikou</option>
-                        <option value="Attica, Kamatero">Attica, Kamatero</option>
-                        <option value="Attica, Koropi">Attica, Koropi</option>
-                        <option value="Attica, Korydallos">Attica, Korydallos</option>
-                        <option value="Attica, Loutraki">Attica, Loutraki</option>
-                        <option value="Attica, Mandra">Attica, Mandra</option>
-                        <option value="Attica,Marousi">Attica, Marousi</option>
-                        <option value="Attica, Melissia">Attica, Melissia</option>
+                        <option value="Dafni">Attica, Dafni</option>
+                        <option value="Egaleo">Attica, Egaleo</option>
+                        <option value="Eleusis">Attica, Eleusis</option>
+                        <option value="Elliniko">Attica, Elliniko</option>
+                        <option value="Galatsi">Attica, Galatsi</option>
+                        <option value="Gerakas">Attica, Gerakas</option>
+                        <option value="Glyfada"> Attica, Glyfada</option>
+                        <option value="Glyka Nera">Attica, Glyka Nera</option>
+                        <option value="Kaisariani">Attica, Kaisariani</option>
+                        <option value="Kalithea">Attica, Kalithea</option>
+                        <option value="Kalyvia Thorikou">Attica, Kalyvia Thorikou</option>
+                        <option value="Kamatero">Attica, Kamatero</option>
+                        <option value="Koropi">Attica, Koropi</option>
+                        <option value="Korydallos">Attica, Korydallos</option>
+                        <option value="Loutraki">Attica, Loutraki</option>
+                        <option value="Mandra">Attica, Mandra</option>
+                        <option value="Marousi">Attica, Marousi</option>
+                        <option value="Melissia">Attica, Melissia</option>
                         <option value="Attica, Metamorfosi">Attica, Metamorfosi</option>
-                        <option value="Attica, Moschato">Attica, Moschato</option>
-                        <option value="Attica, Nea Erythraia">Attica, Nea Erythraia</option>
+                        <option value="Moschato">Attica, Moschato</option>
+                        <option value="Attica, Nea Erythrea">Attica, Nea Erythrea</option>
                         <option value="Attica, Nea Filadelfeia">Attica, Nea Filadelfeia</option>
-                        <option value="Attica, Nea Ionia">Attica,Nea Ionia</option>
-                        <option value="Attica, Nea Makri">Attica, Nea Makri</option>
-                        <option value="Attica, Nea Smyrni">Attica, Nea Smyrni</option>
-                        <option value="Attica, Neo Psychiko">Attica, Neo Psychiko</option>
-                        <option value="Attica, Nikaia">Attica, Nikaia</option>
-                        <option value="Attica, Palaio Faliro">Attica, Palaio Faliro</option>
-                        <option value="Attica, Pallini">Attica, Pallini</option>
-                        <option value="Attica, Papagou">Attica, Papagou</option>
+                        <option value="Nea Ionia">Attica,Nea Ionia</option>
+                        <option value="Nea Makri">Attica, Nea Makri</option>
+                        <option value="Nea Smyrni">Attica, Nea Smyrni</option>
+                        <option value="Neo Psychiko">Attica, Neo Psychiko</option>
+                        <option value="Nikaia">Attica, Nikaia</option>
+                        <option value="Palaio Faliro">Attica, Palaio Faliro</option>
+                        <option value="Pallini">Attica, Pallini</option>
+                        <option value="Papagou">Attica, Papagou</option>
                         <option value="Attica, Pefki">Attica, Pefki</option>
                         <option value="Attica, Perama">Attica, Perama</option>
-                        <option value="Attica, Peristeri">Attica, Peristeri</option>
-                        <option value="Attica, Petroupoli">Attica, Petroupoli</option>
-                        <option value="Attica, Rafina">Attica, Rafina</option>
-                        <option value="Attica, Tavros">Attica, Tavros</option>
-                        <option value="Attica, Vari">Attica, Vari</option>
-                        <option value="Attica, Voula">Attica, Voula</option>
+                        <option value="Peristeri">Attica, Peristeri</option>
+                        <option value="Petroupoli">Attica, Petroupoli</option>
+                        <option value="Rafina">Attica, Rafina</option>
+                        <option value="Tavros">Attica, Tavros</option>
+                        <option value="Vari">Attica, Vari</option>
+                        <option value="Voula">Attica, Voula</option>
                         <option value="Attica, Vrilissia">Attica, Vrilissia</option>
-                        <option value="Attica, Vyronas">Attica, Vyronas</option>
-                        <option value="Attica, Ymittos">Attica, Ymittos</option>
-                        <option value="Attica, Zografou">Attica, Zografou</option>
+                        <option value="Vyronas">Attica, Vyronas</option>
+                        <option value="Ymittos">Attica, Ymittos</option>
+                        <option value="Zografou">Attica, Zografou</option>
                         <option value="Chalkis">Chalkis</option>
                         <option value="Chania">Chania</option>
                         <option value="Chios">Chios</option>
@@ -157,12 +162,12 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                         <option value="Thessaloniki, Pefka">Thessaloniki, Pefka</option>
                         <option value="Thessaloniki, Peraia">Thessaloniki, Peraia</option>
                         <option value="Thessaloniki, Polichni">Thessaloniki, Polichni</option>
-                        <option value="Thessaloniki,Pylaia">Thessaloniki, Pylaia</option>
+                        <option value="Thessaloniki,Pylea">Thessaloniki, Pylaia</option>
                         <option value="Thessaloniki, Sykies">Thessaloniki, Sykies</option>
                         <option value="Thessaloniki, Thermi">Thessaloniki, Thermi</option>
                         <option value="Tripoli">Tripoli</option>
                         <option value="Tyrnavos">Tyrnavos</option>
-                        <option value="Veria">Veria</option>
+                        <option value="Veroia">Veroia</option>
                         <option value="Trikala">Trikala</option>
                         <option value="Xanthi">Xanthi</option>
                         </select>
@@ -171,20 +176,36 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                         <label for="place">Διεύθυνση</label>
                         <input type="text" class="form-control" id="addressName" placeholder="e.g. Πλατεία Αριστοτέλους" required>
                     </div>
+                    <div class= "form-group">
+                    <iframe id="map" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=6.240234375%2C32.0639555946604%2C35.90332031250001%2C44.15068115978094&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a target="_blank" href="https://www.openstreetmap.org/#map=6/38.359/21.072">Προβολή Μεγαλύτερου Χάρτη</a></small>
+                    </div>
                     <div class="form-group">
                         <!--
                         <input type="date" class="form-control" id="eventDate" name="evDate" required>
                         <label for="hour">Ώρα</label>
                         <input type="time" class="form-control" id="eventTime" name="evTime" min="0:00" max ="24:00" required> -->
-                        <label for="date">Ημερομηνία-Ώρα</label>
-                        <input type="datetime-local" class="form-control" name="evDateTime" required>
-                        <label for="repeat">Επαναλαμβανόμενο</label>
-                        <input type="checkbox" id="rep" name="repeated_event" onClick="toggleVisibility(this,'recurring')" value="isRepeated">
+                        <label for="date">Ημερομηνία</label>
+                        <input type="text" class="form-control" name="evDate" id="date" required>
+                        <label for="">Ώρα</label><br>
+                        <select id="time_hour" name="time_hour">
+                        <?php 
+                        for($hours=0; $hours<24; $hours++) // the interval for hours is '1'
+                            echo '<option>'.str_pad($hours,2,'0',STR_PAD_LEFT).'</option>';?>
+                        </select>:
+                        <select id="time_min" name="time_min">
+                        <?php 
+                        for($minutes=0; $minutes<60; $minutes++) // the interval for minutes is '1'
+                            echo '<option>'.str_pad($minutes,2,'0',STR_PAD_LEFT).'</option>';?>
+                        </select>
                     </div>
-                    <div id="recurring" style="display:none" class="form-group">
-                        <label for="times">Πόσες φορές;</label>
-                        <input type="number" class="form-control" id="recc" name="reccTimes" placeholder="1" min="1">
-                    </div>
+                    <script>
+                        $( function() {
+                            $( "#date" ).datepicker({
+                                dateFormat: "dd-mm-yy",
+                                minDate: new Date()
+                            });
+                        } );
+                    </script>
                     <div class="form-group">
                         <textarea name="content" id="editor"></textarea>
                     </div>
@@ -195,6 +216,12 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
         <script>
         var city=null;
         var place=null;
+        var lat=0;
+        var long=0;
+        var bbox0=0;
+        var bbox1=0;
+        var bbox2=0;
+        var bbox3=0;
          function getSelectedCity(){
         var val=document.getElementById("cities").value;
         return val;
@@ -215,20 +242,32 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
     }
     function getCoordinates(city,place)
     {
+        console.log(city);
+        console.log(place);
         $.ajax({
-			url:'https://nominatim.openstreetmap.org/search/place?city',
+			url:'https://nominatim.openstreetmap.org/search?q='.concat(place,'+',city,'&format=geojson'),
 			dataType:'json',
 			success:function(data){
-				data = data.results;
                 console.log(data);
-			}
+                lat=data.features[0].geometry.coordinates[1];
+                long=data.features[0].geometry.coordinates[0];
+                bbox0=data.features[0].bbox[0];
+                bbox1=data.features[0].bbox[1];
+                bbox2=data.features[0].bbox[2];
+                bbox3=data.features[0].bbox[3];
+                getMap(bbox0,bbox1,bbox2,bbox3);
+			},
+            error:function(text){
+                console.log("There was an error");
+            }
 		});
     }
-   
+    function getMap(bbox0,bbox1,bbox2,bbox3){
+        var map=document.getElementById("map");
+        map.src="https://www.openstreetmap.org/export/embed.html?bbox=".concat(bbox0,"%2C",bbox1,"%2C",bbox2,"%2C",bbox3,"&amp;layer=mapnik");
 
-
-
-         createEditor();
+    }
+    createEditor();
         </script>
 
         <!-- Footer -->
