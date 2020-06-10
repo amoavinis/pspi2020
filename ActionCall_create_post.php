@@ -17,12 +17,19 @@ if (!isset($_SESSION["username"]))
 <html>
   <head>
     <link rel="stylesheet" href="css/forum_post.css"> 
+    
     <script src="js/editor.js"></script>
     <script src="js/gen_elements.js"></script>
     <script src="js/autocomplete.js"></script>
     <script src="js/togglevisibility.js"></script>
-
+   
     <?php header_gen();?>
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
     <title>ActionCall - Create Post</title>
     <script src="https://cdn.ckeditor.com/ckeditor5/19.0.0/classic/ckeditor.js"></script>
   </head>
@@ -170,16 +177,35 @@ if (!isset($_SESSION["username"]))
                         <input type="text" class="form-control" id="addressName" placeholder="e.g. Πλατεία Αριστοτέλους" required>
                     </div>
                     <div class= "form-group">
-                    <iframe id="map" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=6.240234375%2C32.0639555946604%2C35.90332031250001%2C44.15068115978094&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=6/38.359/21.072">Προβολή Μεγαλύτερου Χάρτη</a></small>
+                    <iframe id="map" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=6.240234375%2C32.0639555946604%2C35.90332031250001%2C44.15068115978094&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a target="_blank" href="https://www.openstreetmap.org/#map=6/38.359/21.072">Προβολή Μεγαλύτερου Χάρτη</a></small>
                     </div>
                     <div class="form-group">
                         <!--
                         <input type="date" class="form-control" id="eventDate" name="evDate" required>
                         <label for="hour">Ώρα</label>
                         <input type="time" class="form-control" id="eventTime" name="evTime" min="0:00" max ="24:00" required> -->
-                        <label for="date">Ημερομηνία-Ώρα</label>
-                        <input type="datetime-local" class="form-control" name="evDateTime" required>
+                        <label for="date">Ημερομηνία</label>
+                        <input type="text" class="form-control" name="evDate" id="date" required>
+                        <label for="">Ώρα</label><br>
+                        <select id="time_hour" name="time_hour">
+                        <?php 
+                        for($hours=0; $hours<24; $hours++) // the interval for hours is '1'
+                            echo '<option>'.str_pad($hours,2,'0',STR_PAD_LEFT).'</option>';?>
+                        </select>:
+                        <select id="time_min" name="time_min">
+                        <?php 
+                        for($minutes=0; $minutes<60; $minutes++) // the interval for minutes is '1'
+                            echo '<option>'.str_pad($minutes,2,'0',STR_PAD_LEFT).'</option>';?>
+                        </select>
                     </div>
+                    <script>
+                        $( function() {
+                            $( "#date" ).datepicker({
+                                dateFormat: "dd-mm-yy",
+                                minDate: new Date()
+                            });
+                        } );
+                    </script>
                     <div class="form-group">
                         <textarea name="content" id="editor"></textarea>
                     </div>

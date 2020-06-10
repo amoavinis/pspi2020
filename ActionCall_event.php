@@ -57,24 +57,23 @@ if(isset($_GET['postId'])){
                 Ημερομηνία διεξαγωγής:
                 <?php
                 $date_of_event = date_create($post_data["date_of_event"]);
-                echo(date_format($date_of_event, 'm/d/Y, H:i:s')); 
+                echo(date_format($date_of_event, 'F j, Y, H:i')); 
                 unset($date_of_event); ?>
                 </b><br>
                 <p1 id="postTitle">Από: <?php echo($post_data["username"]); ?><br>
                     Αναρτήθηκε:
                     <?php
                     $date_event_was_posted = date_create($post_data["date_posted"]);
-                    echo(date_format($date_event_was_posted, 'm/d/Y, H:i:s')); 
+                    echo(date_format($date_event_was_posted, 'F j, Y, H:i')); 
                     unset($date_event_was_posted);?> </br>
                 </p1></br>
             </p>
 
 
-
             <p> <?php echo($post_data["details"]); ?> </p>
             
 
-            <iframe width="200" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=22.93956899646219%2C40.63176667532697%2C22.94225120547708%2C40.63318137194274&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=19/40.63247/22.94091">Προβολή Μεγαλύτερου Χάρτη</a></small>
+            <iframe width="200" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=22.93956899646219%2C40.63176667532697%2C22.94225120547708%2C40.63318137194274&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a target="_blank" href="https://www.openstreetmap.org/#map=19/40.63247/22.94091">Προβολή Μεγαλύτερου Χάρτη</a></small>
             
 
             <div class="table-container">

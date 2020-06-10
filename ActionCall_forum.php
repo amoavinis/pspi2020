@@ -132,7 +132,9 @@ $all_posts_result = mysqli_query($con, $all_posts_query);
                                             <?php
                                             while($post = mysqli_fetch_array($all_posts_result)){ ?>
                                                 <tr>
-                                                        <td><?php echo($post["date_of_event"]); ?></td>
+                                                        <td><?php 
+                                                        $datetime = date("F j, Y, H:i", strtotime($post['date_of_event']));
+                                                        echo($datetime); ?></td>
                                                         <td><a class="city" href = 'ActionCall_forum.php?search=<?php echo($post["city"]);?>&order=<?php echo($order);?>&pageno=1'><?php echo($post["city"]); ?></td>
                                                         <td><a class="post" href = 'ActionCall_event.php?postId=<?php echo($post["id"]);?>'><?php echo($post["title"]);?></a></td>
                                                         <td><a class="user" href = 'ActionCall_forum.php?username=<?php echo($post["username"]); ?>&order=<?php echo($order);?>&pageno=1'><?php echo($post["username"]); ?></a></td>
