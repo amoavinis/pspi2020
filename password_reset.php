@@ -83,11 +83,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             <form class="needs-validation" action="" method="post">
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" name="password">
+                    <input type="password" class="form-control" name="password" minlength=5>
                 </div>
                 <div class="form-group">
                     <label for="password_confirmation">Confirm Password</label>
-                    <input type="password" class="form-control" name="password_confirmation">
+                    <input type="password" class="form-control" name="password_confirmation" minlength=5>
                 </div>
                 <div>
                     <button type="submit" class="btn btn-primary center-block">Reset</button>

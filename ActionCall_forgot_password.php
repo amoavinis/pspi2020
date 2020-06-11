@@ -52,7 +52,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             $key = hash('sha256', microtime().$email);
             $sql1 = "INSERT INTO password_resets (user_email, reset_key) VALUES (\"".$email."\", \"".$key."\");";
             $result1 = mysqli_query($con, $sql1);
-            $mail->Body = "ActionCall password reset link: localhost/ActionCall/password_reset.php?key=".$key;
+            $mail->Body = "ActionCall membership confirmation link: <a href=\"localhost/ActionCall/password_reset.php?key=".$key."\">Click here to reset password</a><br>
+                                   or copy and paste this if the link is broken: localhost/ActionCall/password_reset.php?key=".$key;
             //$mail->AltBody = "This is the plain text version of the email content";
 
             if(!$mail->send()) 

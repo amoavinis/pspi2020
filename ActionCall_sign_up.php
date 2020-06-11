@@ -82,7 +82,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             
             if (isset($email_address))
             {
-                //header("Location: http://www.google.com");
                 $email = $email_address;
                 $sql = "SELECT * FROM users WHERE email=\"".$email."\";";
                 $result = mysqli_query($con, $sql);
@@ -102,7 +101,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     VALUES (\"".$email_address."\", \"".$username."\", \"".$hashed_password."\",'simple')";
                     $result = mysqli_query($con, $sql);
                     
-                    $mail->Body = "ActionCall membership confirmation link: localhost/ActionCall/confirm_signup.php?key=".$key;
+                    $mail->Body = "ActionCall membership confirmation link: <a href=\"localhost/ActionCall/confirm_signup.php?key=".$key."\">Click here to reset password</a><br>
+                                   or copy and paste this if the link is broken: localhost/ActionCall/confirm_signup.php?key=".$key;
                     //$mail->AltBody = "This is the plain text version of the email content";
                     
                     if(!$mail->send()) 
