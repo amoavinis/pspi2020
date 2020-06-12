@@ -18,34 +18,43 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <script src="js/gen_elements.js"></script>
         <?php header_gen();?>
-        <title>ActionCall Homepage</title>
+        <title>ActionCall-Σχετικές Οργανώσεις</title>
         <link rel="stylesheet" href="css/forum.css">
     </head>
 
     <body>
     <?php navbar_gen();?>
     <div class = "container content">
-        <h1>Δείτε τις παρακάτω εθελοντικές ομάδες και οργανισμούς</h1>
-        <div id="forum" class="table-container">
-        <?php
-                $all_organizations_querry = "SELECT * FROM organizations";
-                $results = mysqli_query($conn, $all_organizations_querry);
-                if(mysqli_num_rows($results)>0){ ?>
-                    <table class="topics-table">
-                    <tr>
-                        <th style= "text-align:center" width=80%>Οργανισμοί</th>
-                        <th style= "text-align:center" width=20%>Τύπος</th>
-                    <tr>
-                    <?php
-                        while($organization = mysqli_fetch_array($results)){ ?>
-                            <tr>
-                                <td style = "text-align: center;"><a href = <?php echo($organization["url"]);?>><?php echo($organization["name"]);?></a></td>
-                                <td style = "text-align: center;"><?php echo($organization["type"]);?></td>
-                            </tr>
-                        <?php } ?>
-                    </table>
-                <?php } ?>
-            </div>
+        <h1>Δείτε τις παρακάτω κατηγορίες από εθελοντικές ομάδες και οργανισμούς</h1>
+        <div class="table-container" id="forum">
+            <table class="topics-table">
+                <tr>
+                    <td style="text-align:center">
+                    <i class="fa fa-paw" aria-hidden="true"></i> <a href="ActionCall_viewCategory.php?type=filozoiki">Φιλοζωικές</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center">
+                    <i class="fa fa-medkit" aria-hidden="true"></i> <a href="ActionCall_viewCategory.php?type=farmakeio">Κοινωνικά φαρμακεία</a>
+                    </td>
+                </tr>
+                <tr>    
+                    <td style="text-align:center">
+                    <i class="fa fa-cutlery" aria-hidden="true"></i> <a href="ActionCall_viewCategory.php?type=syssitio">Κοινωνικές κουζίνες/Συσσίτια</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center">
+                    <i class="fa fa-heart" aria-hidden="true"></i> <a href="ActionCall_viewCategory.php?type=koinwfeleis+draseis">Κοινωφελείς οργανώσεις</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center">
+                    <i class="fa fa-recycle" aria-hidden="true"></i> <a href="ActionCall_viewCategory.php?type=recycle">Ανακύκλωση</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
     <br>
     

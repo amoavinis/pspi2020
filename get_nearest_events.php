@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         $longitude = 37.9839;
     }
     
-    $sql = "SELECT * FROM posts ORDER BY date_of_event ASC";
+    $sql = "SELECT * FROM posts WHERE date_of_event>=date_format(curdate(), '%Y/%m/%d') ORDER BY date_of_event ASC ";
     $result = mysqli_query($con, $sql);
     $ids = [];
     //$dists = [];
