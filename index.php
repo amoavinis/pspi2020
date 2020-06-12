@@ -14,7 +14,6 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <script src="js/gen_elements.js"></script>
         <?php header_gen();?>
         <title>ActionCall Homepage</title>
         <link rel="stylesheet" href="css/forum.css">
@@ -33,20 +32,6 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                 <h3 id="geolocation" align="center">Όλη η Ελλάδα</h3>
                 
                 <script>
-                    var getJSON = function(url, callback) {
-                        var xhr = new XMLHttpRequest();
-                        xhr.open('GET', url, true);
-                        xhr.responseType = 'json';
-                        xhr.onload = function() {
-                            var status = xhr.status;
-                            if (status === 200) {
-                                callback(null, xhr.response);
-                            } else {
-                                callback(status, xhr.response);
-                            }
-                        };
-                        xhr.send();
-                    };
                     var x = document.getElementById("geolocation");
                     var y = document.getElementById("events");
                     function getLocation() {
@@ -130,7 +115,7 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                         xmlhttp.send();        
                     }
                 </script>
-                <h4 id="here"></h4>
+                
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
