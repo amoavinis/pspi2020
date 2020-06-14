@@ -65,7 +65,7 @@ if (!isset($_SESSION["username"]))
                         <option value="Attica, Agios Dimitrios">Attica, Agios Dimitrios</option>
                         <option value="Agios Ioannis Rentis">Attica, Agios Ioannis Rentis</option>
                         <option value="Alimos">Attica, Alimos</option>
-                        <option value="Ano Losia">Attica, Ano Losia</option>
+                        <option value="Ano Liosia">Attica, Ano Liosia</option>
                         <option value="Argyroupoli">Attica, Argyroupoli</option>
                         <option value="Aspropyrgos">Attica, Aspropyrgos</option>
                         <option value="Athens">Attica, Athens</option>
