@@ -10,7 +10,7 @@ $post_date = date('d-m-Y', strtotime($_POST['evDate']));
 $post_time = ' '.$_POST['time_hour'].':'.$_POST['time_min'].":00";
 $post_datetime = date('Y-m-d H:i:s', strtotime($post_date.$post_time));
 $insert_post_sql_query = 
-"INSERT INTO `posts`(`poster_email`, `title`, `details`, `city`, `date_of_event`, `date_posted`,`langtitude`,`longtitude`) 
+"INSERT INTO `posts`(`poster_email`, `title`, `details`, `city`, `date_of_event`, `date_posted`,`latitude`,`longtitude`) 
 VALUES (\"".htmlentities($_SESSION["email"], ENT_QUOTES)."\",\"".htmlentities($_POST["title"], ENT_QUOTES)."\",\"".$_POST["content"]."\", \"".htmlentities($_POST["cityNames"], ENT_QUOTES)."\", \"".htmlentities($post_datetime, ENT_QUOTES)."\", \"".htmlentities($latitude)."\", \"".htmlentities($longtitude)."\", NOW())
 "
 ;
