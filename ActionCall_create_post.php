@@ -210,7 +210,7 @@ if (!isset($_SESSION["username"]))
                         <textarea name="content" id="editor"></textarea>
                     </div>
                     <input id="latitude" type="hidden" name="lat" value="0" />
-                    <input id="longtitude" type="hidden" name="long" value="0"/>
+                    <input id="longitude" type="hidden" name="long" value="0"/>
                     <button style="margin:10px;" type="submit" class="btn btn-primary center-block">Αποστολή</button>
                 </form>
             </div>
@@ -258,7 +258,7 @@ if (!isset($_SESSION["username"]))
                 bbox2=data.features[0].bbox[2];
                 bbox3=data.features[0].bbox[3];
                 document.getElementById("latitude").value=lat;
-                document.getElementById("longtitude").value=long;
+                document.getElementById("longitude").value=long;
                 getMap(bbox0,bbox1,bbox2,bbox3);
 			},
             error:function(text){
