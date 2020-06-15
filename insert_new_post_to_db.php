@@ -30,6 +30,6 @@ echo("
     <script> alert(\"You have successfully created your post!\") </script>
     ");
 
-//header("Location: ActionCall_forum.php");
+header("Location: ActionCall_forum.php");
 
 ?>
