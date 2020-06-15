@@ -138,21 +138,22 @@ if(isset($_GET['postId'])){
         </div>
 
         <script>
-        var lat=0;
-        var long=0;
+        
+        var lat="<?php echo $post_data['latitude']; ?>";
+        var long="<?php echo $post_data['longitude']; ?>";
         var bbox0=0;
         var bbox1=0;
         var bbox2=0;
         var bbox3=0;
         $.ajax({
-			url:'https://nominatim.openstreetmap.org/reverse?format=geojson&'.concat("lat=",lat,"&lon=",long)
+			url:'https://nominatim.openstreetmap.org/reverse?format=geojson&'.concat("lat=",lat,"&lon=",long),
 			dataType:'json',
 			success:function(data){
                 console.log(data);
-                bbox0=data.features.bbox[0];
-                bbox1=data.features.bbox[1];
-                bbox2=data.features.bbox[2];
-                bbox3=data.features.bbox[3];
+                bbox0=data.features[0].bbox[0];
+                bbox1=data.features[0].bbox[1];
+                bbox2=data.features[0].bbox[2];
+                bbox3=data.features[0].bbox[3];
                 getMap(bbox0,bbox1,bbox2,bbox3);
 			},
             error:function(text){
