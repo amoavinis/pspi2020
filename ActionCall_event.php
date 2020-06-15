@@ -74,9 +74,9 @@ if(isset($_GET['postId'])){
 
             <p> <?php echo($post_data["details"]); ?> </p>
             
-
-            <iframe width="200" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=22.93956899646219%2C40.63176667532697%2C22.94225120547708%2C40.63318137194274&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a target="_blank" href="https://www.openstreetmap.org/#map=19/40.63247/22.94091">Προβολή Μεγαλύτερου Χάρτη</a></small>
-            
+            <div class="map-frame">
+            <iframe id="map" width="200" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=22.93956899646219%2C40.63176667532697%2C22.94225120547708%2C40.63318137194274&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a target="_blank" href="https://www.openstreetmap.org/#map=19/40.63247/22.94091">Προβολή Μεγαλύτερου Χάρτη</a></small>
+            </div>
 
             <div class="table-container">
                 <table class="topics-table">
@@ -136,6 +136,34 @@ if(isset($_GET['postId'])){
                 </table>
             </div>
         </div>
+
+        <script>
+        var lat=0;
+        var long=0;
+        var bbox0=0;
+        var bbox1=0;
+        var bbox2=0;
+        var bbox3=0;
+        $.ajax({
+			url:'https://nominatim.openstreetmap.org/reverse?format=geojson&'.concat("lat=",lat,"&lon=",long)
+			dataType:'json',
+			success:function(data){
+                console.log(data);
+                bbox0=data.features.bbox[0];
+                bbox1=data.features.bbox[1];
+                bbox2=data.features.bbox[2];
+                bbox3=data.features.bbox[3];
+                getMap(bbox0,bbox1,bbox2,bbox3);
+			},
+            error:function(text){
+                console.log("There was an error");
+            }
+		});
+        function getMap(bbox0,bbox1,bbox2,bbox3){
+        var map=document.getElementById("map");
+        map.src="https://www.openstreetmap.org/export/embed.html?bbox=".concat(bbox0,"%2C",bbox1,"%2C",bbox2,"%2C",bbox3,"&amp;layer=mapnik");
+        }
+        </script>
                 
         <!-- Footer -->
         <?php footer_gen(); ?>
