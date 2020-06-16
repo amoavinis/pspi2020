@@ -36,6 +36,8 @@
                 ";
 
                 mysqli_query($con, $update_user_elements);
+                $_SESSION["username"] = $username;
+                $_COOKIE["ActionCallUser"] = $username;
 
                 ?>
                 <script>alert('You have successfully changed your username and/or password!');</script>
