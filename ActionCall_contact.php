@@ -39,9 +39,9 @@ if (($_SERVER["REQUEST_METHOD"] == "POST"))
     $mail->isHTML(true);
 
     $mail->Subject = "Contact form message";
-    if (isset($_POST["username"]))
+    if (isset($_POST["name"]))
     {
-        $username = htmlentities($_POST["username"], ENT_QUOTES);
+        $username = htmlentities($_POST["name"], ENT_QUOTES);
     }
     else
     {
