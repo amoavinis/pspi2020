@@ -78,8 +78,7 @@ function footer_gen() {
                     <li class=\"list-inline-item\"><a href=\"javascript:void();\"><i class=\"fab fa-facebook\"></i></a></li>
                     <li class=\"list-inline-item\"><a href=\"javascript:void();\"><i class=\"fab fa-twitter\"></i></a></li>
                     <li class=\"list-inline-item\"><a href=\"javascript:void();\"><i class=\"fab fa-instagram\"></i></a></li>
-                    <li class=\"list-inline-item\"><a href=\"javascript:void();\"><i class=\"fab fa-google-plus\"></i></a></li>
-                    <li class=\"list-inline-item\"><a href=\"javascript:void();\" target=\"_blank\"><i class=\"fa fa-envelope\"></i></a></li>
+                    <li class=\"list-inline-item\"><a href=\"mailto:info.actioncall@gmail.com\" target=\"_blank\"><i class=\"fa fa-envelope\"></i></a></li>
                 </ul>
             </div>
             </hr>
