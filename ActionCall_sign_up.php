@@ -95,7 +95,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     $mail->Subject = "Confirm ActionCall Membership";
                     $key = hash('sha256', microtime().$email);
                     $sql1 = "INSERT INTO signup_confirms (user_email, signup_key) VALUES (\"".$email."\", \"".$key."\");";
-                    echo $sql1;
                     $result1 = mysqli_query($con, $sql1);
                     $sql = "INSERT INTO users_waiting (email, username, password, authority)
                     VALUES (\"".$email_address."\", \"".$username."\", \"".$hashed_password."\",'simple')";
