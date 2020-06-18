@@ -2,8 +2,7 @@
 
 function header_gen() { ?>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" http-equiv="Content-Type" name="viewport" content="text/html, width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
@@ -81,14 +80,14 @@ function footer_gen() {
                     <li class=\"list-inline-item\"><a href=\"mailto:info.actioncall@gmail.com\" target=\"_blank\"><i class=\"fa fa-envelope\"></i></a></li>
                 </ul>
             </div>
-            </hr>
+            
         </div>	
         <div class=\"row\">
             <div class=\"col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white\">
                 <p><i>ActionCall</i> is a work of Moavinis Angelos, Raitsidis Georgios-Anargyros, Romanos Georgios, Stavratis Konstantinos</p>
-                <p class=\"h6\">&copy All rights reserved.</p>
+                <p class=\"h6\">&amp;copy All rights reserved.</p>
             </div>
-            </hr>
+            
         </div>	
     </div>
     </footer>";
