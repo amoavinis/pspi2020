@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Φιλοξενητής: 127.0.0.1
--- Χρόνος δημιουργίας: 14 Ιουν 2020 στις 12:25:18
--- Έκδοση διακομιστή: 10.4.11-MariaDB
--- Έκδοση PHP: 7.2.31
+-- Χρόνος δημιουργίας: 20 Ιουν 2020 στις 10:33:49
+-- Έκδοση διακομιστή: 10.4.8-MariaDB
+-- Έκδοση PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -37,13 +38,11 @@ CREATE TABLE `interested` (
 --
 
 INSERT INTO `interested` (`user_email`, `post_id`) VALUES
-('testemail3@test.email', 00000000001),
-('testemail3@test.email', 00000000002),
-('testemail3@test.email', 00000000004),
-('testemail4@test.email', 00000000002),
-('testemail5@test.email', 00000000003),
-('testemail6@test.email', 00000000002),
-('testemail6@test.email', 00000000003);
+('a@a.com', 00000000017),
+('a@a.com', 00000000023),
+('a@a.com', 00000000024),
+('testemail2@test.email', 00000000019),
+('testemail2@test.email', 00000000021);
 
 -- --------------------------------------------------------
 
@@ -143,7 +142,7 @@ CREATE TABLE `password_resets` (
 CREATE TABLE `posts` (
   `id` int(11) UNSIGNED ZEROFILL NOT NULL,
   `poster_email` varchar(64) NOT NULL COMMENT 'Keeps track of the poster''s id.',
-  `title` varchar(250) NOT NULL,
+  `title` varchar(1200) NOT NULL,
   `details` text DEFAULT NULL,
   `date_posted` datetime NOT NULL,
   `date_of_event` datetime NOT NULL,
@@ -157,11 +156,12 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `poster_email`, `title`, `details`, `date_posted`, `date_of_event`, `city`, `latitude`, `longitude`) VALUES
-(00000000001, 'testemail2@test.email', 'Megaro Mousikis Thessalonikis', '', '2020-05-07 19:04:36', '2020-05-09 20:32:31', 'Thessaloniki', 40.5975, 22.9478),
-(00000000002, 'testemail2@test.email', 'White Tower', '', '2020-05-07 19:04:36', '2020-05-09 20:32:31', 'Thessaloniki', 40.6264, 22.9483),
-(00000000003, 'testemail2@test.email', 'Alexander the Great\'s Statue', '', '2020-05-07 19:04:36', '2020-05-10 20:32:31', 'Thessaloniki', 40.6241, 22.95),
-(00000000004, 'testemail3@test.email', 'Ancient Roman Agora', '', '2020-05-07 19:04:36', '2020-05-09 10:23:15', 'Thessaloniki', 40.6377, 22.9459),
-(00000000016, 'amoavinis@gmail.com', '7', '', '2020-06-10 13:29:01', '2020-06-27 00:00:00', 'Thessaloniki', 40.63, 22.95);
+(00000000017, 'testemail3@test.email', '&Kappa;&alpha;&theta;&alpha;&rho;&iota;&sigma;&mu;ό&sigmaf; &tau;&eta;&sigmaf; &Pi;&lambda;&alpha;&tau;&epsilon;ί&alpha;&sigmaf; &Alpha;&rho;&iota;&sigma;&tau;&omicron;&tau;έ&lambda;&omicron;&upsilon;&sigmaf;', '<p>Καθαρίζουμε την πλατεία από τα σκουπίδια και φροντίζουμε την πόλη μας!</p><p>Φέρτε:</p><ul><li>Γάντια</li><li>Σακούλες</li></ul>', '2020-06-20 11:01:09', '2020-06-29 10:00:00', 'Thessaloniki', 40.6323, 22.9408),
+(00000000019, 'testemail2@test.email', '&Sigma;&upsilon;&lambda;&lambda;&omicron;&gamma;ή &tau;&rho;&omicron;&phi;ί&mu;&omega;&nu; &gamma;&iota;&alpha; &alpha;&sigma;&tau;έ&gamma;&omicron;&upsilon;&sigmaf;', '<p>Συλλέγουμε τρόφιμα μακράς διαρκείας για τους άστεγους συμπολίτες που τα έχουν ανάγκη!</p>', '2020-06-20 11:05:03', '2020-06-25 12:00:00', 'Attica, Athens', 37.9795, 23.7313),
+(00000000021, 'testemail2@test.email', '&Tau;ά&iota;&sigma;&mu;&alpha; &alpha;&delta;έ&sigma;&pi;&omicron;&tau;&omega;&nu; &sigma;&tau;&eta;&nu; &Pi;&lambda;&alpha;&tau;&epsilon;ί&alpha; &Epsilon;&lambda;&epsilon;&upsilon;&theta;&epsilon;&rho;ί&alpha;&sigmaf; &sigma;&tau;&omicron; &Kappa;&iota;&lambda;&kappa;ί&sigmaf;', '<p>Φροντίζουμε τους αδέσποτους φίλους μας!</p>', '2020-06-20 11:15:13', '2020-07-02 09:00:00', 'Kilkis', 40.9948, 22.5722),
+(00000000022, 'amoavinis@gmail.com', '&Kappa;&alpha;&theta;&alpha;&rho;&iota;&sigma;&mu;ό&sigmaf; &delta;&rho;ό&mu;&omega;&nu;', '<p>Μαζευόμαστε για να καθαρίσουμε το νησί μας από τα σκουπίδια και ενόψει της τουριστικής περιόδου.</p>', '2020-06-20 11:18:45', '2020-06-30 09:00:00', 'Kalymnos', 37.0026, 26.9924),
+(00000000023, 'amoavinis@gmail.com', '&Phi;&rho;&omicron;&nu;&tau;ί&zeta;&omicron;&upsilon;&mu;&epsilon; &tau;&omicron;&upsilon;&sigmaf; &kappa;ή&pi;&omicron;&upsilon;&sigmaf; &sigma;&tau;&omicron; &pi;ά&rho;&kappa;&omicron; &Pi;&alpha;&rho;&mu;&epsilon;&nu;ί&omega;&nu;&alpha;', '<p>Μαζευόμαστε για να φροντίσουμε τους παραμελημένους κήπους στο πάρκο!</p>', '2020-06-20 11:23:26', '2020-06-27 09:00:00', 'Alexandroupoli', 40.8598, 25.8745),
+(00000000024, 'testemail5@test.email', '&Tau;ά&iota;&sigma;&mu;&alpha; &alpha;&delta;έ&sigma;&pi;&omicron;&tau;&omega;&nu; &sigma;&tau;&omicron; &Phi;&rho;&omicron;ύ&rho;&iota;&omicron; &sigma;&tau;&eta; &Lambda;ά&rho;&iota;&sigma;&alpha;', '', '2020-06-20 11:27:48', '2020-07-03 10:00:00', 'Larissa', 39.6419, 22.4156);
 
 -- --------------------------------------------------------
 
@@ -173,6 +173,13 @@ CREATE TABLE `signup_confirms` (
   `user_email` varchar(64) NOT NULL,
   `signup_key` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Άδειασμα δεδομένων του πίνακα `signup_confirms`
+--
+
+INSERT INTO `signup_confirms` (`user_email`, `signup_key`) VALUES
+('amoavinis@csd.auth.gr', '78e804334e08680dba3ff9e28c671caf05925e3a1d189874acd489b51ef9f0a1');
 
 -- --------------------------------------------------------
 
@@ -192,15 +199,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`email`, `username`, `password`, `authority`) VALUES
-('a@a.com', 'asdfg', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'simple'),
-('amoavinis@gmail.com', 'amoavinis111', 'd17f25ecfbcc7857f7bebea469308be0b2580943e96d13a3ad98a13675c4bfc2', 'simple'),
-('testemail1@test.email', 'test_username1', 'test_password1', 'simple'),
-('testemail2@test.email', 'test_username2', 'test_password2', 'simple'),
-('testemail3@test.email', 'test_username3', 'test_password3', 'simple'),
-('testemail4@test.email', 'test_username4', 'test_password4', 'simple'),
-('testemail5@test.email', 'test_username5', 'test_password5', 'simple'),
-('testemail6@test.email', 'testsimple', '8e7a4a6e5ff1034956dfebed82ff7857473eea859badcb7b33a0697367e87a32', 'simple'),
-('todeg57430@kewrg.com', 'test_user1', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'simple');
+('a@a.com', 'admin', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'administrator'),
+('amoavinis@gmail.com', 'amoavinis', 'd17f25ecfbcc7857f7bebea469308be0b2580943e96d13a3ad98a13675c4bfc2', 'simple'),
+('testemail1@test.email', 'test_username1', '7fbba6640c166174b83cead69dbd9be5eb1cff6722e265b21e9bd175c6076010', 'simple'),
+('testemail2@test.email', 'test_username2', '153913a8df6d33f356847fb367ab0da2b1f828fc7a96cf38898560112983ae4a', 'simple'),
+('testemail3@test.email', 'test_username3', '26ce23907653f55c5e7b537f93467180eda26864fcd58e1bc95ea2d356048ea1', 'simple'),
+('testemail4@test.email', 'test_username4', '1db8e301415b0c6f7ff8bd0bae804d9baff6525cffae168710f28a7b20c1c712', 'simple'),
+('testemail5@test.email', 'test_username5', '2f9ac7b15b39cea2ad747941ab44243204c44d42d138e7f4fa62d9dd9e11e254', 'simple'),
+('testemail6@test.email', 'testsimple', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'simple'),
+('todeg57430@kewrg.com', 'test_user1', '0b14d501a594442a01c6859541bcb3e8164d183d32937b851835442f69d5c94e', 'simple');
 
 -- --------------------------------------------------------
 
@@ -216,6 +223,13 @@ CREATE TABLE `users_waiting` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Άδειασμα δεδομένων του πίνακα `users_waiting`
+--
+
+INSERT INTO `users_waiting` (`email`, `username`, `password`, `authority`) VALUES
+('amoavinis@csd.auth.gr', 'amoavinis2', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'simple');
+
+--
 -- Ευρετήρια για άχρηστους πίνακες
 --
 
@@ -223,6 +237,7 @@ CREATE TABLE `users_waiting` (
 -- Ευρετήρια για πίνακα `interested`
 --
 ALTER TABLE `interested`
+  ADD PRIMARY KEY (`user_email`,`post_id`),
   ADD KEY `user_email` (`user_email`),
   ADD KEY `post_id` (`post_id`);
 
@@ -272,7 +287,7 @@ ALTER TABLE `users_waiting`
 -- AUTO_INCREMENT για πίνακα `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Περιορισμοί για άχρηστους πίνακες

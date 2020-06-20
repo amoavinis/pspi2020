@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Φιλοξενητής: 127.0.0.1
--- Χρόνος δημιουργίας: 12 Ιουν 2020 στις 13:50:10
+-- Χρόνος δημιουργίας: 20 Ιουν 2020 στις 10:43:21
 -- Έκδοση διακομιστή: 10.4.8-MariaDB
 -- Έκδοση PHP: 7.3.11
 
@@ -62,6 +62,9 @@ INSERT INTO `organizations` (`name`, `url`, `latitude`, `longitude`, `type`) VAL
 ('Φιλoζωική Ένωση Νέας Ιωνίας (Φ.Ε.Ν.Ι)', 'https://fenineasionias.blogspot.com/', 38.0393, 23.7576, 'filozoiki'),
 ('Πολιτιστικός Φιλοζωϊκός Σύλλογος Τρίπολης', 'https://filtripoli.blogspot.com/', 37.4163, 22.7644, 'filozoiki'),
 ('Φιλοζωικός Σύλλογος Αιγιάλειας \"Τα Φιλαράκια\"', 'https://fsa-strayanimalsgreece.gr/', 38.1541, 22.314, 'filozoiki'),
+('1ο Δημοτικό Ιατρείο Αθηνών - Καλφοπούλειο', 'https://givmed.org/el/foreas/1o-dimotiko-iatreio-dimou-athinaion/', 37.981, 23.735, 'farmakeio'),
+('PRAKSIS-Θεσσαλονίκη', 'https://givmed.org/el/foreas/praksis-2/', 40.644, 22.937, 'farmakeio'),
+('PRAKSIS-Αθήνα', 'https://givmed.org/el/foreas/praksis/', 37.999, 23.705, 'farmakeio'),
 ('ΦΙΛΟΖΩΙΚΗ ΠΑΡΕΜΒΑΣΗ ΕΛΛΗΝΙΚΟΥ ΑΡΓΥΡΟΥΠΟΛΗΣ', 'https://goo.gl/hfLDHA', 37.906, 23.7504, 'filozoiki'),
 ('Φιλοζωική Ομάδα Πανεπιστημίου Ιωαννίνων', 'https://goo.gl/l8jE9h', 39.664, 20.8523, 'filozoiki'),
 ('Φιλοζωϊκό και Πολιτιστικό Σωματείο Π.Φαλήρου', 'https://goo.gl/X9xy4r', 37.9302, 23.7002, 'filozoiki'),
