@@ -6,7 +6,7 @@ $delete_account_query =
 "
 DELETE
 FROM users
-WHERE email = \"".$_POST['email']."\"
+WHERE email = \"".$_POST['userEmail']."\"
 "
 ;
 
@@ -18,13 +18,13 @@ mysqli_query($con, $delete_account_query);
 
 
 // Unexpected behaviour: administrator deleted his own account.
-if($_POST['email'] == $_SESSION['email']){
+if($_POST['userEmail'] == $_SESSION['email']){
     session_unset();
     header("Location: index.php"); 
 }
 // Expected behaviour: administrator created an account other than theirs.
 else{
-    header("Location: ActionCall_administrator_all_users_table");
+    header("Location: ActionCall_administrator_all_users_table.php");
 }
 
 ?>

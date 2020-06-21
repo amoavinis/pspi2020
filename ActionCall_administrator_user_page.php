@@ -71,7 +71,7 @@ if(isset($_GET['userEmail'])){
         </div>
 
         <div class="container">
-            <form action="delete_account.php" method="POST">
+            <form action="delete_user_administrator.php" method="POST">
                 <button type="submit" style="background: transparent; border: 0" class="delete-account-trash-button">
                 <i type="submit" class="fas fa-trash-alt"></i>  
                 </button>
