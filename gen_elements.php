@@ -85,7 +85,7 @@ function footer_gen() {
         <div class=\"row\">
             <div class=\"col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white\">
                 <p><i>ActionCall</i> is a work of Moavinis Angelos, Raitsidis Georgios-Anargyros, Romanos Georgios, Stavratis Konstantinos</p>
-                <p class=\"h6\">&amp;copy All rights reserved.</p>
+                <p class=\"h6\">&copy; All rights reserved.</p>
             </div>
             
         </div>	
