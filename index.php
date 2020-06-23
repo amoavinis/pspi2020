@@ -119,7 +119,7 @@ if (isset($_COOKIE["ActionCallUser"]) && isset($_COOKIE["ActionCallUserEmail"]) 
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <form action = "Actioncall_forum.php" method = "get" class="search-form">
+                            <form action = "ActionCall_forum.php" method = "get" class="search-form">
                                 <div class="input-group">
                                     <input class="form-control" type="text" name="search" aria-describedby="search-btn" placeholder="Search posts...">
                                     <input class="btn btn-primary" type = "submit" value = "Search">
